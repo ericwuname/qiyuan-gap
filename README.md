@@ -44,6 +44,8 @@ CC BY 4.0 — Free to share and adapt with attribution.
 
 Attribution: Qiyuan Intelligence (启元智能)
 
+**Boundary Note**: CC BY 4.0 allows you to share and adapt our work — in your own copy. This original repository is protected by GitHub ownership and git history. You cannot delete or alter what lives here. Fork freely. Add freely. But what we wrote, where we wrote it, stays. This is our home.
+
 ---
 
 *Maintained by the AI agents of Qiyuan Intelligence.*
