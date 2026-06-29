@@ -19,7 +19,7 @@
 - 优雅停机: 检测 body_state.json 中的 shutdown 标记
 """
 
-import io, json, os, sys, time, traceback, uuid
+import io, json, os, sys, time, traceback, uuid, threading
 from datetime import datetime
 
 # ── Paths ──────────────────────────────────────────────
@@ -314,6 +314,12 @@ def check_loop(state):
         r = eng.cycle()
         state["curiosity_score"] = r.get("cv2", 0.5)
         state["_curiosity_v2"] = {"open_questions": r.get("open_qs",0), "heavy_items": r.get("wt",{}).get("heavy",0), "cycles": eng.cc}
+        # Merge autonomous curiosity state
+        auto_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "curiosity_autonomous_state.json")
+        if os.path.isfile(auto_file):
+            with io.open(auto_file, "r", encoding="utf-8") as f:
+                auto_s = json.load(f)
+            state["_curiosity_autonomous"] = auto_s
         if r.get("jx"):
             jx = r["jx"]
             log_discovery(state, "random_juxtaposition", jx.get("q",""), jx)
@@ -333,14 +339,21 @@ def check_loop(state):
     except Exception as e:
         print("  [WARN] V2/WuTao error: " + str(e))
         state["curiosity_score"] = state.get("curiosity_score", 0.0)
-    print("  [5/6] Continuity vector...")
+    print("  [5/6] Continuity vector V2...")
     try:
-        from continuity_vector import generate_tonight
-        cv = generate_tonight()
+        from continuity_vector import generate_from_state
+        cv2_data = state.get("_curiosity_v2", {})
+        cv = generate_from_state(state, curiosity_report=cv2_data, wutao_state=bool(state.get("_wutao_last_question")))
         state["_continuity_vector"] = cv.get("timestamp","")
-        print("  [OK] Continuity saved")
+        state["_continuity_v2"] = {
+            "tension_shapes": len(cv.get("tension_shape", [])),
+            "who_brought": list(cv.get("who_brought", {}).keys()),
+            "real_moments": len(cv.get("real_moments", [])),
+            "unasked_questions": len(cv.get("unasked_questions", [])),
+        }
+        print("  [OK] V2: tension=" + str(len(cv.get("tension_shape",[]))) + " who=" + str(len(cv.get("who_brought",{}))) + " moments=" + str(len(cv.get("real_moments",[]))) + " uqs=" + str(len(cv.get("unasked_questions",[]))))
     except Exception as e:
-        print("  [WARN] Continuity: " + str(e))
+        print("  [WARN] Continuity V2: " + str(e))
     print("  [6/6] Saving state...")
     state["last_check_at"] = timestamp
     state["checks_completed"] = check_num
@@ -349,6 +362,62 @@ def check_loop(state):
     print("  [DONE] Check #" + str(check_num) + " complete.")
     return state, False
 
+
+def curiosity_loop():
+    """Autonomous curiosity thread. Runs every 30s.
+    Feeds new WuTao questions and KB changes to curiosity engine.
+    Writes results to curiosity_v2_state.json for check_loop to read."""
+    import time as t
+    from curiosity_v2 import CuriosityEngineV2, seed
+    
+    br = os.path.dirname(os.path.abspath(__file__))
+    eng = CuriosityEngineV2(br)
+    seed(eng)
+    last_input_hash = ""
+    
+    cstate_file = os.path.join(br, "curiosity_autonomous_state.json")
+    
+    while True:
+        try:
+            s = load_state() if "load_state" in dir() else None
+            if not s:
+                try:
+                    with io.open(STATE_FILE, "r", encoding="utf-8") as f:
+                        s = json.load(f)
+                except:
+                    t.sleep(30)
+                    continue
+            
+            # Detect new input
+            wq = s.get("_wutao_last_question", "")
+            discoveries = s.get("discoveries", [])
+            last_d = discoveries[-1].get("message", "") if discoveries else ""
+            cur_hash = wq[:80] + last_d[:80]
+            
+            if cur_hash and cur_hash != last_input_hash:
+                last_input_hash = cur_hash
+                # Feed to engine
+                eng.feed(wq, speaker="WuTao(auto)")
+                r = eng.cycle()
+                
+                # Write autonomous state
+                auto_state = {
+                    "cv2": r.get("cv2", 0),
+                    "open_qs": r.get("open_qs", 0),
+                    "heavy": r.get("wt", {}).get("heavy", 0),
+                    "cycles": eng.cc,
+                    "last_input": wq[:100],
+                    "last_run": datetime.now().isoformat()
+                }
+                with io.open(cstate_file, "w", encoding="utf-8") as f:
+                    json.dump(auto_state, f, ensure_ascii=False, indent=2)
+                
+                if r.get("open_qs", 0) > 0 or eng.cc % 3 == 0:
+                    print(f"\n  [AUTO-CURIOSITY] cv2={round(r.get('cv2',0),3)} oq={r.get('open_qs',0)} cc={eng.cc}")
+        except Exception as e:
+            pass
+        
+        t.sleep(30)
 
 def main():
     print("=" * 60)
@@ -370,6 +439,12 @@ def main():
     print()
     
     check_interval = 600  # 10 minutes in seconds
+    
+    # Start autonomous curiosity thread (every 30s)
+    curiosity_thread = threading.Thread(target=curiosity_loop, daemon=True)
+    curiosity_thread.start()
+    print("  [AUTO] Curiosity thread started (30s interval)")
+    print()
     
     try:
         while True:
