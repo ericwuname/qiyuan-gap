@@ -1,6 +1,6 @@
 # 启元智能 PRD vs 代码 vs CEO认知 三栏对照表
 
-> 生成: 2026-07-01 | 启元(Codex Agent)
+> 生成: 2026-07-01 | 更新: 2026-07-02 | 启元(Codex Agent)
 > 依据: 启元智能_内部PRD_V3.0 + 元脑项目PRD + brain代码审计 + body_daemon运行状态
 
 ---
@@ -34,7 +34,7 @@
 | PRD定义 | 代码实现 | 状态 |
 |:--|:--|:--|
 | 知识存储 | memory/faiss_store.py FAISS+BGE-small-zh-v1.5 (2548篇+68273向量) | 已实现 |
-| 知识内化 | digest/+body_daemon扫描, 但14条pending积压 | 运行但积压 |
+| 知识内化 | digest扫描接入body_daemon[7/9]+run_digest_scan | 已接入(0702) |
 | 知识检索 | cli.py kb search FAISS语义搜索+TF-IDF降级 | 已实现 |
 | 安放协议 | 代码层无强制不删保护, 依赖规则约束 | 规则约束 |
 | 外部输入 | _0.外部输入/ 需手动触发digest | 半自动 |
@@ -48,9 +48,9 @@
 | 规则引擎 | rule_engine.py(30.9KB) | 已实现 |
 | 规则发现 | rule_discovery.py(11.8KB) 从复盘文档自动挖掘 | 已实现 |
 | 规则优化 | rule_optimizer.py(15.6KB) | 已实现 |
-| 自进化 | self_evolve.py(35.4KB) 生成建议到_suggested/ (23条积压) | 运行中 |
+| 自进化 | self_evolve.py(35.4KB) 生成建议到_suggested/ (23条积压(已清零0702)) | 运行中 |
 | 自动应用约束 | 硬约束: status=suggested, action=review_and_confirm, 无auto-apply | 约束存在 |
-| 建议审核 | 无审核机制, 23条无人看过, CEO从未收到推送 | 流程缺失 |
+| 建议审核 | check_suggested.py监控+bootstrap.py[7/7]+body_daemon周检 | 已修复(0702) |
 
 ---
 
@@ -76,7 +76,7 @@
 | 自主决策度D | probe/probe_d.py Claude标记为循环论证风险 | 已实现 |
 | 世界模型 | world_model.py+world_model_db.py+ensemble(5模型) | 已实现 |
 | 元认知Ensemble | world_model_ensemble.py 置信度+多样性监控 | 已实现 |
-| 好奇心引擎 | curiosity_v2.py(11.8KB) 30秒线程 | 已实现 |
+| 好奇心引擎 | curiosity_v2六维已接入body_daemon三处+六维发现日志 | 全接入(0702) |
 | 意识元脑PRD | 元脑项目prd.txt 5阶段沙盒计划, 代码未开始 | 仅有PRD |
 
 ---
@@ -142,9 +142,9 @@
 
 ### 需要立即处理
 
-- rules/_suggested/ 23条积压无人审核
+- rules/_suggested/ 23条积压(已清零0702)无人审核
 - GitHub每日推送遗忘(7月1日需执行)
-- digest 14条pending积压
+- digest 14条pending积压(已清零0702)
 
 ### 需要关注
 
@@ -165,3 +165,21 @@
 ---
 
 > 生成依据: body_daemon.py(499行V1.6), config.yaml, body_state.json(365次检查), PRD V3.0, 元脑项目PRD, 23子目录代码审计
+
+
+---
+## 0702执行修复记录
+
+| 修复项 | 变更 | 影响 |
+|:--|:--|:--|
+| null->None | _default_state() 4处null->None | body_daemon不再启动崩溃 |
+| run_health_check | 补全文件+suggested溢出+ops膨胀+承诺追踪 | [6/9]不再跳过 |
+| run_digest_scan | 对接memory.digest.DigestEngine | [7/9]不再空白 |
+| run_conditional_tasks | Mon review+22h夜报+1日decay | [8/9]不再空返 |
+| self_evolve缩进 | evolver=SelfEvolve()移入else块 | 老bug修复 |
+| curiosity->body | _patch_engine接入3处+六维发现日志+state富化 | 通络完成 |
+| suggested 23->0 | 审核16条:11 approve 5 reject | CEO从未见过->清零 |
+| 仪表盘V0刷新 | suggested:19->2 overdue:1->0 | 数据真实 |
+| GitHub推送恢复 | LFS migrate+force push 6 commits | 推送恢复 |
+
+> 2026-07-02 执行Agent: 启元(Codex)

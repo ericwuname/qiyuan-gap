@@ -64,12 +64,12 @@ def _default_state():
         "curiosity_score": 0.0,
         "shutdown_requested": False,
         "status": "initializing",
-        "_last_suggested_ack": null,
-        "_last_daily_report": null,
-        "_last_weekly_backup": null,
+        "_last_suggested_ack": None,
+        "_last_daily_report": None,
+        "_last_weekly_backup": None,
         "_health_alerts": {},
         "_daily_push_count": 0,
-        "_daily_push_date": null
+        "_daily_push_date": None
     }
 
 def save_state(state):

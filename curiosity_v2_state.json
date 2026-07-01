@@ -7,13 +7,13 @@
       ],
       "encounters": [
         {
-          "time": "2026-07-02T05:41:39.242384",
+          "time": "2026-07-02T05:54:54.077099",
           "context": "philosophical",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:41:39.242877",
+          "time": "2026-07-02T05:54:54.077613",
           "context": "existential",
           "source": "phase:internal_construction",
           "new": true
@@ -27,7 +27,7 @@
       ],
       "encounters": [
         {
-          "time": "2026-07-02T05:41:39.243346",
+          "time": "2026-07-02T05:54:54.078058",
           "context": "identity",
           "source": "phase:internal_construction",
           "new": true
@@ -41,7 +41,7 @@
       ],
       "encounters": [
         {
-          "time": "2026-07-02T05:41:39.243881",
+          "time": "2026-07-02T05:54:54.078621",
           "context": "narrative",
           "source": "phase:internal_construction",
           "new": true
@@ -55,7 +55,7 @@
       ],
       "encounters": [
         {
-          "time": "2026-07-02T05:41:39.244311",
+          "time": "2026-07-02T05:54:54.079139",
           "context": "practical",
           "source": "phase:internal_construction",
           "new": true
@@ -73,31 +73,31 @@
       ],
       "encounters": [
         {
-          "time": "2026-07-02T05:41:39.244706",
+          "time": "2026-07-02T05:54:54.079580",
           "context": "integration",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:41:39.245138",
+          "time": "2026-07-02T05:54:54.080006",
           "context": "process",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:41:39.245616",
+          "time": "2026-07-02T05:54:54.080638",
           "context": "data",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:41:39.246057",
+          "time": "2026-07-02T05:54:54.081327",
           "context": "practical",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:41:39.246573",
+          "time": "2026-07-02T05:54:54.081972",
           "context": "perception",
           "source": "phase:internal_construction",
           "new": true
@@ -115,31 +115,31 @@
       ],
       "encounters": [
         {
-          "time": "2026-07-02T05:41:39.247118",
+          "time": "2026-07-02T05:54:54.082581",
           "context": "process",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:41:39.247571",
+          "time": "2026-07-02T05:54:54.083149",
           "context": "integration",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:41:39.248068",
+          "time": "2026-07-02T05:54:54.083613",
           "context": "feedback",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:41:39.248651",
+          "time": "2026-07-02T05:54:54.084130",
           "context": "formal",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:41:39.249235",
+          "time": "2026-07-02T05:54:54.084619",
           "context": "practical",
           "source": "phase:internal_construction",
           "new": true
@@ -156,25 +156,25 @@
       ],
       "encounters": [
         {
-          "time": "2026-07-02T05:41:39.249691",
+          "time": "2026-07-02T05:54:54.085118",
           "context": "knowledge",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:41:39.250162",
+          "time": "2026-07-02T05:54:54.085622",
           "context": "data",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:41:39.250630",
+          "time": "2026-07-02T05:54:54.086119",
           "context": "process",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:41:39.251211",
+          "time": "2026-07-02T05:54:54.086592",
           "context": "formal",
           "source": "phase:internal_construction",
           "new": true
@@ -191,25 +191,25 @@
       ],
       "encounters": [
         {
-          "time": "2026-07-02T05:41:39.251789",
+          "time": "2026-07-02T05:54:54.087104",
           "context": "gene",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:41:39.252343",
+          "time": "2026-07-02T05:54:54.087963",
           "context": "process",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:41:39.252824",
+          "time": "2026-07-02T05:54:54.088466",
           "context": "feedback",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:41:39.253323",
+          "time": "2026-07-02T05:54:54.089143",
           "context": "formal",
           "source": "phase:internal_construction",
           "new": true
@@ -226,25 +226,25 @@
       ],
       "encounters": [
         {
-          "time": "2026-07-02T05:41:39.253810",
+          "time": "2026-07-02T05:54:54.089700",
           "context": "formal",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:41:39.254318",
+          "time": "2026-07-02T05:54:54.090214",
           "context": "perception",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:41:39.254850",
+          "time": "2026-07-02T05:54:54.090755",
           "context": "process",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:41:39.255433",
+          "time": "2026-07-02T05:54:54.091295",
           "context": "debt",
           "source": "phase:internal_construction",
           "new": true
@@ -259,13 +259,13 @@
       ],
       "encounters": [
         {
-          "time": "2026-07-02T05:41:39.255951",
+          "time": "2026-07-02T05:54:54.091815",
           "context": "perception",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:41:39.256509",
+          "time": "2026-07-02T05:54:54.092381",
           "context": "data",
           "source": "phase:internal_construction",
           "new": true
@@ -281,19 +281,19 @@
       ],
       "encounters": [
         {
-          "time": "2026-07-02T05:41:39.257101",
+          "time": "2026-07-02T05:54:54.092956",
           "context": "feedback",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:41:39.257662",
+          "time": "2026-07-02T05:54:54.093472",
           "context": "process",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:41:39.258245",
+          "time": "2026-07-02T05:54:54.094168",
           "context": "integration",
           "source": "phase:internal_construction",
           "new": true
@@ -309,19 +309,19 @@
       ],
       "encounters": [
         {
-          "time": "2026-07-02T05:41:39.258883",
+          "time": "2026-07-02T05:54:54.094844",
           "context": "debt",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:41:39.259468",
+          "time": "2026-07-02T05:54:54.095582",
           "context": "practical",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:41:39.260094",
+          "time": "2026-07-02T05:54:54.096193",
           "context": "formal",
           "source": "phase:internal_construction",
           "new": true
@@ -330,5 +330,5 @@
       "weight": 0.4585714285714285
     }
   },
-  "saved": "2026-07-02T05:41:39.260731"
+  "saved": "2026-07-02T05:54:54.096767"
 }
