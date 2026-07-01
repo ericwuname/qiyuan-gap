@@ -439,6 +439,13 @@ G: {cv2.get('g_dig_open','?')} C: {cv2.get('c_issues','?')} D: {cv2.get('d_warni
             with io.open(nl, "w", encoding="utf-8") as f:
                 f.write(brief)
             results["night_brief"] = nl
+            # Push to feishu + email
+            try:
+                from push_pipe import push_night_brief
+                pr = push_night_brief(brief)
+                results["push"] = pr.get("channels", {})
+            except Exception as pe:
+                results["push_error"] = str(pe)[:100]
             state["_last_night_brief_date"] = now.strftime("%Y-%m-%d")
         except Exception as e:
             results["night_brief_error"] = str(e)
