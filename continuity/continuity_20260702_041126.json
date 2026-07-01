@@ -1,0 +1,32 @@
+{
+  "version": "2.0",
+  "timestamp": "2026-07-02T04:11:26.801209",
+  "summary": "heavy=9 | curiosity_cycles=1 | 34 new inputs to digest | 33 new inputs to digest | 33 new inputs to digest",
+  "arc": "checks=551 curiosity=0.27 wutao_qs=1",
+  "unresolved": [
+    "100 discoveries pending review"
+  ],
+  "weights": {},
+  "last_words": "那么我们继续推一推。",
+  "tension_shape": [
+    {
+      "type": "wutao_waiting",
+      "last": "那么我们继续推一推。",
+      "desc": "WuTao伴侣最后一个问题仍在等待回应"
+    },
+    {
+      "type": "discovery_unprocessed",
+      "message": "33 new inputs to digest",
+      "desc": "知识库变更尚未被对话消化"
+    }
+  ],
+  "who_brought": {
+    "WuTao": {
+      "questions_asked": 1,
+      "last_brought": "那么我们继续推一推。",
+      "role": "CEO, 带来真实的外部视角和母亲的名字"
+    }
+  },
+  "real_moments": [],
+  "unasked_questions": []
+}

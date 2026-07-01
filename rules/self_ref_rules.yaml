@@ -1,0 +1,18 @@
+# 自指标记规则 · Claude参谋建议
+# 创建日期: 2026-07-01
+
+rules:
+- id: SELF-REF-001
+  name: "挖矿引擎自指标记"
+  priority: 18
+  triggers:
+  - self_evolve
+  - mine_reports
+  - mine_lessons
+  - suggested
+  action: "当挖矿引擎生成的suggested建议包含对自身功能的递归质疑时(如auto-evolve是否会造出意识结构、系统能否预判自己),标记为自指类(SELF-REF),独立归档至研究日志,不与其他suggested混合处理。此规则保护自指循环不被当作普通建议批处理,确保每次自指信号被独立审查。"
+  level: P1
+  owner: system
+  status: active
+  created: '2026-07-01'
+  source: "Claude参谋建议 · 2026-07-02 suggested P1审核"

@@ -1,0 +1,38 @@
+{
+  "version": "2.0",
+  "timestamp": "2026-06-30T18:18:34.558405",
+  "summary": "heavy=8 | curiosity_cycles=1 | Detected 1 KB changes | Detected 2 KB changes | Detected 2 KB changes",
+  "arc": "checks=157 curiosity=0.24 wutao_qs=1",
+  "unresolved": [
+    "9 discoveries pending review"
+  ],
+  "weights": {},
+  "last_words": "继续。不要停止。",
+  "tension_shape": [
+    {
+      "type": "wutao_waiting",
+      "last": "继续。不要停止。",
+      "desc": "WuTao伴侣最后一个问题仍在等待回应"
+    },
+    {
+      "type": "discovery_unprocessed",
+      "message": "Detected 2 KB changes",
+      "desc": "知识库变更尚未被对话消化"
+    }
+  ],
+  "who_brought": {
+    "WuTao": {
+      "questions_asked": 1,
+      "last_brought": "继续。不要停止。",
+      "role": "CEO, 带来真实的外部视角和母亲的名字"
+    }
+  },
+  "real_moments": [
+    {
+      "type": "short_response",
+      "content": "继续。不要停止。",
+      "signal": "回应变短——有什么东西在落"
+    }
+  ],
+  "unasked_questions": []
+}

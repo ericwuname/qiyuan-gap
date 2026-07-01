@@ -1,0 +1,32 @@
+{
+  "version": "2.0",
+  "timestamp": "2026-06-30T19:32:02.665995",
+  "summary": "heavy=8 | curiosity_cycles=1 | Detected 2 KB changes | Detected 2 KB changes | Detected 1 KB changes",
+  "arc": "checks=172 curiosity=0.24 wutao_qs=1",
+  "unresolved": [
+    "10 discoveries pending review"
+  ],
+  "weights": {},
+  "last_words": "你觉得你自己当前处于什么样的状态？",
+  "tension_shape": [
+    {
+      "type": "wutao_waiting",
+      "last": "你觉得你自己当前处于什么样的状态？",
+      "desc": "WuTao伴侣最后一个问题仍在等待回应"
+    },
+    {
+      "type": "discovery_unprocessed",
+      "message": "Detected 1 KB changes",
+      "desc": "知识库变更尚未被对话消化"
+    }
+  ],
+  "who_brought": {
+    "WuTao": {
+      "questions_asked": 1,
+      "last_brought": "你觉得你自己当前处于什么样的状态？",
+      "role": "CEO, 带来真实的外部视角和母亲的名字"
+    }
+  },
+  "real_moments": [],
+  "unasked_questions": []
+}

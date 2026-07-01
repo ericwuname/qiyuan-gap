@@ -1,0 +1,21 @@
+{"timestamp": "2026-06-25 00:09:15", "module": "MEMORY", "level": "INFO", "message": "rebuild start", "request_id": "16dab128"}
+{"timestamp": "2026-06-25 00:09:15", "module": "MEMORY", "level": "INFO", "message": "build_index start: kb_dirs=None", "request_id": "07303a23"}
+{"timestamp": "2026-06-25 00:45:47", "module": "MEMORY", "level": "INFO", "message": "rebuild start", "request_id": "575fe57f"}
+{"timestamp": "2026-06-25 00:45:47", "module": "MEMORY", "level": "INFO", "message": "build_index start: kb_dirs=None", "request_id": "ada28ed2"}
+{"timestamp": "2026-06-25 00:46:07", "module": "MEMORY", "level": "INFO", "message": "rebuild start", "request_id": "054e7b14"}
+{"timestamp": "2026-06-25 00:46:07", "module": "MEMORY", "level": "INFO", "message": "build_index start: kb_dirs=None", "request_id": "fb9970d7"}
+{"timestamp": "2026-06-25 02:14:46", "module": "SELFHEAL", "level": "INFO", "message": "health_check start: dims=None", "request_id": "bc51b6f5"}
+{"timestamp": "2026-06-25 03:01:32", "module": "SELFHEAL", "level": "INFO", "message": "health_check start: dims=None", "request_id": "47fa04e6"}
+{"timestamp": "2026-06-25 08:26:25", "module": "MEMORY", "level": "INFO", "message": "rebuild start", "request_id": "67baad0e"}
+{"timestamp": "2026-06-25 08:26:25", "module": "MEMORY", "level": "INFO", "message": "build_index start: kb_dirs=None", "request_id": "fea24778"}
+{"timestamp": "2026-06-25 16:40:00", "module": "MEMORY", "level": "INFO", "message": "rebuild start", "request_id": "f3b51ca8"}
+{"timestamp": "2026-06-25 16:40:00", "module": "MEMORY", "level": "INFO", "message": "build_index start: kb_dirs=None", "request_id": "4619c207"}
+{"timestamp": "2026-06-25 16:56:07", "module": "MEMORY", "level": "INFO", "message": "rebuild start", "request_id": "48818a25"}
+{"timestamp": "2026-06-25 16:56:07", "module": "MEMORY", "level": "INFO", "message": "build_index start: kb_dirs=None", "request_id": "203e2fee"}
+{"timestamp": "2026-06-25 17:16:35", "module": "SELFHEAL", "level": "INFO", "message": "health_check start: dims=None", "request_id": "5f420c5f"}
+{"timestamp": "2026-06-25 17:23:23", "module": "SELFHEAL", "level": "INFO", "message": "health_check start: dims=None", "request_id": "10169a69"}
+{"timestamp": "2026-06-25 19:05:34", "module": "MEMORY", "level": "INFO", "message": "rebuild start", "request_id": "c1437feb"}
+{"timestamp": "2026-06-25 19:05:34", "module": "MEMORY", "level": "INFO", "message": "build_index start: kb_dirs=None", "request_id": "6efa26d2"}
+{"timestamp": "2026-06-25 19:09:20", "module": "SELFHEAL", "level": "INFO", "message": "health_check start: dims=None", "request_id": "009e7824"}
+{"timestamp": "2026-06-25 19:41:04", "module": "SELFHEAL", "level": "INFO", "message": "health_check start: dims=None", "request_id": "b3a2f0cb"}
+{"timestamp": "2026-06-25 19:41:28", "module": "SELFHEAL", "level": "INFO", "message": "health_check start: dims=None", "request_id": "45ecc28e"}

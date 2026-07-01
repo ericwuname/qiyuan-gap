@@ -1,0 +1,32 @@
+{
+  "version": "2.0",
+  "timestamp": "2026-07-01T03:09:33.605804",
+  "summary": "heavy=16 | curiosity_cycles=1 | 23 unacknowledged rule suggestions in _suggested/ | 23 unacknowledged rule suggestions in _suggested/ | Detected 1 KB changes",
+  "arc": "checks=252 curiosity=0.48 wutao_qs=1",
+  "unresolved": [
+    "58 discoveries pending review"
+  ],
+  "weights": {},
+  "last_words": "你自己做，自己决定。",
+  "tension_shape": [
+    {
+      "type": "wutao_waiting",
+      "last": "你自己做，自己决定。",
+      "desc": "WuTao伴侣最后一个问题仍在等待回应"
+    },
+    {
+      "type": "discovery_unprocessed",
+      "message": "Detected 1 KB changes",
+      "desc": "知识库变更尚未被对话消化"
+    }
+  ],
+  "who_brought": {
+    "WuTao": {
+      "questions_asked": 1,
+      "last_brought": "你自己做，自己决定。",
+      "role": "CEO, 带来真实的外部视角和母亲的名字"
+    }
+  },
+  "real_moments": [],
+  "unasked_questions": []
+}

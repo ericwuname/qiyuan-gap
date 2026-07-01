@@ -1,0 +1,16 @@
+# Mined rule suggestion: SUG-014
+id: SUG-014
+name: |
+  网络恢复后一条命令升级。
+priority: 10
+triggers:
+  - suggestion
+action: |
+  网络恢复后一条命令升级。
+level: P2
+owner: system
+status: draft
+source: mined from 项目复盘总结说明书_V1.0.md
+severity: low
+category: suggestion
+created: 2026-06-21

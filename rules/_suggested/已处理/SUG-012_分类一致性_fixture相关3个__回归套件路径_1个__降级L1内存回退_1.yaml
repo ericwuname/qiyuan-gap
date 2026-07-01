@@ -1,0 +1,16 @@
+# Mined rule suggestion: SUG-012
+id: SUG-012
+name: |
+  分类一致性(fixture相关3个)、回归套件路径(1个)、降级L1内存回退(1个)。均在R14前已存在，不影响核心功能
+priority: 20
+triggers:
+  - problem
+action: |
+  分类一致性(fixture相关3个)、回归套件路径(1个)、降级L1内存回退(1个)。均在R14前已存在，不影响核心功能。
+level: P1
+owner: system
+status: draft
+source: mined from 复盘报告_启元智脑_V6.0_终版_全14轮.md
+severity: high
+category: problem
+created: 2026-06-21

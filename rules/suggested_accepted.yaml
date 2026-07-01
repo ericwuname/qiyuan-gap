@@ -1,0 +1,160 @@
+# 已审核通过的suggested规则
+# 审核日期: 2026-07-02 | CEO+军师+ChatGPT参谋+Claude参谋
+
+rules:
+- id: EVO-BAT-0001
+  name: "批量操作检测与规范"
+  priority: 18
+  triggers:
+  - 批量写入
+  - 多文件操作
+  - 文件写入
+  action: "短时间内多次写入操作: dry-run预览受影响文件列表, CEO确认后批量执行。单次>=5个文件写入必须先预览。"
+  level: P1
+  owner: system
+  status: active
+  created: '2026-07-02'
+  review_note: "CEO审: approve。先定义批量阈值再建机制。"
+- id: SUG-005
+  name: "并发safe_write互斥锁"
+  priority: 20
+  triggers:
+  - 并发写入
+  - 多窗口
+  - safe_write
+  - 文件锁
+  action: "两个窗口同时safe_write同一文件将导致数据损坏/丢失。实现文件级互斥锁, 锁必须有超时机制(默认30秒)和死锁恢复逻辑。"
+  level: P1
+  owner: system
+  status: active
+  created: '2026-07-02'
+  review_note: "CEO审: approve P1。Claude提醒: 锁本身可能成为故障点, 需超时+死锁恢复。"
+- id: SUG-011
+  name: "本地备份+一键恢复+灾难恢复SOP"
+  priority: 20
+  triggers:
+  - 备份
+  - 恢复
+  - 灾难恢复
+  - 数据丢失
+  action: "建立brain/restore.py一键恢复脚本+SOP-002灾难恢复流程。备份方案完成后必须跑一次实际恢复演练验证。"
+  level: P1
+  owner: system
+  status: active
+  created: '2026-07-02'
+  review_note: "CEO审: approve。Claude提醒: 备份方案本身需被测试。"
+- id: SUG-010
+  name: "清理_sop2.py残留逻辑"
+  priority: 12
+  triggers:
+  - 代码清理
+  - sop2
+  - 残留代码
+  action: "_sop2.py反复插入brain rule stats的问题已禁用。清理_sop2.py中的残留插入逻辑, 删除相关死代码。预计<=30分钟。"
+  level: P2
+  owner: system
+  status: active
+  created: '2026-07-02'
+  review_note: "CEO审: approve降P2。已止血, 清理残留即可。"
+- id: SUG-012
+  name: "测试分类命名统一"
+  priority: 12
+  triggers:
+  - 命名规范
+  - 分类
+  - fixture
+  - 回归测试
+  action: "统一测试相关命名: fixture相关3个、回归套件路径1个、降级L1内存回退1个。均在R14前已存在, 不影响核心功能。预计<=30分钟。"
+  level: P2
+  owner: system
+  status: active
+  created: '2026-07-02'
+  review_note: "CEO审: approve降P2。不影响功能, 统一命名。"
+- id: SUG-002
+  name: 文档陈旧更新提醒
+  priority: 10
+  triggers:
+  - 文档
+  - 陈旧
+  - 更新
+  action: 检测文档查询频率高但内容陈旧(大于30天)时自动提醒更新。
+  level: P2
+  owner: system
+  status: active
+  created: 2026-07-02
+  review_note: CEO速审 approve P2
+- id: SUG-009
+  name: fuzzy_match非连续子串匹配
+  priority: 10
+  triggers:
+  - fuzzy
+  - 匹配
+  - 搜索
+  action: 新增fuzzy_match()非连续子串匹配功能。
+  level: P2
+  owner: system
+  status: active
+  created: 2026-07-02
+  review_note: CEO速审 approve P2
+- id: SUG-014
+  name: 网络恢复后一键升级
+  priority: 10
+  triggers:
+  - 网络
+  - 升级
+  - 恢复
+  action: 网络恢复后一条命令完成所有待升级操作。
+  level: P2
+  owner: system
+  status: active
+  created: 2026-07-02
+  review_note: CEO速审 approve P2
+- id: SUG-015
+  name: 单写矩阵+状态巡检
+  priority: 10
+  triggers:
+  - 写入
+  - 巡检
+  - 状态
+  action: 建立更明确的单写操作矩阵与状态巡检机制。
+  level: P2
+  owner: system
+  status: active
+  created: 2026-07-02
+  review_note: CEO速审 approve P2
+- id: SUG-016
+  name: test_brain完善
+  priority: 10
+  triggers:
+  - 测试
+  - test
+  action: test_brain.py已创建但需完善测试覆盖。
+  level: P2
+  owner: system
+  status: active
+  created: 2026-07-02
+  review_note: CEO速审 approve P2
+- id: SUG-017
+  name: 英文命名L0
+  priority: 10
+  triggers:
+  - 命名
+  - 规范
+  action: 统一英文命名规范L0级别全量标准化。
+  level: P2
+  owner: system
+  status: active
+  created: 2026-07-02
+  review_note: CEO速审 approve P2
+- id: SUG-018
+  name: Python动态生成
+  priority: 10
+  triggers:
+  - brain_status
+  - 动态
+  action: 改为Python读取brain status动态生成报告。
+  level: P2
+  owner: system
+  status: active
+  created: 2026-07-02
+  review_note: CEO速审 approve P2

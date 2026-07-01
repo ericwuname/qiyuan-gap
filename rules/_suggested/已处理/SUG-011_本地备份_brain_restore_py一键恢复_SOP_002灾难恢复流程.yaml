@@ -1,0 +1,16 @@
+# Mined rule suggestion: SUG-011
+id: SUG-011
+name: |
+  本地备份+brain/restore.py一键恢复+SOP-002灾难恢复流程
+priority: 20
+triggers:
+  - problem
+action: |
+  本地备份+brain/restore.py一键恢复+SOP-002灾难恢复流程
+level: P1
+owner: system
+status: draft
+source: mined from 复盘报告_启元智脑_V5.3_终版.md
+severity: high
+category: problem
+created: 2026-06-21

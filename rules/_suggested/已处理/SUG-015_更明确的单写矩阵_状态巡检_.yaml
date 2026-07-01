@@ -1,0 +1,16 @@
+# Mined rule suggestion: SUG-015
+id: SUG-015
+name: |
+  更明确的单写矩阵+状态巡检。
+priority: 10
+triggers:
+  - suggestion
+action: |
+  更明确的单写矩阵+状态巡检。
+level: P2
+owner: system
+status: draft
+source: mined from 项目复盘总结说明书_V1.0.md
+severity: low
+category: suggestion
+created: 2026-06-21

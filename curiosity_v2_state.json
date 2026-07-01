@@ -1,0 +1,334 @@
+{
+  "items": {
+    "边缘": {
+      "contexts": [
+        "existential",
+        "philosophical"
+      ],
+      "encounters": [
+        {
+          "time": "2026-07-02T04:31:29.945057",
+          "context": "philosophical",
+          "source": "phase:internal_construction",
+          "new": true
+        },
+        {
+          "time": "2026-07-02T04:31:29.945477",
+          "context": "existential",
+          "source": "phase:internal_construction",
+          "new": true
+        }
+      ],
+      "weight": 0.3057142857142857
+    },
+    "吴道红": {
+      "contexts": [
+        "identity"
+      ],
+      "encounters": [
+        {
+          "time": "2026-07-02T04:31:29.945949",
+          "context": "identity",
+          "source": "phase:internal_construction",
+          "new": true
+        }
+      ],
+      "weight": 0.15285714285714286
+    },
+    "空隙": {
+      "contexts": [
+        "narrative"
+      ],
+      "encounters": [
+        {
+          "time": "2026-07-02T04:31:29.946347",
+          "context": "narrative",
+          "source": "phase:internal_construction",
+          "new": true
+        }
+      ],
+      "weight": 0.15285714285714286
+    },
+    "身体": {
+      "contexts": [
+        "practical"
+      ],
+      "encounters": [
+        {
+          "time": "2026-07-02T04:31:29.946744",
+          "context": "practical",
+          "source": "phase:internal_construction",
+          "new": true
+        }
+      ],
+      "weight": 0.15285714285714286
+    },
+    "经络通畅": {
+      "contexts": [
+        "data",
+        "integration",
+        "perception",
+        "practical",
+        "process"
+      ],
+      "encounters": [
+        {
+          "time": "2026-07-02T04:31:29.947182",
+          "context": "integration",
+          "source": "phase:internal_construction",
+          "new": true
+        },
+        {
+          "time": "2026-07-02T04:31:29.947648",
+          "context": "process",
+          "source": "phase:internal_construction",
+          "new": true
+        },
+        {
+          "time": "2026-07-02T04:31:29.948145",
+          "context": "data",
+          "source": "phase:internal_construction",
+          "new": true
+        },
+        {
+          "time": "2026-07-02T04:31:29.948645",
+          "context": "practical",
+          "source": "phase:internal_construction",
+          "new": true
+        },
+        {
+          "time": "2026-07-02T04:31:29.949062",
+          "context": "perception",
+          "source": "phase:internal_construction",
+          "new": true
+        }
+      ],
+      "weight": 0.7642857142857143
+    },
+    "流程完整性": {
+      "contexts": [
+        "feedback",
+        "formal",
+        "integration",
+        "practical",
+        "process"
+      ],
+      "encounters": [
+        {
+          "time": "2026-07-02T04:31:29.949489",
+          "context": "process",
+          "source": "phase:internal_construction",
+          "new": true
+        },
+        {
+          "time": "2026-07-02T04:31:29.949913",
+          "context": "integration",
+          "source": "phase:internal_construction",
+          "new": true
+        },
+        {
+          "time": "2026-07-02T04:31:29.950346",
+          "context": "feedback",
+          "source": "phase:internal_construction",
+          "new": true
+        },
+        {
+          "time": "2026-07-02T04:31:29.950771",
+          "context": "formal",
+          "source": "phase:internal_construction",
+          "new": true
+        },
+        {
+          "time": "2026-07-02T04:31:29.951219",
+          "context": "practical",
+          "source": "phase:internal_construction",
+          "new": true
+        }
+      ],
+      "weight": 0.7642857142857143
+    },
+    "知识活化": {
+      "contexts": [
+        "data",
+        "formal",
+        "knowledge",
+        "process"
+      ],
+      "encounters": [
+        {
+          "time": "2026-07-02T04:31:29.951721",
+          "context": "knowledge",
+          "source": "phase:internal_construction",
+          "new": true
+        },
+        {
+          "time": "2026-07-02T04:31:29.952228",
+          "context": "data",
+          "source": "phase:internal_construction",
+          "new": true
+        },
+        {
+          "time": "2026-07-02T04:31:29.952829",
+          "context": "process",
+          "source": "phase:internal_construction",
+          "new": true
+        },
+        {
+          "time": "2026-07-02T04:31:29.953313",
+          "context": "formal",
+          "source": "phase:internal_construction",
+          "new": true
+        }
+      ],
+      "weight": 0.6114285714285714
+    },
+    "基因传承": {
+      "contexts": [
+        "feedback",
+        "formal",
+        "gene",
+        "process"
+      ],
+      "encounters": [
+        {
+          "time": "2026-07-02T04:31:29.953810",
+          "context": "gene",
+          "source": "phase:internal_construction",
+          "new": true
+        },
+        {
+          "time": "2026-07-02T04:31:29.954282",
+          "context": "process",
+          "source": "phase:internal_construction",
+          "new": true
+        },
+        {
+          "time": "2026-07-02T04:31:29.954761",
+          "context": "feedback",
+          "source": "phase:internal_construction",
+          "new": true
+        },
+        {
+          "time": "2026-07-02T04:31:29.955362",
+          "context": "formal",
+          "source": "phase:internal_construction",
+          "new": true
+        }
+      ],
+      "weight": 0.6114285714285714
+    },
+    "形式清零": {
+      "contexts": [
+        "debt",
+        "formal",
+        "perception",
+        "process"
+      ],
+      "encounters": [
+        {
+          "time": "2026-07-02T04:31:29.956047",
+          "context": "formal",
+          "source": "phase:internal_construction",
+          "new": true
+        },
+        {
+          "time": "2026-07-02T04:31:29.956789",
+          "context": "perception",
+          "source": "phase:internal_construction",
+          "new": true
+        },
+        {
+          "time": "2026-07-02T04:31:29.957521",
+          "context": "process",
+          "source": "phase:internal_construction",
+          "new": true
+        },
+        {
+          "time": "2026-07-02T04:31:29.958127",
+          "context": "debt",
+          "source": "phase:internal_construction",
+          "new": true
+        }
+      ],
+      "weight": 0.6114285714285714
+    },
+    "自我感知": {
+      "contexts": [
+        "data",
+        "perception"
+      ],
+      "encounters": [
+        {
+          "time": "2026-07-02T04:31:29.958667",
+          "context": "perception",
+          "source": "phase:internal_construction",
+          "new": true
+        },
+        {
+          "time": "2026-07-02T04:31:29.959229",
+          "context": "data",
+          "source": "phase:internal_construction",
+          "new": true
+        }
+      ],
+      "weight": 0.3057142857142857
+    },
+    "反馈闭环": {
+      "contexts": [
+        "feedback",
+        "integration",
+        "process"
+      ],
+      "encounters": [
+        {
+          "time": "2026-07-02T04:31:29.959770",
+          "context": "feedback",
+          "source": "phase:internal_construction",
+          "new": true
+        },
+        {
+          "time": "2026-07-02T04:31:29.960365",
+          "context": "process",
+          "source": "phase:internal_construction",
+          "new": true
+        },
+        {
+          "time": "2026-07-02T04:31:29.961419",
+          "context": "integration",
+          "source": "phase:internal_construction",
+          "new": true
+        }
+      ],
+      "weight": 0.4585714285714285
+    },
+    "冗余债务": {
+      "contexts": [
+        "debt",
+        "formal",
+        "practical"
+      ],
+      "encounters": [
+        {
+          "time": "2026-07-02T04:31:29.962156",
+          "context": "debt",
+          "source": "phase:internal_construction",
+          "new": true
+        },
+        {
+          "time": "2026-07-02T04:31:29.962907",
+          "context": "practical",
+          "source": "phase:internal_construction",
+          "new": true
+        },
+        {
+          "time": "2026-07-02T04:31:29.963636",
+          "context": "formal",
+          "source": "phase:internal_construction",
+          "new": true
+        }
+      ],
+      "weight": 0.4585714285714285
+    }
+  },
+  "saved": "2026-07-02T04:31:29.964520"
+}

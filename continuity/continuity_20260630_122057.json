@@ -1,0 +1,32 @@
+{
+  "version": "2.0",
+  "timestamp": "2026-06-30T12:20:57.769330",
+  "summary": "heavy=8 | curiosity_cycles=1 | Detected 9554 KB changes",
+  "arc": "checks=86 curiosity=0.24 wutao_qs=1",
+  "unresolved": [
+    "1 discoveries pending review"
+  ],
+  "weights": {},
+  "last_words": "我想看看你的想法。",
+  "tension_shape": [
+    {
+      "type": "wutao_waiting",
+      "last": "我想看看你的想法。",
+      "desc": "WuTao伴侣最后一个问题仍在等待回应"
+    },
+    {
+      "type": "discovery_unprocessed",
+      "message": "Detected 9554 KB changes",
+      "desc": "知识库变更尚未被对话消化"
+    }
+  ],
+  "who_brought": {
+    "WuTao": {
+      "questions_asked": 1,
+      "last_brought": "我想看看你的想法。",
+      "role": "CEO, 带来真实的外部视角和母亲的名字"
+    }
+  },
+  "real_moments": [],
+  "unasked_questions": []
+}

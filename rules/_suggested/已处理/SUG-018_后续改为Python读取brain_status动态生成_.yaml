@@ -1,0 +1,16 @@
+# Mined rule suggestion: SUG-018
+id: SUG-018
+name: |
+  后续改为Python读取brain status动态生成。
+priority: 10
+triggers:
+  - suggestion
+action: |
+  后续改为Python读取brain status动态生成。
+level: P2
+owner: system
+status: draft
+source: mined from 项目复盘总结说明书_V1.0.md
+severity: low
+category: suggestion
+created: 2026-06-21

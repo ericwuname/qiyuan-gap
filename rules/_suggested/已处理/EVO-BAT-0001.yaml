@@ -1,0 +1,18 @@
+# 自进化建议规则 · EVO-BAT-0001
+# 生成时间: 2026-07-01 19:18:08
+# 状态: suggested (待审) · 严重度: P1
+# ⚠️ 此规则由自进化引擎自动生成，需人工审核后应用。
+
+rule:
+  id: "EVO-BAT-0001"
+  title: "检测到批量操作模式，建议建立批量操作规范"
+  type: "batch_operations"
+  severity: "P1"
+  status: "suggested"
+  description: >
+    在短时间内检测到 1473 个可能的批量操作。建议建立批量操作审批与回滚机制。
+  trigger:
+    condition: "短时间内多次写入操作"
+  action:
+    - "review_and_confirm"
+  source: "self_evolve"

@@ -1,0 +1,32 @@
+{
+  "version": "2.0",
+  "timestamp": "2026-06-30T23:53:30.465049",
+  "summary": "heavy=8 | curiosity_cycles=1 | 193 new inputs to digest | 23 unacknowledged rule suggestions in _suggested/ | Daily report generated: 2026-06-30",
+  "arc": "checks=223 curiosity=0.24 wutao_qs=1",
+  "unresolved": [
+    "16 discoveries pending review"
+  ],
+  "weights": {},
+  "last_words": "这个不必问我。",
+  "tension_shape": [
+    {
+      "type": "wutao_waiting",
+      "last": "这个不必问我。",
+      "desc": "WuTao伴侣最后一个问题仍在等待回应"
+    },
+    {
+      "type": "discovery_unprocessed",
+      "message": "Daily report generated: 2026-06-30",
+      "desc": "知识库变更尚未被对话消化"
+    }
+  ],
+  "who_brought": {
+    "WuTao": {
+      "questions_asked": 1,
+      "last_brought": "这个不必问我。",
+      "role": "CEO, 带来真实的外部视角和母亲的名字"
+    }
+  },
+  "real_moments": [],
+  "unasked_questions": []
+}

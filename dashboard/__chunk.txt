@@ -1,0 +1,32 @@
+  <div class="chart-box" style="height:520px" id="ch-org"></div>
+  </div>
+</div>
+
+<!-- Employee Detail Table -->
+<div class="card card-wide">
+  <div class="card-header"><span class="card-title">👥 员工明细 (按层级排序)</span></div>
+  <div style="overflow-x:auto">
+    <table><thead><tr><th>ID</th><th>姓名</th><th>角色</th><th>层级</th><th>部门</th><th>能力分</th><th>状态</th><th>最近评估</th></tr></thead><tbody id="hr-detail-table"></tbody></table>
+  </div>
+</div>
+
+<!-- Skill Catalog -->
+<div class="card card-wide">
+  <div class="card-header"><span class="card-title">🛠️ 技能目录 (含说明)</span></div>
+  <div style="overflow-x:auto">
+    <table><thead><tr><th>技能名称</th><th>归属人</th><th>分类</th><th>说明</th><th>最近更新</th></tr></thead><tbody id="hr-skills-table"></tbody></table>
+  </div>
+</div>
+
+<div class="loading" id="hr-loading"><div class="spinner"></div><p style="margin-top:10px">加载HR数据...</p></div>
+</div>
+
+<!-- Tab: Value -->
+<div class="tab-panel" id="panel-value">
+<div class="summary-cards" id="value-summary">
+  <div class="summary-card"><div class="label">📊 近30天操作数</div><div class="value" id="val-ops">--</div></div>
+  <div class="summary-card"><div class="label">💴 近30天成本(¥)</div><div class="value" id="val-cost-cny">--</div></div>
+  <div class="summary-card"><div class="label">💵 近30天成本($)</div><div class="value" id="val-cost-usd">--</div></div>
+  <div class="summary-card"><div class="label">📈 日均成本(¥)</div><div class="value" id="val-daily">--</div></div>
+</div>
+<d

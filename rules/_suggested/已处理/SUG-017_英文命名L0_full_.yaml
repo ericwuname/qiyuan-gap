@@ -1,0 +1,16 @@
+# Mined rule suggestion: SUG-017
+id: SUG-017
+name: |
+  英文命名L0-full。
+priority: 10
+triggers:
+  - suggestion
+action: |
+  英文命名L0-full。
+level: P2
+owner: system
+status: draft
+source: mined from 项目复盘总结说明书_V1.0.md
+severity: low
+category: suggestion
+created: 2026-06-21
