@@ -1,0 +1,16 @@
+# Mined rule suggestion: SUG-016
+id: SUG-016
+name: |
+  test_brain.py已创建但需完善。
+priority: 10
+triggers:
+  - suggestion
+action: |
+  test_brain.py已创建但需完善。
+level: P2
+owner: system
+status: draft
+source: mined from 项目复盘总结说明书_V1.0.md
+severity: low
+category: suggestion
+created: 2026-06-21

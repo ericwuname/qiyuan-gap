@@ -1,0 +1,13 @@
+id: SOP-011
+name: 目录卫生强制校验
+priority: 40
+triggers:
+- 创建文件
+- 文件归位
+- 目录
+- 文件夹
+action: 每个文件必须在正确目录。放错=事故。定期dir-sanitizer.ps1扫描+自动修复
+level: P1
+owner: system
+status: active
+created: '2026-06-19'

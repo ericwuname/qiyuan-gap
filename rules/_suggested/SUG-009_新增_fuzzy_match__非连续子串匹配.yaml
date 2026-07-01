@@ -1,0 +1,16 @@
+# Mined rule suggestion: SUG-009
+id: SUG-009
+name: |
+  新增_fuzzy_match()非连续子串匹配
+priority: 10
+triggers:
+  - suggestion
+action: |
+  新增_fuzzy_match()非连续子串匹配
+level: P2
+owner: system
+status: draft
+source: mined from RPT_第二轮升级_项目总监验收与复盘_V1.0.md
+severity: low
+category: suggestion
+created: 2026-06-21

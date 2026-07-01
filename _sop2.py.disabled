@@ -1,0 +1,169 @@
+import re
+
+path = r"D:\0.个人文档\个人文档\启元智能\brain\cli.py"
+with open(path, "r", encoding="utf-8") as f:
+    lines = f.read().split("\n")
+
+# 1. Add cmd_proposal functions before cmd_help
+proposal_code = '''def cmd_proposal_list(args):
+    """brain proposal list - list all rule proposals."""
+    import json, os as _os, glob as _glob
+    proposals_dir = _os.path.join(_brain_dir, "proposals")
+    if not _os.path.isdir(proposals_dir):
+        print(json.dumps({"proposals": [], "count": 0, "message": "No proposals directory"}, ensure_ascii=False, indent=2))
+        return
+    files = sorted(_glob.glob(_os.path.join(proposals_dir, "*.yaml")))
+    result = []
+    for fp in files:
+        try:
+            import yaml
+            with open(fp, "r", encoding="utf-8") as f:
+                data = yaml.safe_load(f)
+            rule = data.get("rule", data) if isinstance(data, dict) else {}
+            result.append({
+                "id": rule.get("id", _os.path.basename(fp)),
+                "name": rule.get("name", ""),
+                "file": _os.path.basename(fp),
+                "level": rule.get("level", "P2"),
+                "confidence": rule.get("_confidence", 0),
+                "discovered_at": rule.get("_discovered_at", ""),
+            })
+        except Exception as e:
+            result.append({"file": _os.path.basename(fp), "error": str(e)})
+    print(json.dumps({"proposals": result, "count": len(result)}, ensure_ascii=False, indent=2))
+
+def cmd_proposal_show(args):
+    """brain proposal show <id> - view proposal details."""
+    import json, os as _os
+    fp = _os.path.join(_brain_dir, "proposals", args.id if args.id.endswith(".yaml") else args.id + ".yaml")
+    if not _os.path.isfile(fp):
+        _error_response(1, "Proposal not found: " + args.id, "Use 'brain proposal list' to see available proposals")
+        return
+    try:
+        with open(fp, "r", encoding="utf-8") as f:
+            content = f.read()
+        print(content)
+    except Exception as e:
+        _error_response(4, str(e))
+
+def cmd_proposal_approve(args):
+    """brain proposal approve <id> - approve and install proposal."""
+    import json, os as _os, shutil, time as _time
+    fp = _os.path.join(_brain_dir, "proposals", args.id if args.id.endswith(".yaml") else args.id + ".yaml")
+    if not _os.path.isfile(fp):
+        _error_response(1, "Proposal not found: " + args.id)
+        return
+    
+    # Validate YAML
+    try:
+        import yaml
+        with open(fp, "r", encoding="utf-8") as f:
+            data = yaml.safe_load(f)
+        rule = data.get("rule", data)
+        if not rule.get("id") or not rule.get("name"):
+            _error_response(1, "Invalid proposal: missing id or name")
+            return
+    except Exception as e:
+        _error_response(1, "Invalid YAML: " + str(e))
+        return
+    
+    # Copy to rules/_suggested/
+    dest = _os.path.join(_brain_dir, "rules", "_suggested", _os.path.basename(fp))
+    shutil.copy2(fp, dest)
+    
+    # Remove from proposals
+    _os.remove(fp)
+    
+    print(json.dumps({
+        "ok": True,
+        "action": "approved",
+        "id": rule.get("id"),
+        "installed_to": _os.path.relpath(dest, _brain_dir),
+    }, ensure_ascii=False, indent=2))
+
+def cmd_proposal_reject(args):
+    """brain proposal reject <id> --reason <text> - reject proposal."""
+    import json, os as _os
+    fp = _os.path.join(_brain_dir, "proposals", args.id if args.id.endswith(".yaml") else args.id + ".yaml")
+    if not _os.path.isfile(fp):
+        _error_response(1, "Proposal not found: " + args.id)
+        return
+    
+    reason = getattr(args, "reason", "No reason provided")
+    
+    # Move to rejected
+    rejected_dir = _os.path.join(_brain_dir, "proposals", "rejected")
+    _os.makedirs(rejected_dir, exist_ok=True)
+    rejected_name = _os.path.basename(fp).replace(".yaml", "_rejected.yaml")
+    _os.rename(fp, _os.path.join(rejected_dir, rejected_name))
+    
+    print(json.dumps({
+        "ok": True,
+        "action": "rejected",
+        "id": args.id,
+        "reason": reason,
+    }, ensure_ascii=False, indent=2))
+'''
+
+# Insert before cmd_help
+for i, line in enumerate(lines):
+    if "def cmd_help(args):" in line:
+        lines.insert(i, "")
+        lines.insert(i, proposal_code)
+        print(f"Inserted proposal commands at line {i}")
+        break
+
+# 2. Add proposal subparser
+for i, line in enumerate(lines):
+    if "subparsers.add_parser('dormancy'" in line:
+        lines.insert(i, "    p_prop = subparsers.add_parser('proposal', help='rule proposal management')")
+        lines.insert(i+1, "    prop_subs = p_prop.add_subparsers(dest='proposal_command')")
+        lines.insert(i+2, "    prop_subs.add_parser('list', help='list all proposals')")
+        lines.insert(i+3, "    pshow = prop_subs.add_parser('show', help='show proposal details')")
+        lines.insert(i+4, "    pshow.add_argument('id', type=str, help='proposal id or filename')")
+        lines.insert(i+5, "    pappr = prop_subs.add_parser('approve', help='approve and install proposal')")
+        lines.insert(i+6, "    pappr.add_argument('id', type=str, help='proposal id or filename')")
+        lines.insert(i+7, "    prej = prop_subs.add_parser('reject', help='reject proposal')")
+        lines.insert(i+8, "    prej.add_argument('id', type=str, help='proposal id or filename')")
+        lines.insert(i+9, "    prej.add_argument('--reason', type=str, default='', help='rejection reason')")
+        lines.insert(i+10, "")
+        print(f"Added proposal subparser at line {i}")
+        break
+
+# 3. Add proposal dispatch in main()
+for i, line in enumerate(lines):
+    if "elif args.command == 'dormancy':" in line:
+        lines.insert(i, "    elif args.command == 'proposal':")
+        lines.insert(i+1, "        if args.proposal_command == 'list':")
+        lines.insert(i+2, "            cmd_proposal_list(args)")
+        lines.insert(i+3, "        elif args.proposal_command == 'show':")
+        lines.insert(i+4, "            cmd_proposal_show(args)")
+        lines.insert(i+5, "        elif args.proposal_command == 'approve':")
+        lines.insert(i+6, "            cmd_proposal_approve(args)")
+        lines.insert(i+7, "        elif args.proposal_command == 'reject':")
+        lines.insert(i+8, "            cmd_proposal_reject(args)")
+        lines.insert(i+9, "        else:")
+        lines.insert(i+10, "            parser.print_help()")
+        lines.insert(i+11, "")
+        print(f"Added proposal dispatch at line {i}")
+        break
+
+# 4. Update help text
+for i, line in enumerate(lines):
+    if "brain rule dormancy" in line:
+        # lines.insert(i+2, "    brain rule stats                  规则使用统计")  # DISABLED - caused SyntaxError
+        break
+for i, line in enumerate(lines):
+    if "brain degrade test" in line:
+        lines.insert(i+2, "")
+        lines.insert(i+3, "  规则进化:")
+        lines.insert(i+4, "    brain proposal list               列出所有规则草稿")
+        lines.insert(i+5, "    brain proposal show <id>          查看草稿详情")
+        lines.insert(i+6, "    brain proposal approve <id>       审核通过并安装")
+        lines.insert(i+7, "    brain proposal reject <id>        驳回草稿")
+        break
+
+with open(path, "w", encoding="utf-8") as f:
+    f.write("\n".join(lines))
+
+print(f"Written {len(lines)} lines. SOP-2 proposal commands added.")

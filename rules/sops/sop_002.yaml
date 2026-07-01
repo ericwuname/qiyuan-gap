@@ -1,0 +1,13 @@
+id: SOP-002
+name: 子智能体管理标准
+priority: 40
+triggers:
+- 子智能体
+- subagent
+- Agent创建
+- Agent管理
+action: 不传model参数(让子Agent从SKILL.md读取)。生完必管(创建后48h内完成命名/配置/测试)。孤儿Agent=事故
+level: P1
+owner: system
+status: active
+created: '2026-06-19'

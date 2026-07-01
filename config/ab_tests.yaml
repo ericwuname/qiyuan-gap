@@ -1,0 +1,9 @@
+stats:
+  CONST-001:
+    executions: 0
+    failures: 0
+    matches: 0
+    old_matches: 0
+    old_successes: 0
+    successes: 0
+tests: {}

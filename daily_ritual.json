@@ -1,0 +1,15 @@
+{
+  "last_run": "2026-07-01T03:03:11.229643",
+  "results": {
+    "github_daily": false,
+    "suggested_review": false,
+    "digest_pending": true,
+    "constitution_drift": true,
+    "monthly_review": true
+  },
+  "reminders": [
+    "GitHub daily 还没写/推送",
+    "19 条 _suggested/ 未审核",
+    "今天是新的一个月——该做月度复盘了"
+  ]
+}

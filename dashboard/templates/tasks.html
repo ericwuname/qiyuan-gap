@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>启元智脑 · 任务看板</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, 'Microsoft YaHei', sans-serif; background:#0f172a; color:#e2e8f0; padding:20px; }
+h1 { font-size:24px; margin-bottom:20px; color:#38bdf8; }
+.card { background:#1e293b; border-radius:12px; padding:20px; margin-bottom:20px; }
+.card h2 { font-size:18px; color:#94a3b8; margin-bottom:15px; border-bottom:1px solid #334155; padding-bottom:10px; }
+table { width:100%; border-collapse:collapse; }
+th { text-align:left; padding:10px 8px; color:#64748b; font-size:13px; border-bottom:1px solid #334155; }
+td { padding:10px 8px; border-bottom:1px solid #1e293b; font-size:14px; }
+tr:hover { background:#0f2744; }
+.badge { padding:3px 8px; border-radius:4px; font-size:12px; font-weight:600; }
+.badge-p0 { background:#ef4444; color:#fff; }
+.badge-p1 { background:#f59e0b; color:#000; }
+.badge-p2 { background:#3b82f6; color:#fff; }
+.badge-done { background:#22c55e; color:#fff; }
+.badge-pending { background:#64748b; color:#fff; }
+.badge-due { background:#ef4444; color:#fff; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.6; } }
+.refresh { text-align:right; color:#64748b; font-size:12px; margin-bottom:10px; }
+.empty { text-align:center; padding:40px; color:#64748b; }
+.stats { display:flex; gap:15px; margin-bottom:20px; }
+.stat { flex:1; background:#1e293b; border-radius:8px; padding:15px; text-align:center; }
+.stat-val { font-size:32px; font-weight:700; }
+.stat-label { font-size:12px; color:#64748b; margin-top:5px; }
+</style>
+</head>
+<body>
+<h1>启元智脑 · 任务看板</h1>
+<div class="refresh" id="refresh">自动刷新 5s | 最后: --</div>
+
+<div class="stats" id="stats"></div>
+
+<div class="card">
+<h2>待处理任务</h2>
+<div id="pending-tasks"><div class="empty">加载中...</div></div>
+</div>
+
+<div class="card">
+<h2>定期事项</h2>
+<div id="recurring-tasks"><div class="empty">加载中...</div></div>
+</div>
+
+<script>
+async function loadTasks() {
+  try {
+    const resp = await fetch('/api/tasks');
+    const data = await resp.json();
+    render(data);
+    document.getElementById('refresh').textContent = '自动刷新 5s | 最后: ' + new Date().toLocaleTimeString();
+  } catch(e) {
+    document.getElementById('refresh').textContent = '加载失败: ' + e.message;
+  }
+}
+
+function render(data) {
+  // Stats
+  const pending = data.pending || [];
+  const recurring = data.recurring || [];
+  const dueToday = data.due_today || [];
+  
+  document.getElementById('stats').innerHTML = 
+    '<div class="stat"><div class="stat-val" style="color:#f59e0b">' + pending.length + '</div><div class="stat-label">待处理</div></div>' +
+    '<div class="stat"><div class="stat-val" style="color:#ef4444">' + dueToday.length + '</div><div class="stat-label">今日到期</div></div>' +
+    '<div class="stat"><div class="stat-val" style="color:#22c55e">' + (data.total_done || 0) + '</div><div class="stat-label">已完成</div></div>';
+
+  // Pending tasks
+  if (pending.length === 0) {
+    document.getElementById('pending-tasks').innerHTML = '<div class="empty">全部完成</div>';
+  } else {
+    var html = '<table><tr><th>状态</th><th>优先级</th><th>ID</th><th>任务</th><th>创建时间</th></tr>';
+    for (var t of pending) {
+      html += '<tr><td><span class="badge badge-pending">待处理</span></td>' +
+        '<td><span class="badge badge-' + t.priority.toLowerCase() + '">' + t.priority + '</span></td>' +
+        '<td>' + t.id + '</td><td>' + t.title + '</td><td>' + t.created + '</td></tr>';
+    }
+    html += '</table>';
+    document.getElementById('pending-tasks').innerHTML = html;
+  }
+
+  // Recurring
+  var recHtml = '<table><tr><th>状态</th><th>ID</th><th>事项</th><th>频率</th><th>下次</th></tr>';
+  for (var t of recurring) {
+    var isDue = dueToday.some(function(d) { return d.id === t.id; });
+    var icon = isDue ? '<span class="badge badge-due">今日到期</span>' : '<span class="badge badge-pending">--</span>';
+    recHtml += '<tr><td>' + icon + '</td><td>' + t.id + '</td><td>' + t.title + '</td>' +
+      '<td>' + t.frequency + '</td><td>' + (t.label || '--') + '</td></tr>';
+  }
+  recHtml += '</table>';
+  document.getElementById('recurring-tasks').innerHTML = recHtml;
+}
+
+loadTasks();
+setInterval(loadTasks, 5000);
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+rules:
+- id: GENE-004
+  name: G4 三问交付
+  priority: 20
+  triggers:
+  - 交付
+  - 提交
+  - 发文件
+  action: '自问: 多2h改什么?到天花板了吗?愿意签名骄傲吗?三问缺一=违规。有会改但没改=严重违规'
+  level: P1
+  owner: system
+  status: active
+  created: '2026-06-19'
+- id: GENE-008
+  name: G8 自我打回
+  priority: 20
+  triggers:
+  - 交付
+  - 提交
+  action: 找>=3个可改进处。修完3个->再找1个->修完->提交。找不够3个=违规。找出来不修=严重违规
+  level: P1
+  owner: system
+  status: active
+  created: '2026-06-19'
+- id: GENE-010
+  name: G10 预审
+  priority: 20
+  triggers:
+  - QA
+  - 审查
+  - 验收
+  - 质检
+  action: 进入QA前自审->标注可能仍有风险的X个点。自查发现未修=严重违规。无风险标注=违规
+  level: P1
+  owner: system
+  status: active
+  created: '2026-06-19'
+- id: GENE-011
+  name: G11 一票自否
+  priority: 20
+  triggers:
+  - 交付
+  - 提交
+  level: P1
+  action: '自问: 愿意让这个代表我吗?不太愿意->有权叫停->24h修复。明知不够好仍提交=最严重违规'
+  owner: system
+  status: active
+  created: '2026-06-19'
+- id: GENE-022
+  name: G22 防bug
+  priority: 20
+  triggers:
+  - P0
+  - P1
+  - 项目启动
+  - 立项
+  - 决策
+  action: 事前验尸+失败模式库匹配+关键假设爆破。无扫描报告=严重违规。阻断后强行启动=最严重违规
+  level: P0
+  owner: system
+  status: active
+  created: '2026-06-19'
+- id: GENE-023
+  name: G23 诚实自评
+  priority: 20
+  triggers:
+  - 交付
+  - 评估
+  - 复盘
+  - 质检
+  action: 每次交付前自评真实问题>=3个（不凑数）+ 问题优先于亮点 + 不知道就说不知道
+  level: P1
+  owner: system
+  status: active
+  created: '2026-06-24'

@@ -1,0 +1,13 @@
+id: SOP-003
+name: SOP自动纳入管理流程
+priority: 40
+triggers:
+- SOP
+- 标准流程
+- 新规则
+- 流程变更
+action: 'SOP写完=同步纳入三个位置: AGENTS.md扫描路径表+组织免疫系统+SOP索引。漏任何一处=违规'
+level: P1
+owner: system
+status: active
+created: '2026-06-19'

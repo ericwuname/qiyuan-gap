@@ -1,0 +1,76 @@
+{
+  "tasks": [
+    {
+      "id": "REC-001",
+      "title": "CEO离线压力测试",
+      "frequency": "weekly",
+      "day": "Monday",
+      "last_done": null,
+      "next_due": null,
+      "status": "active"
+    },
+    {
+      "id": "REC-002",
+      "title": "P2月度风险扫描+规则腐化检查+失败模式库更新",
+      "frequency": "monthly",
+      "day": 1,
+      "last_done": "2026-07-01",
+      "next_due": null,
+      "status": "active"
+    },
+    {
+      "id": "REC-003",
+      "title": "G22合规季度审计+防御有效性回溯",
+      "frequency": "quarterly",
+      "day": 1,
+      "month": [
+        1,
+        4,
+        7,
+        10
+      ],
+      "last_done": "2026-07-01",
+      "next_due": null,
+      "status": "active"
+    },
+    {
+      "id": "REC-004",
+      "title": "C→D Skill灾备同步",
+      "frequency": "weekly",
+      "day": "Saturday",
+      "last_done": null,
+      "next_due": null,
+      "status": "active"
+    },
+    {
+      "id": "REC-005",
+      "title": "每日备份（有数据变更才执行）",
+      "frequency": "daily",
+      "last_done": null,
+      "next_due": null,
+      "status": "active"
+    },
+    {
+      "id": "REC-006",
+      "title": "组织免疫系统（第二部分）快速匹配审查",
+      "frequency": "monthly",
+      "day": 1,
+      "last_done": "2026-07-01",
+      "next_due": null,
+      "status": "active"
+    },
+    {
+      "id": "REC-007",
+      "title": "防Bug知识库故障模式更新审查",
+      "frequency": "monthly",
+      "day": 1,
+      "last_done": "2026-07-01",
+      "next_due": null,
+      "status": "active"
+    }
+  ],
+  "_meta": {
+    "version": "1.0",
+    "created": "2026-06-25"
+  }
+}

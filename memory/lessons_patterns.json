@@ -1,0 +1,23 @@
+[
+  {
+    "pattern": "brain auto-evolve 在优化功能时，是否会无意中创造出意识所需的结构条件？",
+    "source": "PRD_第九轮_意识探针集成_V1.0.md",
+    "added": "2026-06-21",
+    "status": "active",
+    "category": "general"
+  },
+  {
+    "pattern": "系统能不能\"预判\"自己接下来的状态？预判不准时，能不能\"意识到自己预判不准\"？**",
+    "source": "PRD_第十轮_结构化世界模型_V1.0.md",
+    "added": "2026-06-21",
+    "status": "active",
+    "category": "general"
+  },
+  {
+    "pattern": "- 两个窗口同时safe-write同一文件 → 数据损坏/丢失",
+    "source": "RPT_P2-3_多窗口并发方案_V1.0.md",
+    "added": "2026-06-21",
+    "status": "active",
+    "category": "general"
+  }
+]

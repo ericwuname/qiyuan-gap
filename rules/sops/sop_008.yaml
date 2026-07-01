@@ -1,0 +1,14 @@
+id: SOP-008
+name: 底层安全架构与安全写入
+priority: 40
+triggers:
+- 写文件
+- 写入
+- Set-Content
+- 保存
+action: '所有P0/P1文件写入必须通过safe-write.ps1。直接使用Set-Content/Out-File/WriteAllText=违规。safe-write:
+  意图锁->同名检测->UTF-8 BOM->日志留痕'
+level: P0
+owner: system
+status: active
+created: '2026-06-19'

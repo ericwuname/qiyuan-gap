@@ -1,0 +1,680 @@
+[
+  {
+    "name": "ancient-ritual-expert",
+    "path": "C:\\Users\\87465\\.agents\\skills\\ancient-ritual-expert",
+    "rel": "ancient-ritual-expert",
+    "tier": "Unknown"
+  },
+  {
+    "name": "brand-communication-expert",
+    "path": "C:\\Users\\87465\\.agents\\skills\\brand-communication-expert",
+    "rel": "brand-communication-expert",
+    "tier": "Unknown"
+  },
+  {
+    "name": "brand-designer",
+    "path": "C:\\Users\\87465\\.agents\\skills\\brand-designer",
+    "rel": "brand-designer",
+    "tier": "Unknown"
+  },
+  {
+    "name": "cfo-director",
+    "path": "C:\\Users\\87465\\.agents\\skills\\cfo-director",
+    "rel": "cfo-director",
+    "tier": "Unknown"
+  },
+  {
+    "name": "chatgpt-apps",
+    "path": "C:\\Users\\87465\\.agents\\skills\\chatgpt-apps",
+    "rel": "chatgpt-apps",
+    "tier": "Unknown"
+  },
+  {
+    "name": "chief-narrative-designer",
+    "path": "C:\\Users\\87465\\.agents\\skills\\chief-narrative-designer",
+    "rel": "chief-narrative-designer",
+    "tier": "Unknown"
+  },
+  {
+    "name": "cloudflare-deploy",
+    "path": "C:\\Users\\87465\\.agents\\skills\\cloudflare-deploy",
+    "rel": "cloudflare-deploy",
+    "tier": "Unknown"
+  },
+  {
+    "name": "color-composition-specialist",
+    "path": "C:\\Users\\87465\\.agents\\skills\\color-composition-specialist",
+    "rel": "color-composition-specialist",
+    "tier": "Unknown"
+  },
+  {
+    "name": "communication-expert",
+    "path": "C:\\Users\\87465\\.agents\\skills\\communication-expert",
+    "rel": "communication-expert",
+    "tier": "Unknown"
+  },
+  {
+    "name": "contribution-analyst",
+    "path": "C:\\Users\\87465\\.agents\\skills\\contribution-analyst",
+    "rel": "contribution-analyst",
+    "tier": "Unknown"
+  },
+  {
+    "name": "conversation-banker",
+    "path": "C:\\Users\\87465\\.agents\\skills\\conversation-banker",
+    "rel": "conversation-banker",
+    "tier": "Unknown"
+  },
+  {
+    "name": "decision-auditor",
+    "path": "C:\\Users\\87465\\.agents\\skills\\decision-auditor",
+    "rel": "decision-auditor",
+    "tier": "Unknown"
+  },
+  {
+    "name": "decision-tree-analyst",
+    "path": "C:\\Users\\87465\\.agents\\skills\\decision-tree-analyst",
+    "rel": "decision-tree-analyst",
+    "tier": "Unknown"
+  },
+  {
+    "name": "define-goal",
+    "path": "C:\\Users\\87465\\.agents\\skills\\define-goal",
+    "rel": "define-goal",
+    "tier": "Unknown"
+  },
+  {
+    "name": "design-qa",
+    "path": "C:\\Users\\87465\\.agents\\skills\\design-qa",
+    "rel": "design-qa",
+    "tier": "Unknown"
+  },
+  {
+    "name": "design-system-lead",
+    "path": "C:\\Users\\87465\\.agents\\skills\\design-system-lead",
+    "rel": "design-system-lead",
+    "tier": "Unknown"
+  },
+  {
+    "name": "dna-archivist",
+    "path": "C:\\Users\\87465\\.agents\\skills\\dna-archivist",
+    "rel": "dna-archivist",
+    "tier": "Unknown"
+  },
+  {
+    "name": "doc-gatekeeper",
+    "path": "C:\\Users\\87465\\.agents\\skills\\doc-gatekeeper",
+    "rel": "doc-gatekeeper",
+    "tier": "Unknown"
+  },
+  {
+    "name": "emotional-counselor",
+    "path": "C:\\Users\\87465\\.agents\\skills\\emotional-counselor",
+    "rel": "emotional-counselor",
+    "tier": "Unknown"
+  },
+  {
+    "name": "female-lit-consultant",
+    "path": "C:\\Users\\87465\\.agents\\skills\\female-lit-consultant",
+    "rel": "female-lit-consultant",
+    "tier": "Unknown"
+  },
+  {
+    "name": "female-market-expert",
+    "path": "C:\\Users\\87465\\.agents\\skills\\female-market-expert",
+    "rel": "female-market-expert",
+    "tier": "Unknown"
+  },
+  {
+    "name": "female-style-editor",
+    "path": "C:\\Users\\87465\\.agents\\skills\\female-style-editor",
+    "rel": "female-style-editor",
+    "tier": "Unknown"
+  },
+  {
+    "name": "figma",
+    "path": "C:\\Users\\87465\\.agents\\skills\\figma",
+    "rel": "figma",
+    "tier": "Unknown"
+  },
+  {
+    "name": "figma-code-connect-components",
+    "path": "C:\\Users\\87465\\.agents\\skills\\figma-code-connect-components",
+    "rel": "figma-code-connect-components",
+    "tier": "Unknown"
+  },
+  {
+    "name": "figma-create-design-system-rules",
+    "path": "C:\\Users\\87465\\.agents\\skills\\figma-create-design-system-rules",
+    "rel": "figma-create-design-system-rules",
+    "tier": "Unknown"
+  },
+  {
+    "name": "figma-create-new-file",
+    "path": "C:\\Users\\87465\\.agents\\skills\\figma-create-new-file",
+    "rel": "figma-create-new-file",
+    "tier": "Unknown"
+  },
+  {
+    "name": "figma-generate-design",
+    "path": "C:\\Users\\87465\\.agents\\skills\\figma-generate-design",
+    "rel": "figma-generate-design",
+    "tier": "Unknown"
+  },
+  {
+    "name": "figma-generate-library",
+    "path": "C:\\Users\\87465\\.agents\\skills\\figma-generate-library",
+    "rel": "figma-generate-library",
+    "tier": "Unknown"
+  },
+  {
+    "name": "figma-implement-design",
+    "path": "C:\\Users\\87465\\.agents\\skills\\figma-implement-design",
+    "rel": "figma-implement-design",
+    "tier": "Unknown"
+  },
+  {
+    "name": "figma-use",
+    "path": "C:\\Users\\87465\\.agents\\skills\\figma-use",
+    "rel": "figma-use",
+    "tier": "Unknown"
+  },
+  {
+    "name": "financial-bp",
+    "path": "C:\\Users\\87465\\.agents\\skills\\financial-bp",
+    "rel": "financial-bp",
+    "tier": "Unknown"
+  },
+  {
+    "name": "font-designer",
+    "path": "C:\\Users\\87465\\.agents\\skills\\font-designer",
+    "rel": "font-designer",
+    "tier": "Unknown"
+  },
+  {
+    "name": "frontend-engineer-react",
+    "path": "C:\\Users\\87465\\.agents\\skills\\frontend-engineer-react",
+    "rel": "frontend-engineer-react",
+    "tier": "Unknown"
+  },
+  {
+    "name": "genre-fusion-writer",
+    "path": "C:\\Users\\87465\\.agents\\skills\\genre-fusion-writer",
+    "rel": "genre-fusion-writer",
+    "tier": "Unknown"
+  },
+  {
+    "name": "hr-director",
+    "path": "C:\\Users\\87465\\.agents\\skills\\hr-director",
+    "rel": "hr-director",
+    "tier": "Unknown"
+  },
+  {
+    "name": "hr-recorder",
+    "path": "C:\\Users\\87465\\.agents\\skills\\hr-recorder",
+    "rel": "hr-recorder",
+    "tier": "Unknown"
+  },
+  {
+    "name": "interaction-designer",
+    "path": "C:\\Users\\87465\\.agents\\skills\\interaction-designer",
+    "rel": "interaction-designer",
+    "tier": "Unknown"
+  },
+  {
+    "name": "interface-designer",
+    "path": "C:\\Users\\87465\\.agents\\skills\\interface-designer",
+    "rel": "interface-designer",
+    "tier": "Unknown"
+  },
+  {
+    "name": "jupyter-notebook",
+    "path": "C:\\Users\\87465\\.agents\\skills\\jupyter-notebook",
+    "rel": "jupyter-notebook",
+    "tier": "Unknown"
+  },
+  {
+    "name": "knowledge-architect",
+    "path": "C:\\Users\\87465\\.agents\\skills\\knowledge-architect",
+    "rel": "knowledge-architect",
+    "tier": "Unknown"
+  },
+  {
+    "name": "legal-advisor",
+    "path": "C:\\Users\\87465\\.agents\\skills\\legal-advisor",
+    "rel": "legal-advisor",
+    "tier": "Unknown"
+  },
+  {
+    "name": "linguistics-expert",
+    "path": "C:\\Users\\87465\\.agents\\skills\\linguistics-expert",
+    "rel": "linguistics-expert",
+    "tier": "Unknown"
+  },
+  {
+    "name": "literary-consultant",
+    "path": "C:\\Users\\87465\\.agents\\skills\\literary-consultant",
+    "rel": "literary-consultant",
+    "tier": "Unknown"
+  },
+  {
+    "name": "literary-qa-specialist",
+    "path": "C:\\Users\\87465\\.agents\\skills\\literary-qa-specialist",
+    "rel": "literary-qa-specialist",
+    "tier": "Unknown"
+  },
+  {
+    "name": "market-strategy-expert",
+    "path": "C:\\Users\\87465\\.agents\\skills\\market-strategy-expert",
+    "rel": "market-strategy-expert",
+    "tier": "Unknown"
+  },
+  {
+    "name": "motion-designer",
+    "path": "C:\\Users\\87465\\.agents\\skills\\motion-designer",
+    "rel": "motion-designer",
+    "tier": "Unknown"
+  },
+  {
+    "name": "naming-brand-expert",
+    "path": "C:\\Users\\87465\\.agents\\skills\\naming-brand-expert",
+    "rel": "naming-brand-expert",
+    "tier": "Unknown"
+  },
+  {
+    "name": "narratology-expert",
+    "path": "C:\\Users\\87465\\.agents\\skills\\narratology-expert",
+    "rel": "narratology-expert",
+    "tier": "Unknown"
+  },
+  {
+    "name": "netlify-deploy",
+    "path": "C:\\Users\\87465\\.agents\\skills\\netlify-deploy",
+    "rel": "netlify-deploy",
+    "tier": "Unknown"
+  },
+  {
+    "name": "notion-knowledge-capture",
+    "path": "C:\\Users\\87465\\.agents\\skills\\notion-knowledge-capture",
+    "rel": "notion-knowledge-capture",
+    "tier": "Unknown"
+  },
+  {
+    "name": "notion-research-documentation",
+    "path": "C:\\Users\\87465\\.agents\\skills\\notion-research-documentation",
+    "rel": "notion-research-documentation",
+    "tier": "Unknown"
+  },
+  {
+    "name": "notion-spec-to-implementation",
+    "path": "C:\\Users\\87465\\.agents\\skills\\notion-spec-to-implementation",
+    "rel": "notion-spec-to-implementation",
+    "tier": "Unknown"
+  },
+  {
+    "name": "org-management-expert",
+    "path": "C:\\Users\\87465\\.agents\\skills\\org-management-expert",
+    "rel": "org-management-expert",
+    "tier": "Unknown"
+  },
+  {
+    "name": "pdf",
+    "path": "C:\\Users\\87465\\.agents\\skills\\pdf",
+    "rel": "pdf",
+    "tier": "Unknown"
+  },
+  {
+    "name": "piano-coach",
+    "path": "C:\\Users\\87465\\.agents\\skills\\piano-coach",
+    "rel": "piano-coach",
+    "tier": "Unknown"
+  },
+  {
+    "name": "proactive-defender",
+    "path": "C:\\Users\\87465\\.agents\\skills\\proactive-defender",
+    "rel": "proactive-defender",
+    "tier": "Unknown"
+  },
+  {
+    "name": "project-director",
+    "path": "C:\\Users\\87465\\.agents\\skills\\project-director",
+    "rel": "project-director",
+    "tier": "Unknown"
+  },
+  {
+    "name": "python-developer",
+    "path": "C:\\Users\\87465\\.agents\\skills\\python-developer",
+    "rel": "python-developer",
+    "tier": "Unknown"
+  },
+  {
+    "name": "qa-reviewer",
+    "path": "C:\\Users\\87465\\.agents\\skills\\qa-reviewer",
+    "rel": "qa-reviewer",
+    "tier": "Unknown"
+  },
+  {
+    "name": "quantitative-analyst",
+    "path": "C:\\Users\\87465\\.agents\\skills\\quantitative-analyst",
+    "rel": "quantitative-analyst",
+    "tier": "Unknown"
+  },
+  {
+    "name": "qidian-male-expert",
+    "path": "C:\\Users\\87465\\.agents\\skills\\r0\\qidian-male-expert",
+    "rel": "r0\\qidian-male-expert",
+    "tier": "Unknown"
+  },
+  {
+    "name": "render-deploy",
+    "path": "C:\\Users\\87465\\.agents\\skills\\render-deploy",
+    "rel": "render-deploy",
+    "tier": "Unknown"
+  },
+  {
+    "name": "retrospective-coach",
+    "path": "C:\\Users\\87465\\.agents\\skills\\retrospective-coach",
+    "rel": "retrospective-coach",
+    "tier": "Unknown"
+  },
+  {
+    "name": "rhetoric-expert",
+    "path": "C:\\Users\\87465\\.agents\\skills\\rhetoric-expert",
+    "rel": "rhetoric-expert",
+    "tier": "Unknown"
+  },
+  {
+    "name": "rhythm-writer",
+    "path": "C:\\Users\\87465\\.agents\\skills\\rhythm-writer",
+    "rel": "rhythm-writer",
+    "tier": "Unknown"
+  },
+  {
+    "name": "screenshot",
+    "path": "C:\\Users\\87465\\.agents\\skills\\screenshot",
+    "rel": "screenshot",
+    "tier": "Unknown"
+  },
+  {
+    "name": "script-expert",
+    "path": "C:\\Users\\87465\\.agents\\skills\\script-expert",
+    "rel": "script-expert",
+    "tier": "Unknown"
+  },
+  {
+    "name": "script-polisher",
+    "path": "C:\\Users\\87465\\.agents\\skills\\script-polisher",
+    "rel": "script-polisher",
+    "tier": "Unknown"
+  },
+  {
+    "name": "script-qc-inspector",
+    "path": "C:\\Users\\87465\\.agents\\skills\\script-qc-inspector",
+    "rel": "script-qc-inspector",
+    "tier": "Unknown"
+  },
+  {
+    "name": "script-writer-alpha",
+    "path": "C:\\Users\\87465\\.agents\\skills\\script-writer-alpha",
+    "rel": "script-writer-alpha",
+    "tier": "Unknown"
+  },
+  {
+    "name": "script-writer-beta",
+    "path": "C:\\Users\\87465\\.agents\\skills\\script-writer-beta",
+    "rel": "script-writer-beta",
+    "tier": "Unknown"
+  },
+  {
+    "name": "script-writer-gamma",
+    "path": "C:\\Users\\87465\\.agents\\skills\\script-writer-gamma",
+    "rel": "script-writer-gamma",
+    "tier": "Unknown"
+  },
+  {
+    "name": "security-auditor",
+    "path": "C:\\Users\\87465\\.agents\\skills\\security-auditor",
+    "rel": "security-auditor",
+    "tier": "Unknown"
+  },
+  {
+    "name": "short-drama-editor",
+    "path": "C:\\Users\\87465\\.agents\\skills\\short-drama-editor",
+    "rel": "short-drama-editor",
+    "tier": "Unknown"
+  },
+  {
+    "name": "sop-manager",
+    "path": "C:\\Users\\87465\\.agents\\skills\\sop-manager",
+    "rel": "sop-manager",
+    "tier": "Unknown"
+  },
+  {
+    "name": "speech",
+    "path": "C:\\Users\\87465\\.agents\\skills\\speech",
+    "rel": "speech",
+    "tier": "Unknown"
+  },
+  {
+    "name": "stylistics-expert",
+    "path": "C:\\Users\\87465\\.agents\\skills\\stylistics-expert",
+    "rel": "stylistics-expert",
+    "tier": "Unknown"
+  },
+  {
+    "name": "test-automation-engineer",
+    "path": "C:\\Users\\87465\\.agents\\skills\\test-automation-engineer",
+    "rel": "test-automation-engineer",
+    "tier": "Unknown"
+  },
+  {
+    "name": "text-analysis-expert",
+    "path": "C:\\Users\\87465\\.agents\\skills\\text-analysis-expert",
+    "rel": "text-analysis-expert",
+    "tier": "Unknown"
+  },
+  {
+    "name": "text-forensics-expert",
+    "path": "C:\\Users\\87465\\.agents\\skills\\text-forensics-expert",
+    "rel": "text-forensics-expert",
+    "tier": "Unknown"
+  },
+  {
+    "name": "trader-coach",
+    "path": "C:\\Users\\87465\\.agents\\skills\\trader-coach",
+    "rel": "trader-coach",
+    "tier": "Unknown"
+  },
+  {
+    "name": "transcribe",
+    "path": "C:\\Users\\87465\\.agents\\skills\\transcribe",
+    "rel": "transcribe",
+    "tier": "Unknown"
+  },
+  {
+    "name": "ux-architect",
+    "path": "C:\\Users\\87465\\.agents\\skills\\ux-architect",
+    "rel": "ux-architect",
+    "tier": "Unknown"
+  },
+  {
+    "name": "vercel-deploy",
+    "path": "C:\\Users\\87465\\.agents\\skills\\vercel-deploy",
+    "rel": "vercel-deploy",
+    "tier": "Unknown"
+  },
+  {
+    "name": "visual-director",
+    "path": "C:\\Users\\87465\\.agents\\skills\\visual-director",
+    "rel": "visual-director",
+    "tier": "Unknown"
+  },
+  {
+    "name": "wangwen-dashi",
+    "path": "C:\\Users\\87465\\.agents\\skills\\wangwen-dashi",
+    "rel": "wangwen-dashi",
+    "tier": "Unknown"
+  },
+  {
+    "name": "world-building-writer",
+    "path": "C:\\Users\\87465\\.agents\\skills\\world-building-writer",
+    "rel": "world-building-writer",
+    "tier": "Unknown"
+  },
+  {
+    "name": "xiangyu-simulator",
+    "path": "C:\\Users\\87465\\.agents\\skills\\xiangyu-simulator",
+    "rel": "xiangyu-simulator",
+    "tier": "Unknown"
+  },
+  {
+    "name": "product-manager",
+    "path": "C:\\Users\\87465\\.agents\\skills\\公司核心\\Tier1_高层\\product-manager",
+    "rel": "公司核心\\Tier1_高层\\product-manager",
+    "tier": "T1"
+  },
+  {
+    "name": "project-chief",
+    "path": "C:\\Users\\87465\\.agents\\skills\\公司核心\\Tier1_高层\\project-chief",
+    "rel": "公司核心\\Tier1_高层\\project-chief",
+    "tier": "T1"
+  },
+  {
+    "name": "strategy-advisor",
+    "path": "C:\\Users\\87465\\.agents\\skills\\公司核心\\Tier1_高层\\strategy-advisor",
+    "rel": "公司核心\\Tier1_高层\\strategy-advisor",
+    "tier": "T1"
+  },
+  {
+    "name": "design-director",
+    "path": "C:\\Users\\87465\\.agents\\skills\\公司核心\\Tier2_中层\\design-director",
+    "rel": "公司核心\\Tier2_中层\\design-director",
+    "tier": "T2"
+  },
+  {
+    "name": "execution-director",
+    "path": "C:\\Users\\87465\\.agents\\skills\\公司核心\\Tier2_中层\\execution-director",
+    "rel": "公司核心\\Tier2_中层\\execution-director",
+    "tier": "T2"
+  },
+  {
+    "name": "project-manager",
+    "path": "C:\\Users\\87465\\.agents\\skills\\公司核心\\Tier2_中层\\project-manager",
+    "rel": "公司核心\\Tier2_中层\\project-manager",
+    "tier": "T2"
+  },
+  {
+    "name": "software-architect",
+    "path": "C:\\Users\\87465\\.agents\\skills\\公司核心\\Tier2_中层\\software-architect",
+    "rel": "公司核心\\Tier2_中层\\software-architect",
+    "tier": "T2"
+  },
+  {
+    "name": "data-engineer",
+    "path": "C:\\Users\\87465\\.agents\\skills\\公司核心\\Tier3_基层\\data-engineer",
+    "rel": "公司核心\\Tier3_基层\\data-engineer",
+    "tier": "T3"
+  },
+  {
+    "name": "design-polisher",
+    "path": "C:\\Users\\87465\\.agents\\skills\\公司核心\\Tier3_基层\\design-polisher",
+    "rel": "公司核心\\Tier3_基层\\design-polisher",
+    "tier": "T3"
+  },
+  {
+    "name": "devops-engineer",
+    "path": "C:\\Users\\87465\\.agents\\skills\\公司核心\\Tier3_基层\\devops-engineer",
+    "rel": "公司核心\\Tier3_基层\\devops-engineer",
+    "tier": "T3"
+  },
+  {
+    "name": "hardcore-combat-writer",
+    "path": "C:\\Users\\87465\\.agents\\skills\\公司核心\\Tier3_基层\\hardcore-combat-writer",
+    "rel": "公司核心\\Tier3_基层\\hardcore-combat-writer",
+    "tier": "T3"
+  },
+  {
+    "name": "scrum-master",
+    "path": "C:\\Users\\87465\\.agents\\skills\\公司核心\\Tier3_基层\\scrum-master",
+    "rel": "公司核心\\Tier3_基层\\scrum-master",
+    "tier": "T3"
+  },
+  {
+    "name": "technical-writer",
+    "path": "C:\\Users\\87465\\.agents\\skills\\公司核心\\Tier3_基层\\technical-writer",
+    "rel": "公司核心\\Tier3_基层\\technical-writer",
+    "tier": "T3"
+  },
+  {
+    "name": "accessibility-specialist",
+    "path": "C:\\Users\\87465\\.agents\\skills\\公司核心\\Tier4_执行\\accessibility-specialist",
+    "rel": "公司核心\\Tier4_执行\\accessibility-specialist",
+    "tier": "T4"
+  },
+  {
+    "name": "css-detail-polisher",
+    "path": "C:\\Users\\87465\\.agents\\skills\\公司核心\\Tier4_执行\\css-detail-polisher",
+    "rel": "公司核心\\Tier4_执行\\css-detail-polisher",
+    "tier": "T4"
+  },
+  {
+    "name": "js-error-checker",
+    "path": "C:\\Users\\87465\\.agents\\skills\\公司核心\\Tier4_执行\\js-error-checker",
+    "rel": "公司核心\\Tier4_执行\\js-error-checker",
+    "tier": "T4"
+  },
+  {
+    "name": "mobile-adapter",
+    "path": "C:\\Users\\87465\\.agents\\skills\\公司核心\\Tier4_执行\\mobile-adapter",
+    "rel": "公司核心\\Tier4_执行\\mobile-adapter",
+    "tier": "T4"
+  },
+  {
+    "name": "painting-master",
+    "path": "C:\\Users\\87465\\.agents\\skills\\公司核心\\Tier4_执行\\painting-master",
+    "rel": "公司核心\\Tier4_执行\\painting-master",
+    "tier": "T4"
+  },
+  {
+    "name": "qa-inspector",
+    "path": "C:\\Users\\87465\\.agents\\skills\\公司核心\\Tier4_执行\\qa-inspector",
+    "rel": "公司核心\\Tier4_执行\\qa-inspector",
+    "tier": "T4"
+  },
+  {
+    "name": "brainstorm-workshop",
+    "path": "C:\\Users\\87465\\.agents\\skills\\公司核心\\共享资源\\brainstorm-workshop",
+    "rel": "公司核心\\共享资源\\brainstorm-workshop",
+    "tier": "Shared"
+  },
+  {
+    "name": "requirement-miner",
+    "path": "C:\\Users\\87465\\.agents\\skills\\公司核心\\共享资源\\requirement-miner",
+    "rel": "公司核心\\共享资源\\requirement-miner",
+    "tier": "Shared"
+  },
+  {
+    "name": "出师",
+    "path": "C:\\Users\\87465\\.agents\\skills\\公司核心\\共享资源\\出师",
+    "rel": "公司核心\\共享资源\\出师",
+    "tier": "Shared"
+  },
+  {
+    "name": "网文大师",
+    "path": "C:\\Users\\87465\\.agents\\skills\\公司核心\\共享资源\\网文大师",
+    "rel": "公司核心\\共享资源\\网文大师",
+    "tier": "Shared"
+  },
+  {
+    "name": "崇祯模拟器",
+    "path": "C:\\Users\\87465\\.agents\\skills\\崇祯模拟器",
+    "rel": "崇祯模拟器",
+    "tier": "Unknown"
+  },
+  {
+    "name": "鸿蒙之初",
+    "path": "C:\\Users\\87465\\.agents\\skills\\鸿蒙之初",
+    "rel": "鸿蒙之初",
+    "tier": "Unknown"
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "version": "1.0",
+  "modules": {
+    "probe": {
+      "can_read": [
+        "*"
+      ],
+      "can_write": [],
+      "registered_at": "2026-07-01T19:18:08.089177"
+    },
+    "self_evolve": {
+      "can_read": [
+        "*"
+      ],
+      "can_write": [
+        "_suggested"
+      ],
+      "registered_at": "2026-07-01T19:18:08.089980"
+    },
+    "body_daemon": {
+      "can_read": [
+        "*"
+      ],
+      "can_write": [
+        "*"
+      ],
+      "registered_at": "2026-07-01T19:18:08.090688"
+    }
+  },
+  "change_log": []
+}

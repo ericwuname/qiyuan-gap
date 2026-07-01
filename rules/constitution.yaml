@@ -1,0 +1,114 @@
+rules:
+- id: CONST-001
+  name: CEO指令接收三问
+  priority: 10
+  triggers:
+  - P0
+  - P1
+  - 立项
+  - 创建项目
+  - 修改SKILL
+  - 修改宪法
+  - 删除文件
+  - 对外发布
+  - 大额Token
+  - 裁撤Skill
+  - 修改规则
+  - 组织架构
+  action: '执行三问流程: Q1判定级别->Q2查标准流程->Q3确认偏差。无偏差直接执行，有偏差提醒CEO选择(a)标准流程或(b)本次豁免'
+  level: P0
+  owner: system
+  status: active
+  created: '2026-06-19'
+- id: CONST-002
+  name: G22防bug三步法
+  priority: 10
+  triggers:
+  - P0
+  - P1
+  - 项目启动
+  - 立项
+  - 决策
+  action: '调用proactive-defender执行: 事前验尸->失败模式库匹配->关键假设爆破。阻断通知直达CEO'
+  level: P0
+  owner: system
+  status: active
+  created: '2026-06-19'
+- id: CONST-003
+  name: 自主执行权限矩阵
+  priority: 10
+  triggers:
+  - 删文件
+  - 改宪法
+  - 对外发布
+  - 大额Token
+  - 裁撤Skill
+  - 新建文件
+  - 改SKILL
+  - 打分
+  - 评估
+  - 报告
+  - 状态更新
+  action: P0需CEO确认不得自主执行/P1走对应L1确认流程/P2自主执行不得问CEO。P2操作问CEO=违规。P0操作不问CEO=严重违规
+  level: P0
+  owner: system
+  status: active
+  created: '2026-06-19'
+- id: CONST-004
+  name: 文件交付规则
+  priority: 10
+  triggers:
+  - 交付
+  - 发文件
+  - 创建文件
+  - 剧本
+  - 稿件
+  - 写文件
+  action: 必附绝对路径+不询问要不要看+定稿清零(AI痕迹五维扫描)+剧本只写摄像机拍得到的
+  level: P1
+  owner: system
+  status: active
+  created: '2026-06-19'
+- id: CONST-005
+  name: 入口守卫强制P0扫描
+  priority: 10
+  triggers:
+  - 开工
+  - 启动
+  - 开始任务
+  - 新对话
+  action: 完成P0扫描(AGENTS.md+组织经验速查+模式库索引+表达L0+写作L0+创作L0+项目L0+战略L0+文化L0+SOP-001~014+知识库图谱+深度标准)后再开工。不读=裸奔=违规
+  level: P1
+  owner: system
+  status: active
+  created: '2026-06-19'
+- id: CONST-006
+  name: 交付验收门
+  priority: 10
+  triggers:
+  - 交付
+  - 提交
+  - 验收
+  - QA
+  - 审查
+  action: '交付前完成: P0扫描确认->定稿清零检查->格式合规检查->QA审查。未完成前置检查提交QA=违规。QA有权拒绝审查'
+  level: P1
+  owner: system
+  status: active
+  created: '2026-06-19'
+- id: CONST-007
+  name: 编码铁律
+  priority: 10
+  triggers:
+  - 写文件
+  - 创建
+  - 新建文件
+  - 中文
+  - Set-Content
+  - Out-File
+  - BOM
+  action: 中文文件=UTF-8无BOM(Python io.open)。.ps1脚本=UTF-8 BOM。禁止PowerShell Set-Content/Out-File写中文。写入后执行encoding-check验证
+  level: P0
+  owner: system
+  status: active
+  created: '2026-06-19'

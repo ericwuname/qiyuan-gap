@@ -1,0 +1,12 @@
+id: SOP-009
+name: 预行动扫描协议
+priority: 40
+triggers:
+- 开工
+- 启动
+- 新对话
+action: '每次新对话启动: 运行pre-scan.mjs(Set-Content检测+编码损坏检测+窗口锁检查)。退出码2=阻止必须先修'
+level: P0
+owner: system
+status: active
+created: '2026-06-19'

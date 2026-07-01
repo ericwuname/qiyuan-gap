@@ -1,0 +1,43 @@
+# 启元智能 · 元规则管理标准
+# 定义规则元数据标准、生命周期和治理规范
+# 创建: 2026-06-20 · P0-5 元规则管理
+
+version: '1.0'
+created: '2026-06-20'
+owner: system
+meta_standard:
+  required_fields:
+  - id
+  - name
+  - priority
+  - triggers
+  - action
+  - owner
+  - status
+  - created
+  optional_fields:
+  - level
+  - updated
+  - deprecated_date
+  - archived_date
+  - description
+  id_format: ^[A-Z]+-[0-9]+$
+lifecycle:
+  description: 规则从创建到归档的完整生命周期
+  states:
+    draft: 草稿阶段，默认不加载
+    review: 审查阶段，加载并参与匹配
+    active: 正式生效，加载并参与匹配
+    deprecated: 已废弃，加载但匹配结果附加warning
+    archived: 已归档，不加载
+  transitions:
+  - draft - review
+  - review - active
+  - review - draft
+  - active - deprecated
+  - deprecated - archived
+governance:
+  creation: 新规则必须先以 draft 状态创建
+  promotion: draft - review - active 需经审查流程
+  deprecation: 废弃规则标记 deprecated，保留观察期后归档
+  archive: 归档规则不再加载，保留文件备查

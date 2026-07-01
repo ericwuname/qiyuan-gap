@@ -1,0 +1,16 @@
+# Mined rule suggestion: SUG-010
+id: SUG-010
+name: |
+  - `_sop2.py` 反复插入`brain rule stats` → 已禁用
+priority: 20
+triggers:
+  - problem
+action: |
+  - `_sop2.py` 反复插入`brain rule stats` → 已禁用
+level: P1
+owner: system
+status: draft
+source: mined from RPT_第五轮验收_V1.0.md
+severity: high
+category: problem
+created: 2026-06-21

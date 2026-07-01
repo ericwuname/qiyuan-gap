@@ -1,0 +1,8 @@
+{"timestamp": "2026-07-01T19:07:17.034989", "module": "model_router", "action": "api_call", "status": "pending_ceo", "detail": "CEO confirmation required"}
+{"timestamp": "2026-07-01T19:07:17.037292", "module": "model_router", "action": "api_call", "status": "sent", "detail": "qy-5d84c96808e2"}
+{"timestamp": "2026-07-01T19:07:17.039463", "module": "model_router", "action": "api_call", "status": "sent", "detail": "qy-7e257f337275"}
+{"timestamp": "2026-07-01T19:08:48.623635", "module": "model_router", "action": "api_call", "status": "pending_ceo", "detail": "CEO confirmation required"}
+{"timestamp": "2026-07-01T19:08:48.626143", "module": "model_router", "action": "api_call", "status": "sent", "detail": "qy-6d840faedb2f"}
+{"timestamp": "2026-07-01T19:18:40.686934", "module": "model_router", "action": "api_call", "status": "pending_ceo", "detail": "CEO confirmation required"}
+{"timestamp": "2026-07-01T19:18:40.689605", "module": "model_router", "action": "api_call", "status": "sent", "detail": "qy-b6182b46b5c3"}
+{"timestamp": "2026-07-01T19:18:40.692175", "module": "model_router", "action": "api_call", "status": "sent", "detail": "qy-165c5d6f3ebc"}

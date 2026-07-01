@@ -1,0 +1,16 @@
+# Mined rule suggestion: SUG-004
+id: SUG-004
+name: |
+  系统能不能"预判"自己接下来的状态？预判不准时，能不能"意识到自己预判不准"？**
+priority: 20
+triggers:
+  - problem
+action: |
+  系统能不能"预判"自己接下来的状态？预判不准时，能不能"意识到自己预判不准"？**
+level: P1
+owner: system
+status: draft
+source: mined from PRD_第十轮_结构化世界模型_V1.0.md
+severity: high
+category: problem
+created: 2026-06-21

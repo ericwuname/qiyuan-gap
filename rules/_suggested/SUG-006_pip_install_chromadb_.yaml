@@ -1,0 +1,16 @@
+# Mined rule suggestion: SUG-006
+id: SUG-006
+name: |
+  pip install chromadb"
+priority: 10
+triggers:
+  - suggestion
+action: |
+  pip install chromadb"
+level: P2
+owner: system
+status: draft
+source: mined from PRD_第七轮全量优化_V1.0.md
+severity: medium
+category: suggestion
+created: 2026-06-21

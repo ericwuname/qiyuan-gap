@@ -1,0 +1,13 @@
+id: SOP-010
+name: 单写岗位矩阵
+priority: 40
+triggers:
+- 并发写
+- 多人写
+- 同时编辑
+- 文件锁
+action: 同一文件同一时间只有一个窗口可写。多窗口同时写=事故。通过文件锁机制强制执行
+level: P1
+owner: system
+status: active
+created: '2026-06-19'

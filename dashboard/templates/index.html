@@ -1,0 +1,500 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>启元智脑 · Dashboard</title>
+<script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei","PingFang SC",sans-serif;background:#0f1923;color:#e0e0e0;min-height:100vh}
+.header{background:#1a2733;padding:16px 24px;border-bottom:2px solid #2a3f4f;display:flex;justify-content:space-between;align-items:center}
+.header h1{font-size:22px;font-weight:600;color:#66b1ff}
+.header .time{font-size:13px;color:#8899aa}
+.header .refresh-btn{background:#2a5f8f;color:#fff;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-size:13px}
+
+/* Tabs */
+.tabs{display:flex;background:#1a2733;padding:0 24px;border-bottom:1px solid #2a3f4f}
+.tab{padding:12px 20px;cursor:pointer;color:#8899aa;font-size:14px;border-bottom:3px solid transparent;transition:all .2s}
+.tab:hover{color:#66b1ff}
+.tab.active{color:#66b1ff;border-bottom-color:#66b1ff}
+
+.tab-panel{display:none;padding:20px}
+.tab-panel.active{display:block}
+
+/* Cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{background:#1a2733;border-radius:8px;padding:16px;border:1px solid #2a3f4f}
+.card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.card-title{font-size:14px;font-weight:600;color:#8899aa}
+.card-value{font-size:28px;font-weight:700}
+.card-status{display:inline-block;width:10px;height:10px;border-radius:50%;margin-left:6px}
+.status-green{background:#4caf50}
+.status-yellow{background:#ff9800}
+.status-red{background:#f44336}
+.status-gray{background:#667788}
+.chart-box{width:100%;height:200px}
+
+/* Summary cards */
+.summary-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:20px}
+.summary-card{background:#1a2733;border-radius:8px;padding:16px;border:1px solid #2a3f4f;text-align:center}
+.summary-card .label{font-size:13px;color:#8899aa;margin-bottom:6px}
+.summary-card .value{font-size:32px;font-weight:700;color:#66b1ff}
+.summary-card .sub{font-size:12px;color:#556677;margin-top:4px}
+
+/* Tables */
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:10px 12px;color:#8899aa;border-bottom:1px solid #2a3f4f;font-weight:600}
+td{padding:10px 12px;border-bottom:1px solid #1a2a3a}
+tr:hover{background:#1a2a3a}
+
+/* Wide card */
+.card-wide{grid-column:1/-1}
+
+/* Status badges */
+.badge{padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
+.badge-green{background:#1b3a2a;color:#4caf50}
+.badge-yellow{background:#3a2a1a;color:#ff9800}
+.badge-red{background:#2a1a1a;color:#f44336}
+
+/* Brain status */
+.status-block{background:#111d2a;border-radius:6px;padding:14px;margin:8px 0;font-family:"Consolas","Courier New",monospace;font-size:13px;white-space:pre-wrap;color:#8899aa;max-height:400px;overflow-y:auto}
+
+.footer{padding:12px 24px;font-size:12px;color:#556677;text-align:center;border-top:1px solid #1a2733}
+.alert-bar{background:#2a1a1a;color:#ff6b6b;padding:10px 24px;font-size:13px;display:none}
+.alert-bar.show{display:block}
+
+/* Loading spinner */
+.loading{text-align:center;padding:40px;color:#667788}
+.spinner{display:inline-block;width:30px;height:30px;border:3px solid #2a3f4f;border-top-color:#66b1ff;border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* New-feature highlight */
+.new-badge{background:#66b1ff;color:#0f1923;padding:1px 6px;border-radius:8px;font-size:10px;font-weight:700;margin-left:4px}
+
+/* Value bar */
+.bar-wrap{height:8px;background:#1a2a3a;border-radius:4px;margin-top:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;transition:width .4s}
+
+/* Cost pie */
+.cost-pie{width:100%;height:260px}
+.pagination{display:flex;justify-content:center;align-items:center;gap:8px;padding:12px 0}.pagination button{background:#1a2733;color:#8899aa;border:1px solid #2a3f4f;padding:6px 14px;border-radius:4px;cursor:pointer;font-size:13px}.pagination button:hover{background:#2a3f4f;color:#66b1ff}.pagination button:disabled{opacity:0.4;cursor:default}.pagination .page-info{font-size:13px;color:#667788}
+/* Org tree */
+.org-tree{padding:16px 0;overflow-x:auto}
+.tree-node{margin-left:0;position:relative}
+.tree-label{cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:6px;background:#1a2733;border:1px solid #2a3f4f;margin:3px 0;font-size:13px;transition:all .2s;white-space:nowrap}
+.tree-label:hover{background:#243447;border-color:#66b1ff}
+.tree-label .expand-icon{display:inline-block;width:16px;height:16px;line-height:16px;text-align:center;font-size:11px;color:#8899aa;transition:transform .2s;flex-shrink:0}
+.tree-label .expand-icon.open{transform:rotate(90deg)}
+.tree-label .node-name{color:#66b1ff;font-weight:600}
+.tree-label .node-role{color:#8899aa;font-size:11px}
+.tree-label .node-score{padding:1px 6px;border-radius:8px;font-size:10px;font-weight:700}
+.tree-label .score-high{background:#1b3a2a;color:#4caf50}
+.tree-label .score-mid{background:#3a2a1a;color:#ff9800}
+.tree-children{margin-left:28px;border-left:1px solid #2a3f4f;padding-left:8px;overflow:hidden;transition:max-height .3s ease}
+.tree-children.collapsed{max-height:0!important;border-left-color:transparent}
+.tree-root>.tree-label{background:#1a3040;border-color:#2a5f8f;font-size:15px;padding:8px 16px}
+.tree-t1>.tree-label{background:#1a2d3a;border-color:#3a6f8f}
+.tree-t2>.tree-label{background:#1a2a35;border-color:#2a5a6f}
+.tree-t3>.tree-label{background:#1a2730;border-color:#2a4a5f}
+.tree-t4>.tree-label{background:#1a252d;border-color:#2a3a4f}
+.tree-shared>.tree-label{background:#1a232a;border-color:#2a3040}
+.tree-cvo>.tree-label{background:#1a2a3a;border-color:#4a6f8f}
+
+</style>
+</head>
+<body>
+<div class="header">
+<div><h1>🧥 启元智脑 · Dashboard V2.0</h1></div>
+<div><span class="time" id="clock">--</span> <span style="color:#8899aa;font-size:12px;margin:0 8px">刷新倒计时: <b id="countdown">1</b>s</span> <button class="refresh-btn" onclick="refresh()">立即刷新</button></div>
+</div>
+<div class="alert-bar" id="alertBar"></div>
+
+<!-- Tabs -->
+<div class="tabs">
+  <div class="tab active" data-tab="probe" onclick="switchTab('probe')">🔬 探针面板 <span class="new-badge">实时</span></div>
+  <div class="tab" data-tab="hr" onclick="switchTab('hr')">👥 人力资源</div>
+  <div class="tab" data-tab="value" onclick="switchTab('value')">💰 价值看板</div>
+  <div class="tab" data-tab="status" onclick="switchTab('status')">⚙️ 系统状态</div>
+</div>
+
+<!-- Tab: Probe -->
+<div class="tab-panel active" id="panel-probe">
+<div class="cards">
+<div class="card"><div class="card-header"><span class="card-title">⚡ P99延迟</span><span class="card-status" id="s-latency"></span></div><div class="card-value" id="v-latency" style="color:#66b1ff">--</div><div class="chart-box" id="ch-latency"></div></div>
+<div class="card"><div class="card-header"><span class="card-title">❌ 错误率(1h)</span><span class="card-status" id="s-error"></span></div><div class="card-value" id="v-error" style="color:#ff6b6b">--</div><div class="chart-box" id="ch-error"></div></div>
+<div class="card"><div class="card-header"><span class="card-title">😻 惊奇度</span><span class="card-status" id="s-surprise"></span></div><div class="card-value" id="v-surprise" style="color:#ffa726">--</div><div class="chart-box" id="ch-surprise"></div></div>
+<div class="card"><div class="card-header"><span class="card-title">🔳 好奇心</span><span class="card-status" id="s-curiosity"></span></div><div class="card-value" id="v-curiosity" style="color:#ab47bc">--</div><div class="chart-box" id="ch-curiosity"></div></div>
+<div class="card"><div class="card-header"><span class="card-title">🦆 置信度</span><span class="card-status" id="s-confidence"></span></div><div class="card-value" id="v-confidence" style="color:#66bb6a">--</div><div class="chart-box" id="ch-confidence"></div></div>
+<div class="card"><div class="card-header"><span class="card-title">😻 自主决策度</span><span class="card-status" id="s-agency"></span></div><div class="card-value" id="v-agency" style="color:#42a5f5">--</div><div class="chart-box" id="ch-agency"></div></div>
+</div>
+</div>
+
+<!-- Tab: HR -->
+<div class="tab-panel" id="panel-hr">
+<div class="summary-cards" id="hr-summary">
+  <div class="summary-card"><div class="label">👥 在职员工</div><div class="value" id="hr-employees">--</div></div>
+  <div class="summary-card"><div class="label">🛠️ 注册技能</div><div class="value" id="hr-skills">--</div></div>
+  <div class="summary-card"><div class="label">📋 空缺岗位</div><div class="value" id="hr-gaps">--</div></div>
+  <div class="summary-card"><div class="label">📌 招聘中</div><div class="value" id="hr-recruit">--</div></div>
+</div>
+
+<!-- Org Chart -->
+<div class="cards">
+  <div class="card card-wide">
+    <div class="card-header"><span class="card-title">🏛️ 组织架构图</span></div>
+    <div class="chart-box" style="height:520px" id="ch-org"></div>
+  </div>
+</div>
+
+<!-- Employee Detail Table -->
+<div class="card card-wide">
+  <div class="card-header"><span class="card-title">👥 员工明细 (按层级排序)</span></div>
+  <div style="overflow-x:auto">
+    <table><thead><tr><th>ID</th><th>姓名</th><th>角色</th><th>层级</th><th>部门</th><th>能力分</th><th>状态</th><th>最近评估</th></tr></thead><tbody id="hr-detail-table"></tbody></table>
+  </div>
+</div>
+
+<!-- Skill Catalog -->
+<div class="card card-wide">
+  <div class="card-header"><span class="card-title">🛠️ 技能目录 (含说明)</span></div>
+  <div style="overflow-x:auto">
+    <table><thead><tr><th>技能名称</th><th>归属人</th><th>分类</th><th>说明</th><th>最近更新</th></tr></thead><tbody id="hr-skills-table"></tbody></table>
+  </div>
+</div>
+
+<div class="loading" id="hr-loading"><div class="spinner"></div><p style="margin-top:10px">加载HR数据...</p></div>
+</div>
+
+<!-- Tab: Value -->
+<div class="tab-panel" id="panel-value">
+<div class="summary-cards" id="value-summary">
+  <div class="summary-card"><div class="label">📊 近30天操作数</div><div class="value" id="val-ops">--</div></div>
+  <div class="summary-card"><div class="label">💴 近30天成本(¥)</div><div class="value" id="val-cost-cny">--</div></div>
+  <div class="summary-card"><div class="label">💵 近30天成本($)</div><div class="value" id="val-cost-usd">--</div></div>
+  <div class="summary-card"><div class="label">📈 日均成本(¥)</div><div class="value" id="val-daily">--</div></div>
+</div>
+<div class="cards">
+  <div class="card card-wide">
+    <div class="card-header"><span class="card-title">📅 近7天Token消耗趋势</span><span style="font-size:11px;color:#667788">(估算)</span></div>
+    <div class="chart-box" style="height:260px" id="ch-cost-trend"></div>
+  </div>
+</div>
+<div class="cards">
+  <div class="card">
+    <div class="card-header"><span class="card-title">📂 项目成本分布</span></div>
+    <div class="cost-pie" id="ch-cost-pie"></div>
+  </div>
+  <div class="card">
+    <div class="card-header"><span class="card-title">📋 项目明细</span></div>
+    <table><thead><tr><th>项目</th><th>操作数</th><th>成本(¥)</th><th>占比</th></tr></thead><tbody id="val-table"></tbody></table>
+  </div>
+</div>
+<div class="cards" id="val-model-cards" style="display:none">
+  <div class="card card-wide">
+    <div class="card-header"><span class="card-title">模型成本分布</span><span style="font-size:11px;color:#81c784">(实际API)</span></div>
+    <table><thead><tr><th>模型</th><th>调用次数</th><th>输入Token</th><th>输出Token</th><th>成本($)</th></tr></thead><tbody id="val-model-table"></tbody></table>
+  </div>
+</div>
+
+<div class="loading" id="val-loading"><div class="spinner"></div><p style="margin-top:10px">加载财务数据...</p></div>
+</div>
+
+<!-- Tab: Tasks -->
+<div class="tab-panel" id="panel-tasks">
+  <iframe src="/tasks" style="width:100%;height:80vh;border:none;border-radius:8px;"></iframe>
+</div>
+
+<!-- Tab: Status -->
+<div class="tab-panel" id="panel-status">
+<div class="card">
+  <div class="card-header"><span class="card-title">⚙️ brain status 输出</span></div>
+  <div class="status-block" id="brain-status-text">加载中...</div>
+</div>
+</div>
+
+<div class="footer">启元智脑 · Dashboard V2.0 · 数据来源: probe.db / hr.db / cost.db · 刷新间隔: 1秒</div>
+
+<script>
+// ── Tab switching ──────────────────────────────────────
+var currentTab = 'probe';
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelector('[data-tab="'+tab+'"]').classList.add('active');
+  document.getElementById('panel-'+tab).classList.add('active');
+  if (tab === 'probe' && !chartsReady) initProbeCharts();
+  if (tab === 'hr' && !hrLoaded) loadHR();
+  if (tab === 'value' && !valLoaded) loadValue();
+  if (tab === 'tasks') { /* loaded via iframe */ }
+      if (tab === 'status') loadStatus();
+}
+
+// ── Threshold config ───────────────────────────────────
+const THRESHOLDS = {
+  latency:  {green:200, yellow:500},
+  error:    {green:0.01, yellow:0.05},
+  surprise: {green:0.3, yellow:0.7},
+  curiosity:{green:0.5, yellow:0.8},
+  confidence:{green:0.7, yellow:0.5},
+  agency:   {green:0.3, yellow:0.1}
+};
+
+// ── Probe charts ───────────────────────────────────────
+var chartsReady = false;
+const charts = {};
+const historyData = {};
+const MAX_HISTORY = 300;
+
+const metrics = ["latency","error","surprise","curiosity","confidence","agency"];
+const probeColors = ["#66b1ff","#ff6b6b","#ffa726","#ab47bc","#66bb6a","#42a5f5"];
+
+function initProbeCharts() {
+  metrics.forEach((key,i) => {
+    const dom = document.getElementById('ch-'+key);
+    if (!dom || charts[key]) return;
+    charts[key] = echarts.init(dom);
+    charts[key].setOption({
+      grid:{top:10,right:12,bottom:10,left:45},
+      xAxis:{type:"category",data:[],show:false},
+      yAxis:{type:"value",splitLine:{lineStyle:{color:"#1a3a4a"}},axisLabel:{color:"#667788",fontSize:10}},
+      series:[{
+        type:"line",data:[],smooth:true,
+        lineStyle:{color:probeColors[i],width:2},
+        areaStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[
+          {offset:0,color:probeColors[i]+"44"},
+          {offset:1,color:probeColors[i]+"08"}
+        ])},
+        symbol:"circle",symbolSize:5,showSymbol:true,
+        markLine:{silent:true,data:[{yAxis:THRESHOLDS[key]?.green,name:"绿色阈值"},{yAxis:THRESHOLDS[key]?.yellow,name:"黄色阈值"}],
+          lineStyle:{color:"#333",type:"dashed"}}
+      }]
+    });
+    historyData[key] = [];
+  });
+  chartsReady = true;
+}
+
+function statusClass(val, cfg, invert) {
+  if (val === null || val === undefined) return "status-gray";
+  if (invert) {
+    if (val > cfg.green) return "status-green";
+    if (val > cfg.yellow) return "status-yellow";
+    return "status-red";
+  }
+  if (val < cfg.green) return "status-green";
+  if (val < cfg.yellow) return "status-yellow";
+  return "status-red";
+}
+
+function fmtProbeVal(key, val) {
+  if (val === null || val === undefined) return "--";
+  if (key === "latency") return val.toFixed(0) + "ms";
+  if (key === "error") return (val*100).toFixed(1) + "%";
+  return val.toFixed(3);
+}
+
+var alertQuiet = {};
+const QUIET_MINUTES = 30;
+
+function checkAlert(key, val, cfg, invert) {
+  const isRed = invert ? (val <= cfg.yellow) : (val >= cfg.yellow*2);
+  if (!isRed) { delete alertQuiet[key]; return; }
+  var now = Date.now();
+  if (alertQuiet[key] && (now - alertQuiet[key]) < QUIET_MINUTES*60000) return;
+  alertQuiet[key] = now;
+  var bar = document.getElementById("alertBar");
+  bar.innerHTML = '⚠️ 告警: ' + key + ' 指标异常 (当前值: ' + fmtProbeVal(key,val) + ') · ' + new Date().toLocaleTimeString();
+  bar.classList.add("show");
+  setTimeout(function(){ bar.classList.remove("show"); }, 10000);
+}
+
+// ── Probe refresh ──────────────────────────────────────
+async function refreshProbe() {
+  try {
+    var resp = await fetch("/api/metrics");
+    var data = await resp.json();
+    var now = new Date().toLocaleTimeString();
+    document.getElementById("clock").textContent = now;
+
+    metrics.forEach(function(key) {
+      var val, cfg, invert = false;
+      if (key === "latency") { val = data.p99_latency_ms; cfg = THRESHOLDS.latency; }
+      else if (key === "error") { val = data.error_rate_1h; cfg = THRESHOLDS.error; }
+      else if (key === "surprise") { val = data.surprise_avg; cfg = THRESHOLDS.surprise; }
+      else if (key === "curiosity") { val = data.curiosity; cfg = THRESHOLDS.curiosity; }
+      else if (key === "confidence") { val = data.confidence; cfg = THRESHOLDS.confidence; invert = true; }
+      else if (key === "agency") { val = data.agency_ratio; cfg = THRESHOLDS.agency; invert = true; }
+
+      var vEl = document.getElementById("v-"+key);
+      var sEl = document.getElementById("s-"+key);
+      if (vEl) vEl.textContent = fmtProbeVal(key, val);
+      if (sEl) { sEl.className = "card-status " + statusClass(val, cfg, invert); }
+
+      historyData[key].push(val ?? 0);
+      if (historyData[key].length > MAX_HISTORY) historyData[key].shift();
+
+      if (charts[key]) {
+        charts[key].setOption({
+          xAxis:{data:historyData[key].map(function(_,i){return i;})},
+          series:[{data:historyData[key]}]
+        });
+      }
+      checkAlert(key, val, cfg, invert);
+    });
+  } catch(e) { console.error("probe fetch error:", e); }
+}
+
+// ── HR tab ─────────────────────────────────────────────
+var hrLoaded = false;
+var hrCharts = {};
+var tierColors = {"T1":"#66b1ff","T2":"#66bb6a","T3":"#ffa726","T4":"#ff6b6b","Shared":"#ab47bc"};
+
+function loadHR() {
+  // Load summary
+  fetch("/api/hr").then(function(r){return r.json();}).then(function(d){
+    if (!d.ok) return;
+    document.getElementById("hr-employees").textContent = d.total_employees;
+    document.getElementById("hr-skills").textContent = d.total_skills;
+    document.getElementById("hr-gaps").textContent = d.open_gaps;
+    document.getElementById("hr-recruit").textContent = d.open_recruitments;
+  }).catch(function(){});
+
+  // Load org chart
+  fetch("/api/hr/org-chart").then(function(r){return r.json();}).then(function(d){
+    if (!d.ok) return;
+    var tree = d.org_chart;
+    // Convert to ECharts tree format
+    function convert(node) {
+      var item = {name: node.name};
+      if (node.role) item.name += " (" + (node.score||"") + ")";
+      if (node.children && node.children.length > 0) {
+        item.children = node.children.map(convert);
+      }
+      return item;
+    }
+    var chartData = convert(tree);
+
+    if (!hrCharts.org) {
+      hrCharts.org = echarts.init(document.getElementById("ch-org"));
+    } else { hrCharts.org.clear(); }
+    hrCharts.org.setOption({
+      tooltip:{trigger:"item",formatter:function(p){return p.name;}},
+      series:[{
+        type:"tree",data:[chartData],
+        top:"2%",left:"5%",bottom:"2%",right:"5%",
+        symbolSize:12,
+        orient:"TB",
+        label:{position:"top",verticalAlign:"middle",align:"center",fontSize:11,color:"#ccc"},
+        leaves:{label:{position:"top",verticalAlign:"middle",align:"center",fontSize:10}},
+        expandAndCollapse:true,initialTreeDepth:2,
+        animationDuration:550,
+        animationDurationUpdate:750,
+        lineStyle:{color:"#2a5f8f",width:2,curveness:0.3},
+        itemStyle:{color:"#66b1ff",borderColor:"#66b1ff"}
+      }]
+    });
+  }).catch(function(){});
+
+  // Load employee detail with pagination\n  window._empData=[];\n  window._empPage=0;\n  window._empPageSize=10;\n  fetch("/api/hr/detail").then(function(r){return r.json();}).then(function(d){\n    if(!d.ok)return;\n    window._empData=d.employees||[];\n    renderEmpPage();\n  }).catch(function(){});
+  // Load skills with pagination\n  window._skillData=[];\n  window._skillPage=0;\n  window._skillPageSize=10;\n  fetch("/api/hr/skills").then(function(r){return r.json();}).then(function(d){\n    if(!d.ok)return;\n    window._skillData=d.skills||[];\n    renderSkillPage();\n  }).catch(function(){});
+  document.getElementById("hr-loading").style.display = "none";
+  hrLoaded = true;
+}
+
+// ── Value tab ──────────────────────────────────────────
+var valLoaded = false;
+var costCharts = {};
+function loadValue() {
+  fetch("/api/cost").then(function(r){return r.json();}).then(function(d){
+    if (!d.ok) { document.getElementById("val-loading").innerHTML = '<p style="color:#ff6b6b">财务数据加载失败: '+d.error+'</p>'; return; }
+    document.getElementById("val-ops").textContent = (d.ops_30d||0).toLocaleString();
+    document.getElementById("val-cost-cny").textContent = "¥" + (d.cost_cny_30d||0).toFixed(2);
+    document.getElementById("val-cost-usd").textContent = "$" + (d.cost_usd_30d||0).toFixed(3);
+    var dailyAvg = (d.daily||[]).length > 0 ? (d.cost_cny_30d||0)/(d.daily.length) : 0;
+    document.getElementById("val-daily").textContent = "¥" + dailyAvg.toFixed(2);
+
+    // Trend chart
+    var daily = d.daily || [];
+    var dates = daily.map(function(x){return x.date.slice(5);});
+    var costs = daily.map(function(x){return x.cost;});
+    if (!costCharts.trend) {
+      costCharts.trend = echarts.init(document.getElementById("ch-cost-trend"));
+    } else { costCharts.trend.clear(); }
+    costCharts.trend.setOption({
+      grid:{top:10,right:12,bottom:20,left:50},
+      tooltip:{trigger:"axis"},
+      xAxis:{type:"category",data:dates,axisLabel:{color:"#667788",fontSize:10}},
+      yAxis:{type:"value",name:"USD",splitLine:{lineStyle:{color:"#1a3a4a"}},axisLabel:{color:"#667788",fontSize:10}},
+      series:[{
+        type:"bar",data:costs,
+        itemStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:"#66b1ff"},{offset:1,color:"#1a4a6a"}])},
+        label:{show:true,position:"top",color:"#8899aa",fontSize:10,formatter:function(p){return "$"+p.value.toFixed(3);}}
+      }]
+    });
+
+    // Project table + pie
+    var byProj = d.by_proj || {};
+    var totalCost = d.cost_usd_30d || 0.001;
+    var tbody = document.getElementById("val-table");
+    tbody.innerHTML = "";
+    var pieData = [];
+    Object.keys(byProj).forEach(function(k){
+      var v = byProj[k];
+      var pct = totalCost > 0 ? (v.cost_usd/totalCost*100).toFixed(1) : "0.0";
+      tbody.innerHTML += '<tr><td>'+k+'</td><td>'+v.ops+'</td><td>¥'+v.cost_cny.toFixed(2)+'</td><td>'+pct+'%</td></tr>';
+      pieData.push({name:k, value:v.cost_usd});
+    });
+
+    if (!costCharts.pie) {
+      costCharts.pie = echarts.init(document.getElementById("ch-cost-pie"));
+    } else { costCharts.pie.clear(); }
+    costCharts.pie.setOption({
+      tooltip:{trigger:"item",formatter:function(p){return p.name+": $"+p.value.toFixed(3)+" ("+p.percent+"%)";}},
+      legend:{bottom:5,textStyle:{color:"#667788",fontSize:10}},
+      series:[{
+        type:"pie",radius:["40%","70%"],center:["50%","45%"],
+        data:pieData,
+        label:{color:"#8899aa",fontSize:10},
+        itemStyle:{borderColor:"#0f1923",borderWidth:2}
+      }]
+    });
+
+    document.getElementById("val-loading").style.display = "none";
+    valLoaded = true;
+  }).catch(function(e){ document.getElementById("val-loading").innerHTML = '<p style="color:#ff6b6b">财务数据加载失败</p>'; });
+}
+
+// ── Status tab ─────────────────────────────────────────
+function loadStatus() {
+  fetch("/api/brain-status").then(function(r){return r.json();}).then(function(d){
+    document.getElementById("brain-status-text").textContent = d.raw || "无法获取状态信息";
+  }).catch(function(e){
+    document.getElementById("brain-status-text").textContent = "加载状态失败";
+  });
+}
+
+// ── Main refresh loop ──────────────────────────────────
+var countdown = 1;
+function refresh() {
+  if (currentTab === 'probe') refreshProbe();
+  countdown = 1;
+  document.getElementById("countdown").textContent = "1";
+}
+
+// 1秒刷新
+setInterval(function(){
+  countdown = countdown <= 1 ? 1 : countdown - 1;
+  document.getElementById("countdown").textContent = countdown;
+  if (countdown <= 1) {
+    if (currentTab === 'probe') refreshProbe();
+    countdown = 1;
+  }
+}, 1000);
+
+initProbeCharts();
+refreshProbe();
+</script>
+</body>
+</html>

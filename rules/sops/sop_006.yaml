@@ -1,0 +1,14 @@
+id: SOP-006
+name: 子智能体防卡死与并发安全
+priority: 40
+triggers:
+- 大任务
+- 多子Agent
+- 并发
+- 卡死
+- 阻塞
+action: 大任务拆分+里程碑重建+定期巡检+并发安全。单任务超30min->拆分。子Agent超5min无响应->巡检重建
+level: P1
+owner: system
+status: active
+created: '2026-06-19'

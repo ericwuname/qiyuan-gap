@@ -1,0 +1,12 @@
+id: SOP-013
+name: 组织健康监控标准
+priority: 40
+triggers:
+- 健康检查
+- 扫描
+- 审计
+action: '定期org-health-check.ps1: Skill完整性+编码健康+目录卫生+锁清理+灾备状态。异常->自动通知'
+level: P1
+owner: system
+status: active
+created: '2026-06-19'

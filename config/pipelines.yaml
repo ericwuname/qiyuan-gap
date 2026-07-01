@@ -1,0 +1,47 @@
+# 知识管道配置 - PRD V2.0 P0-11
+# 定义多管道知识输入源
+
+pipelines:
+  direct_pipeline:
+    source: 宪法/基因/CEO令
+    type: file_to_rules
+    path: "01_公司治理/"
+    frequency: manual
+    flow: 规则引擎
+    
+  review_pipeline:
+    source: 复盘报告
+    type: folder_to_knowledge
+    path: "04_项目/外部大脑/报告/"
+    frequency: manual
+    flow: 知识内化 (mine_reports)
+    
+  experience_pipeline:
+    source: SOP/方法论
+    type: folder_to_faq
+    path: "01_公司治理/"
+    frequency: manual
+    flow: FAQ蒸馏 (kb faq)
+    
+  hr_pipeline:
+    source: 人力资源文件
+    type: folder_to_hr_db
+    path: "06_人力资源/"
+    frequency: manual
+    flow: 人力数据库 (hr ingest)
+    
+  audit_pipeline:
+    source: 审计日志
+    type: db_to_evolve
+    frequency: auto
+    flow: 自进化 (evolve analyze)
+    
+  external_pipeline:
+    source: 外部顾问反馈
+    type: file_to_knowledge
+    path: "04_项目/外部大脑/报告/"
+    frequency: manual
+    flow: 知识内化
+
+version: "1.0"
+created: "2026-06-21"

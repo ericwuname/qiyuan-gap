@@ -1,0 +1,13 @@
+id: SOP-014K
+name: 知识库建设与验收标准
+priority: 40
+triggers:
+- 知识库
+- KB
+- 建知识库
+- 知识管理
+action: 'KB建设唯一标准: 5步流程+7要素+交付自检。建任何知识库前必读。傻子读完抬手能做'
+level: P1
+owner: system
+status: active
+created: '2026-06-19'

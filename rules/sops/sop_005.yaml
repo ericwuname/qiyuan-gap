@@ -1,0 +1,13 @@
+id: SOP-005
+name: 人力变更强制记录标准
+priority: 40
+triggers:
+- Skill变更
+- Skill修改
+- Skill裁撤
+- 人力调整
+action: 新增/修改/裁撤Skill必须经人力总监+留记录。未走人力总监=违规
+level: P0
+owner: system
+status: active
+created: '2026-06-19'

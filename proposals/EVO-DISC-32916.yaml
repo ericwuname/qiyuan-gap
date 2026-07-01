@@ -1,0 +1,27 @@
+# Rule Proposal: Auto-discovered: _self_heal_test write pattern
+# Auto-discovered: 2026-06-20 13:21:56
+# Confidence: 0.95
+# Total operations detected: 648
+# Cluster size: 1
+rule:
+  id: EVO-DISC-32916
+  name: 'Auto-discovered: _self_heal_test write pattern'
+  level: P1
+  priority: 5
+  owner: auto-discovery
+  status: proposed
+  triggers:
+  - _self_heal_test
+  - write
+  action: Detected 648 write operations in _self_heal_test (30d). Recommend defining operational standards.
+  description: 'Auto-discovery: 648 write ops in _self_heal_test. Sample paths: _self_heal_test'
+  examples:
+  - SelfHeal health check test log
+_meta:
+  _confidence: 0.95
+  _discovered_at: '2026-06-20 13:21:56'
+  _source: rule_discovery.py auto-discovery
+  _cluster_size: 1
+  _total_operations: 648
+  _pattern_keys:
+  - write:::_self_heal_test

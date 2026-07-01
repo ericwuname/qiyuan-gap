@@ -1,0 +1,175 @@
+rules:
+- id: INC-002
+  name: 章节字数标准
+  priority: 30
+  triggers:
+  - 章节
+  - 字数
+  - 内容产出
+  - 网文
+  - 剧本
+  action: 章均2400-3000字，<2000字/章禁止交付
+  level: P1
+  owner: system
+  status: active
+  created: '2026-06-19'
+- id: INC-004
+  name: 稿件文件夹纯净
+  priority: 30
+  triggers:
+  - 稿件
+  - 文件夹
+  - 文件组织
+  - 创建目录
+  action: 稿件/只放正文。审查->审查/，管理->项目管理/
+  level: P1
+  owner: system
+  status: active
+  created: '2026-06-19'
+- id: INC-005
+  name: 临时标记清零
+  priority: 30
+  triggers:
+  - 交付
+  - 质检
+  - 插章
+  - 草稿
+  - 待定
+  action: 插章/草稿/待定标签交付前全部清除
+  level: P1
+  owner: system
+  status: active
+  created: '2026-06-19'
+- id: R-012
+  name: 规划vs实际对照
+  priority: 30
+  triggers:
+  - 交付
+  - 验收
+  - 完成
+  action: 规划vs实际对照表，偏差>30%不放行
+  level: P1
+  owner: system
+  status: active
+  created: '2026-06-19'
+- id: R-020
+  name: QA审查不得为空
+  priority: 30
+  triggers:
+  - QA
+  - 审查
+  - 质检
+  action: QA审查不得为空，无问题!=无审查
+  level: P1
+  owner: system
+  status: active
+  created: '2026-06-19'
+- id: PM-001
+  name: 产品形态评估
+  priority: 30
+  triggers:
+  - 立项
+  - 内容项目
+  - 创作
+  action: '内容项目立项前，必须先回答: 这个设定最适合什么载体?小说/短剧/漫画/音频?'
+  level: P0
+  owner: system
+  status: active
+  created: '2026-06-19'
+- id: CVO-001
+  name: 方向节点审计
+  priority: 30
+  triggers:
+  - P0
+  - 立项
+  - 发布
+  - 创作方向
+  action: P0项目在立项/创作方向确定/发布前三个节点须经军师独立审计
+  level: P0
+  owner: system
+  status: active
+  created: '2026-06-19'
+- id: QA-001
+  name: 渠道匹配验证
+  priority: 30
+  triggers:
+  - QA
+  - 终检
+  - 交付
+  action: QA终检清单新增渠道匹配检查项。只查内容质量不查渠道匹配=事故
+  level: P1
+  owner: system
+  status: active
+  created: '2026-06-19'
+- id: STR-001
+  name: 平台匹配审计
+  priority: 30
+  triggers:
+  - P0
+  - 内容项目
+  - 发布
+  - 平台
+  action: P0级以上内容项目，战略顾问必须出具平台匹配报告
+  level: P0
+  owner: system
+  status: active
+  created: '2026-06-19'
+- id: HR-001
+  name: 能力缺口预检
+  priority: 30
+  triggers:
+  - 立项
+  - 新项目
+  action: 新项目立项时，人力总监输出能力匹配报告。有缺口先招人
+  level: P1
+  owner: system
+  status: active
+  created: '2026-06-19'
+
+- id: IMM-1
+  name: Bug修复闭环
+  priority: 20
+  triggers:
+  - 修bug
+  - 修复
+  - bug修复
+  action: 每修完一个bug，必须检查它是否会在新对话/新环境重现。若会重现则主动更新AGENTS.md/config/SOP或大脑规则。并主动提醒CEO还需要手动做什么。不等CEO追问。
+  level: P1
+  owner: system
+  status: active
+  created: '2026-06-21'
+- id: IMM-2
+  name: SOP编号走大脑分配
+  priority: 20
+  triggers:
+  - 创建SOP
+  - 新建SOP
+  - SOP
+  action: 新建SOP文档时，必须先执行 brain sop next 获取唯一编号。禁止手动自定编号。brain sop next 使用跨进程文件锁保证多会话并发时编号唯一。
+  level: P1
+  owner: system
+  status: active
+  created: '2026-06-21'
+
+- id: INC-S+
+  name: 数据删除保护
+  priority: 10
+  triggers:
+  - 删除
+  - 清理
+  - Remove-Item
+  - del
+  - rm
+  - 整理
+  action: |
+    S+级规则：
+    1. 绝对禁止删除 D:\\0.个人文档\\个人文档\\下除启元智能之外的文件
+    2. 绝对禁止使用 ..\\ 相对路径
+    3. 绝对禁止通配符 * + -Recurse -Force 组合
+    4. 禁用 -Force 参数
+    5. 所有删除操作须经CEO审批
+    6. 任何违规 = S+级事故
+  level: S+
+  owner: system
+  status: active
+  created: '2026-06-22'

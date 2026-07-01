@@ -1,0 +1,43 @@
+# 防Agent BUG铁律库 (5条)
+# Wave A · 2026-06-22
+
+rules:
+  - id: AB-RULE-001
+    name: "核心文件修改必须走安全门禁"
+    priority: 1
+    description: "修改brain/cli.py/AGENTS.md等核心文件: ①备份 ②修改 ③验证 ④放行/回滚"
+    trigger: "修改brain/*.py或AGENTS.md/config.yaml"
+    detection: "brain status --fast"
+    source: "AB-001, AB-002"
+
+  - id: AB-RULE-002
+    name: "第三方库必须检查TTY/stderr行为"
+    priority: 2
+    description: "引入新库检查: 是否写stderr?依赖TTY?管道环境测试?"
+    trigger: "pip install新库"
+    detection: "python cli.py xxx 2>&1无NativeCommandError"
+    source: "AB-003"
+
+  - id: AB-RULE-003
+    name: "持久化存储必须有跨session验证"
+    priority: 2
+    description: "持久化存储: 跨session能读?跨平台?有兜底?"
+    trigger: "引入新数据库/存储"
+    detection: "brain kb status对比indexed_docs vs fallback_docs"
+    source: "AB-004"
+
+  - id: AB-RULE-004
+    name: "规则保障系统必须三层兜底"
+    priority: 1
+    description: "规则保障: ①快通道(<1s)②静态快照③完整通道"
+    trigger: "设计/修改规则加载"
+    detection: "status_fast.py+fallback.md+brain status"
+    source: "AB-005"
+
+  - id: AB-RULE-005
+    name: "CLI关键命令应物理隔离"
+    priority: 2
+    description: "关键子命令独立模块，主文件损坏不影响"
+    trigger: "新增CLI子命令"
+    detection: "python brain/status_fast.py独立运行"
+    source: "AB-006"

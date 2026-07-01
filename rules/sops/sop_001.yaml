@@ -1,0 +1,14 @@
+id: SOP-001
+name: 能力缺口识别与招聘执行标准
+priority: 40
+triggers:
+- 能力缺口
+- 招聘
+- 缺人
+- Skill不足
+- 新项目
+action: '能力缺口=第一优先级。先招人再开工。招聘流程: 识别缺口->生成招聘需求->生成SKILL.md->CHRO测试->QA审查->入编'
+level: P1
+owner: system
+status: active
+created: '2026-06-19'

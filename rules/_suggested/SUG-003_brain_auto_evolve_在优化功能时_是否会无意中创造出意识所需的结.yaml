@@ -1,0 +1,16 @@
+# Mined rule suggestion: SUG-003
+id: SUG-003
+name: |
+  brain auto-evolve 在优化功能时，是否会无意中创造出意识所需的结构条件？
+priority: 20
+triggers:
+  - problem
+action: |
+  brain auto-evolve 在优化功能时，是否会无意中创造出意识所需的结构条件？
+level: P1
+owner: system
+status: draft
+source: mined from PRD_第九轮_意识探针集成_V1.0.md
+severity: high
+category: problem
+created: 2026-06-21

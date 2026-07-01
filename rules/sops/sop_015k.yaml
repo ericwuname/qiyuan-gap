@@ -1,0 +1,12 @@
+id: SOP-015K
+name: 知识库映射与自动更新
+priority: 40
+triggers:
+- 知识库映射
+- 任务映射
+- 知识库导航
+action: 任务映射表由gen_mapping.js自动维护。任何角色开工前必读映射表。映射表过时->触发自动重建
+level: P1
+owner: system
+status: active
+created: '2026-06-19'

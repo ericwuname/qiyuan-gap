@@ -1,0 +1,27 @@
+# rule auto-discovery EVO-AUTO-0001
+# discovered: 2026-06-20 13:17:43
+# confidence: 1.0
+# source: auto_discovered (P0-2 rule_discovery.py)
+# cluster_size: 648
+# representative: write _self_heal_test SelfHeal health check test log
+
+rule:
+  id: EVO-AUTO-0001
+  name: "auto-found: test"
+  triggers:
+    - "test"
+    - "heal"
+    - "health"
+    - "self"
+    - "check"
+  action: "suggested rule for: write _self_heal_test SelfHeal health check test log"
+  priority: 50
+  level: P2
+  status: suggested
+  owner: system
+  created: "2026-06-20"
+  _source: auto_discovered
+  _confidence: 1.0
+  _discovered_at: "2026-06-20 13:17:43"
+  _cluster_size: 648
+  _representative: "write _self_heal_test SelfHeal health check test log"

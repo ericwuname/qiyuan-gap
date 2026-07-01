@@ -1,0 +1,13 @@
+id: SOP-015
+name: Skill命名变更与一致性审计
+priority: 40
+triggers:
+- Skill命名
+- 改名
+- 重命名
+- Skill一致性
+action: Skill命名变更->自动触发全组织一致性审计。命名不一致=违规。变更记录->人力总监
+level: P1
+owner: system
+status: active
+created: '2026-06-19'

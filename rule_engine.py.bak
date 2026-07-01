@@ -1,0 +1,436 @@
+# -*- coding: utf-8 -*-
+"""启元智能 · 外部大脑规则引擎"""
+
+import io, os, yaml, json, sys, re
+from datetime import datetime
+from typing import Dict, List, Optional, Any
+
+
+
+# P0-3 YAML Schema  (P0-3 Input Validation & Security)
+import re as _yaml_re
+
+# YAML unsafe tags filter
+_YAML_UNSAFE_TAGS = [
+    "!!python/object", "!!python/name", "!!python/module",
+    "!!python/new", "!!python/apply", "!!python/call",
+]
+
+def _validate_yaml_safe(raw_text, filepath=""):
+    if not raw_text or not raw_text.strip():
+        raise ValueError(": " + filepath)
+    for tag in _YAML_UNSAFE_TAGS:
+        if tag.lower() in raw_text.lower():
+            raise ValueError(": " + filepath + "  " + tag + " ")
+    return True
+
+def _validate_rule_schema(rule, source_file=""):
+    if not isinstance(rule, dict):
+        raise ValueError(": " + source_file + " ")
+    if not rule.get("id"):
+        raise ValueError("id: " + source_file)
+    if not rule.get("name"):
+        raise ValueError("name: " + source_file + " id=" + str(rule.get("id", "?")))
+    priority = rule.get("priority", 99)
+    if not isinstance(priority, (int, float)):
+        raise ValueError("priority: " + source_file + " id=" + str(rule.get("id", "?")) + ", priority=" + str(priority) + " ")
+    return True
+
+# END P0-3 YAML
+class RuleEngine:
+    """Core rule engine for Qiyuan Intelligence external brain."""
+
+    # Explicit classification keywords (checked in order: P0 -> P1 -> P2 fallback)
+    P0_KEYWORDS = [
+        "删除", "删", "改宪法", "修改宪法", "修改规则", "对外发布",
+        "发布", "裁撤", "移除>5", "移>5", "Token>50000", "Set-Content",
+        "50000", "基因协议",
+    ]
+    P1_KEYWORDS = [
+        "新建文件", "创建文件", "创建", "写文件", "改SKILL", "修改SKILL",
+        "改skill", "跨项目", "立项", "写脚本",
+    ]
+    # P2 keywords: when these match and no P0/P1 keywords match -> P2
+    P2_KEYWORDS = [
+        "打分", "评估", "报告", "状态更新", "日常", "查询", "搜索",
+        "阅读", "查看", "检查", "统计", "汇总", "分析",
+        "更新", "整理", "同步", "扫描", "迁移",
+    ]
+
+    @staticmethod
+    def _fuzzy_match(keyword: str, text: str) -> bool:
+        """Non-contiguous substring match: all chars of keyword appear in text in order."""
+        ki = 0
+        for ch in text:
+            if ch == keyword[ki]:
+                ki += 1
+                if ki == len(keyword):
+                    return True
+        return False
+
+    def __init__(self, rules_dir: str, config: Optional[Dict] = None, include_draft: bool = False):
+        self.rules_dir = rules_dir
+        self.config = config or {}
+        self.rules: List[Dict] = []
+        self.include_draft = include_draft
+        self._rules_changed = is_rules_changed()
+        self._load_all_rules(include_draft=include_draft)
+        if self._rules_changed:
+            self._load_all_rules(include_draft=include_draft)
+
+    def _load_all_rules(self, include_draft=False):
+        # Recursively load all YAML rule files from rules_dir.
+        # Lifecycle-aware loading per meta_rules.yaml.
+        self.rules = []
+        if not os.path.isdir(self.rules_dir):
+            return
+
+        for root, dirs, files in os.walk(self.rules_dir):
+            for fname in sorted(files):
+                if fname.endswith(('.yaml', '.yml')):
+                    fpath = os.path.join(root, fname)
+                    try:
+                        with io.open(fpath, 'r', encoding='utf-8') as f:
+                            raw_text = f.read()
+                        # P0-3:  YAML  (reject unsafe tags)
+                        _validate_yaml_safe(raw_text, fname)
+                        data = yaml.safe_load(raw_text)
+                        if data and 'rules' in data:
+                            for rule in data['rules']:
+                                rule['_source_file'] = fname
+                                self._process_rule(rule, fpath, include_draft)
+                        elif data and 'rule' in data:
+                            inner = data['rule']
+                            inner['_source_file'] = fname
+                            self._process_rule(inner, fpath, include_draft)
+                        elif data and 'id' in data:
+                            data['_source_file'] = fname
+                            self._process_rule(data, fpath, include_draft)
+                    except yaml.YAMLError as e:
+                        print(f"Warning: failed to parse {fpath}: {e}", file=sys.stderr)
+
+        # Sort by priority ascending, then by id
+        self.rules.sort(key=lambda r: (r.get('priority', 99), r.get('id', '')))
+
+    def _process_rule(self, rule, fpath, include_draft):
+        # Validate and process a single rule per meta_rules.yaml lifecycle.
+        rule_id = rule.get('id', '')
+        if not rule_id or not str(rule_id).strip():
+            print(f"Error: rule in {fpath} missing id field. Rule rejected.", file=sys.stderr)
+            return
+
+        status = rule.get('status', 'active')
+
+        if status == 'archived':
+            return
+        if status == 'draft' and not include_draft:
+            return
+
+        if status == 'deprecated':
+            rule['_warning'] = f"Rule {rule_id} is deprecated."
+
+        self.rules.append(rule)
+
+    def check(self, action: str, context: Optional[Dict] = None) -> Dict:
+        """Match action description against all rules."""
+        if not action:
+            return {"matched": False, "count": 0, "rules": [], "action": None}
+
+        matched = []
+        action_lower = action.lower()
+        rules_changed = is_rules_changed()
+
+        for rule in self.rules:
+            triggers = rule.get('triggers', [])
+            if not triggers:
+                continue
+            for trigger in triggers:
+                if trigger.lower() in action_lower:
+                    matched.append({
+                        "id": rule.get('id', ''),
+                        "name": rule.get('name', ''),
+                        "priority": rule.get('priority', 99),
+                        "summary": rule.get('action', ''),
+                        "level": rule.get('level', 'P2'),
+                        "_source_file": rule.get('_source_file', ''),
+                        "warning": rule.get('_warning', None),
+                    })
+                    break  # one trigger match is enough
+
+        highest_action = matched[0]['summary'] if matched else None
+        rules_changed = is_rules_changed()
+        if rules_changed:
+            self._load_all_rules()
+        return {
+            "matched": len(matched) > 0,
+            "count": len(matched),
+            "rules": matched,
+            "action": highest_action,
+            "rules_changed": rules_changed,
+        }
+
+    def classify(self, action: str) -> Dict:
+        """Determine P0/P1/P2 level.
+
+        Priority order: P0 keywords > P1 keywords > P2 keywords > rule-matching fallback.
+        """
+        action_lower = action.lower()
+        rules_changed = is_rules_changed()
+
+        # Step 1: Check P0 keywords (highest priority)
+        for kw in self.P0_KEYWORDS:
+            kw_lower = kw.lower()
+            if (len(kw) >= 3 and self._fuzzy_match(kw_lower, action_lower)) or kw_lower in action_lower:
+                result = self.check(action)
+                rules_changed = is_rules_changed()
+                return {
+                    "level": "P0",
+                    "reason": f"Matched P0 keyword: '{kw}'. P0 requires CEO confirmation.",
+                    "matched_rules": result['rules'],
+                    "rules_changed": rules_changed,
+                }
+
+        # Step 2: Check P1 keywords
+        for kw in self.P1_KEYWORDS:
+            kw_lower = kw.lower()
+            if (len(kw) >= 3 and self._fuzzy_match(kw_lower, action_lower)) or kw_lower in action_lower:
+                result = self.check(action)
+                rules_changed = is_rules_changed()
+                return {
+                    "level": "P1",
+                    "reason": f"Matched P1 keyword: '{kw}'. P1 requires L1 confirmation.",
+                    "matched_rules": result['rules'],
+                    "rules_changed": rules_changed,
+                }
+
+        # Step 3: Check P2 keywords (before rule-matching fallback)
+        for kw in self.P2_KEYWORDS:
+            kw_lower = kw.lower()
+            if (len(kw) >= 3 and self._fuzzy_match(kw_lower, action_lower)) or kw_lower in action_lower:
+                # Ensure no P0/P1 keywords are also present
+                result = self.check(action)
+                rules_changed = is_rules_changed()
+                return {
+                    "level": "P2",
+                    "reason": f"Matched P2 keyword: '{kw}'. Autonomous execution.",
+                    "matched_rules": result['rules'],
+                    "rules_changed": rules_changed,
+                }
+
+        # Step 4: Rule matching fallback
+        result = self.check(action)
+
+        if not result['matched']:
+            rules_changed = is_rules_changed()
+            return {
+                "level": "P2",
+                "reason": "No matching rules or keywords. Default to P2 (autonomous).",
+                "matched_rules": [],
+                "rules_changed": rules_changed,
+            }
+
+        # Determine highest level from matched rules
+        levels = {'P0': 0, 'P1': 1, 'P2': 2}
+        highest = 'P2'
+        highest_name = 'Default'
+        for r in result['rules']:
+            lv = r.get('level', 'P2')
+            if levels.get(lv, 2) < levels.get(highest, 2):
+                highest = lv
+                highest_name = r['name']
+
+        rules_changed = is_rules_changed()
+        return {
+            "level": highest,
+            "reason": f"Matched {result['count']} rule(s). Highest: {highest_name} ({highest}).",
+            "matched_rules": result['rules'],
+            "rules_changed": rules_changed,
+        }
+
+    def status(self) -> Dict:
+        """Return brain health status (including Phase 2 memory if available)."""
+        result = {
+            "brain_ok": len(self.rules) > 0,
+            "components": {
+                "rules_loaded": len(self.rules),
+                "rules_dir": self.rules_dir,
+                "version": self.config.get('brain', {}).get('version', 'unknown'),
+            },
+        }
+
+        # Try to add memory engine status
+        try:
+            from memory.memory_engine import MemoryEngine
+            mem_cfg = self.config.get('memory', {})
+            kb_root = mem_cfg.get('kb_root', '')
+            persist_dir = mem_cfg.get('persist_dir', '')
+            if kb_root and persist_dir:
+                mem = MemoryEngine(
+                    kb_root, persist_dir,
+                    mem_cfg.get('model_name', 'BAAI/bge-small-zh-v1.5'),
+                    mem_cfg.get('chunk_size', 1000),
+                    mem_cfg.get('top_k', 5),
+                )
+                result['components']['memory'] = mem.status()
+        except Exception:
+            result['components']['memory'] = {
+                'indexed_docs': 0, 'model': 'unavailable', 'ok': False,
+            }
+
+        # Try to add workspace status
+        try:
+            from memory.workspace import Workspace
+            ws_cfg = self.config.get('workspace', {})
+            db_path = ws_cfg.get('db_path', '')
+            if db_path:
+                ws = Workspace(db_path)
+                result['components']['workspace'] = ws.status()
+        except Exception:
+            result['components']['workspace'] = {'ok': False, 'keys': 0}
+
+        return result
+
+    def invalidate_cache(self):
+        """Mark rule cache as stale. Called by RuleWatcher on file changes."""
+        invalidate_cache()
+
+    def is_rules_changed(self):
+        """Check and reset rules_changed flag. Returns True if rules changed since last check."""
+        changed = is_rules_changed()
+        if changed:
+            self._load_all_rules()
+        return changed
+
+    def validate_rules(self) -> Dict:
+        # Validate all rule YAML files against meta_rules.yaml standard.
+        id_pattern = re.compile(r'^[A-Z]+-[0-9]+[A-Z]*$')
+        required_fields = ['id', 'name', 'priority', 'triggers', 'action', 'owner', 'status', 'created']
+        valid_statuses = {'draft', 'review', 'active', 'deprecated', 'archived', 'suggested'}
+
+        results = []
+        if not os.path.isdir(self.rules_dir):
+            return {"valid": False, "error": "rules_dir not found",
+                    "total_files": 0, "total_rules": 0, "issues_count": 0, "results": []}
+
+        for root, dirs, files in os.walk(self.rules_dir):
+            for fname in sorted(files):
+                if fname.endswith(('.yaml', '.yml')):
+                    fpath = os.path.join(root, fname)
+                    file_result = {"file": fname, "path": fpath, "rules": [], "valid": True}
+                    try:
+                        with io.open(fpath, 'r', encoding='utf-8') as f:
+                            raw_text = f.read()
+                        # P0-3:  YAML  (reject unsafe tags)
+                        _validate_yaml_safe(raw_text, fname)
+                        data = yaml.safe_load(raw_text)
+
+                        rule_list = []
+                        if data and 'rules' in data:
+                            rule_list = data['rules']
+                        elif data and 'rule' in data:
+                            rule_list = [data['rule']]
+                        elif data and 'id' in data:
+                            rule_list = [data]
+
+                        for rule in rule_list:
+                            rv = self._validate_single_rule(rule, id_pattern, required_fields, valid_statuses)
+                            file_result["rules"].append(rv)
+                            if not rv["valid"]:
+                                file_result["valid"] = False
+                    except yaml.YAMLError as e:
+                        file_result["valid"] = False
+                        file_result["error"] = str(e)
+
+                    results.append(file_result)
+
+        all_valid = all(r["valid"] for r in results)
+        total_rules = sum(len(r["rules"]) for r in results)
+        issues = sum(1 for r in results for rr in r["rules"] if not rr["valid"])
+
+        return {
+            "valid": all_valid,
+            "total_files": len(results),
+            "total_rules": total_rules,
+            "issues_count": issues,
+            "results": results,
+        }
+
+    def _validate_single_rule(self, rule, id_pattern, required_fields, valid_statuses):
+        # Validate a single rule against meta_rules standard.
+        issues = []
+        rule_id = rule.get('id', '')
+
+        for field in required_fields:
+            val = rule.get(field)
+            if val is None or (isinstance(val, str) and val.strip() == ''):
+                issues.append(f"Missing required field: {field}")
+
+        if rule_id and not id_pattern.match(str(rule_id)):
+            issues.append(f"ID '{rule_id}' does not match format ^[A-Z]+-[0-9]+[A-Z]*$")
+
+        status = rule.get('status', '')
+        if status and status not in valid_statuses:
+            issues.append(f"Unknown status: '{status}'")
+
+        priority = rule.get('priority')
+        if priority is not None and not isinstance(priority, (int, float)):
+            issues.append(f"priority must be numeric, got {type(priority).__name__}")
+
+        return {
+            "id": str(rule_id),
+            "name": rule.get('name', ''),
+            "valid": len(issues) == 0,
+            "issues": issues,
+        }
+
+    def reload(self):
+        """Reload all rules from disk."""
+        self._load_all_rules(include_draft=self.include_draft)
+        _reset_rules_changed()
+
+
+# --- Module-level rules_changed state (persists across CLI invocations) ---
+
+_BRAIN_DIR = os.path.dirname(os.path.abspath(__file__))
+_RULES_STATE_FILE = os.path.join(_BRAIN_DIR, "_rules_state.json")
+
+
+def invalidate_cache():
+    """Mark rule cache as stale (called by RuleWatcher on file changes)."""
+    try:
+        state = {
+            "rules_changed": True,
+            "last_change": datetime.now().isoformat(),
+        }
+        with io.open(_RULES_STATE_FILE, "w", encoding="utf-8") as f:
+            json.dump(state, f, ensure_ascii=False, indent=2)
+    except Exception:
+        pass
+
+
+def is_rules_changed():
+    """Check and reset the rules_changed flag.
+    Returns True if rules changed since last check.
+    """
+    try:
+        if os.path.exists(_RULES_STATE_FILE):
+            with io.open(_RULES_STATE_FILE, "r", encoding="utf-8") as f:
+                state = json.load(f)
+            if state.get("rules_changed", False):
+                return True
+    except Exception:
+        pass
+    return False
+
+
+def _reset_rules_changed():
+    """Reset the rules_changed flag to False."""
+    try:
+        if os.path.exists(_RULES_STATE_FILE):
+            with io.open(_RULES_STATE_FILE, "r", encoding="utf-8") as f:
+                state = json.load(f)
+            state["rules_changed"] = False
+            with io.open(_RULES_STATE_FILE, "w", encoding="utf-8") as f:
+                json.dump(state, f, ensure_ascii=False, indent=2)
+    except Exception:
+        pass

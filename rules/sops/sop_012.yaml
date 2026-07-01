@@ -1,0 +1,14 @@
+id: SOP-012
+name: 灾难恢复标准
+priority: 40
+triggers:
+- 损坏
+- 丢失
+- '0x3F'
+- 恢复
+- 回滚
+action: 发现文件损坏->立即从git/09_AIskill备份恢复。编码损坏(0x3F)->不可修复->必须回滚。回滚后需根因分析
+level: P1
+owner: system
+status: active
+created: '2026-06-19'

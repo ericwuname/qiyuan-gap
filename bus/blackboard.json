@@ -1,0 +1,1308 @@
+{
+  "version": "1.0",
+  "events": [
+    {
+      "event_id": "evt-20260701-175627-0001",
+      "source": "probe",
+      "type": "anomaly_detected",
+      "severity": "info",
+      "timestamp": "2026-07-01T17:56:27.835729",
+      "payload": {
+        "triggered": true,
+        "triggers": [
+          {
+            "probe": "agency",
+            "delta": 0.6,
+            "current": 0.9,
+            "previous": 0.3
+          }
+        ],
+        "timestamp": "2026-07-01T00:00:00"
+      }
+    },
+    {
+      "event_id": "evt-20260701-175650-0002",
+      "source": "test",
+      "type": "test",
+      "severity": "info",
+      "timestamp": "2026-07-01T17:56:50.485669",
+      "payload": {}
+    },
+    {
+      "event_id": "evt-20260701-175936-0003",
+      "source": "probe",
+      "type": "anomaly_detected",
+      "severity": "info",
+      "timestamp": "2026-07-01T17:59:36.078559",
+      "payload": {
+        "triggered": true,
+        "triggers": [
+          {
+            "probe": "agency",
+            "delta": 0.6,
+            "current": 0.9,
+            "previous": 0.3
+          }
+        ],
+        "timestamp": "2026-07-01T00:00:00"
+      }
+    },
+    {
+      "event_id": "evt-20260701-175949-0004",
+      "source": "test",
+      "type": "test",
+      "severity": "info",
+      "timestamp": "2026-07-01T17:59:49.904131",
+      "payload": {}
+    },
+    {
+      "event_id": "evt-20260701-180021-0005",
+      "source": "probe",
+      "type": "anomaly_detected",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:00:21.993971",
+      "payload": {
+        "triggered": true,
+        "triggers": [
+          {
+            "probe": "agency",
+            "delta": 0.6,
+            "current": 0.9,
+            "previous": 0.3
+          }
+        ],
+        "timestamp": "2026-07-01T00:00:00"
+      }
+    },
+    {
+      "event_id": "evt-20260701-180117-0006",
+      "source": "probe",
+      "type": "anomaly_detected",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:01:17.465048",
+      "payload": {
+        "triggered": true,
+        "triggers": [
+          {
+            "probe": "agency",
+            "delta": 0.6,
+            "current": 0.9,
+            "previous": 0.3
+          }
+        ],
+        "timestamp": "2026-07-01T00:00:00"
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0007",
+      "source": "probe",
+      "type": "anomaly_detected",
+      "severity": "warning",
+      "timestamp": "2026-07-01T18:30:19.139464",
+      "payload": {
+        "triggered": true,
+        "triggers": [
+          {
+            "probe": "agency",
+            "delta": 0.6
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0008",
+      "source": "self_evolve",
+      "type": "suggested",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:30:19.140549",
+      "payload": {
+        "count": 3
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0009",
+      "source": "curiosity",
+      "type": "discovery",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:30:19.141568",
+      "payload": {
+        "cv2": 0.75,
+        "open_qs": 2
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0010",
+      "source": "body_daemon",
+      "type": "startup",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:30:19.142530",
+      "payload": {
+        "version": "V1.9"
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0011",
+      "source": "probe",
+      "type": "anomaly_detected",
+      "severity": "warning",
+      "timestamp": "2026-07-01T18:30:19.147156",
+      "payload": {
+        "triggered": true,
+        "triggers": [
+          {
+            "probe": "agency",
+            "delta": 0.6
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0012",
+      "source": "self_evolve",
+      "type": "suggested",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:30:19.148725",
+      "payload": {
+        "count": 3
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0013",
+      "source": "curiosity",
+      "type": "discovery",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:30:19.149748",
+      "payload": {
+        "cv2": 0.75,
+        "open_qs": 2
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0014",
+      "source": "body_daemon",
+      "type": "startup",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:30:19.150752",
+      "payload": {
+        "version": "V1.9"
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0015",
+      "source": "probe",
+      "type": "anomaly_detected",
+      "severity": "warning",
+      "timestamp": "2026-07-01T18:30:19.154547",
+      "payload": {
+        "triggered": true,
+        "triggers": [
+          {
+            "probe": "agency",
+            "delta": 0.6
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0016",
+      "source": "self_evolve",
+      "type": "suggested",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:30:19.155588",
+      "payload": {
+        "count": 3
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0017",
+      "source": "curiosity",
+      "type": "discovery",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:30:19.156671",
+      "payload": {
+        "cv2": 0.75,
+        "open_qs": 2
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0018",
+      "source": "body_daemon",
+      "type": "startup",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:30:19.157756",
+      "payload": {
+        "version": "V1.9"
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0019",
+      "source": "probe",
+      "type": "anomaly_detected",
+      "severity": "warning",
+      "timestamp": "2026-07-01T18:30:19.160214",
+      "payload": {
+        "triggered": true,
+        "triggers": [
+          {
+            "probe": "agency",
+            "delta": 0.6
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0020",
+      "source": "self_evolve",
+      "type": "suggested",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:30:19.161447",
+      "payload": {
+        "count": 3
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0021",
+      "source": "curiosity",
+      "type": "discovery",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:30:19.162545",
+      "payload": {
+        "cv2": 0.75,
+        "open_qs": 2
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0022",
+      "source": "body_daemon",
+      "type": "startup",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:30:19.163623",
+      "payload": {
+        "version": "V1.9"
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0023",
+      "source": "s0",
+      "type": "e0",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:30:19.164800",
+      "payload": {
+        "msg": "t0"
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0024",
+      "source": "s1",
+      "type": "e1",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:30:19.165947",
+      "payload": {
+        "msg": "t1"
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0025",
+      "source": "s2",
+      "type": "e2",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:30:19.167052",
+      "payload": {
+        "msg": "t2"
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0026",
+      "source": "s3",
+      "type": "e3",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:30:19.168225",
+      "payload": {
+        "msg": "t3"
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0027",
+      "source": "s4",
+      "type": "e4",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:30:19.169418",
+      "payload": {
+        "msg": "t4"
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0028",
+      "source": "s5",
+      "type": "e5",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:30:19.170592",
+      "payload": {
+        "msg": "t5"
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0029",
+      "source": "s6",
+      "type": "e6",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:30:19.171794",
+      "payload": {
+        "msg": "t6"
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0030",
+      "source": "s7",
+      "type": "e7",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:30:19.173024",
+      "payload": {
+        "msg": "t7"
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0031",
+      "source": "probe",
+      "type": "anomaly_detected",
+      "severity": "warning",
+      "timestamp": "2026-07-01T18:30:19.174875",
+      "payload": {
+        "triggered": true,
+        "triggers": [
+          {
+            "probe": "agency",
+            "delta": 0.6
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0032",
+      "source": "self_evolve",
+      "type": "suggested",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:30:19.176244",
+      "payload": {
+        "count": 3
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0033",
+      "source": "curiosity",
+      "type": "discovery",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:30:19.177663",
+      "payload": {
+        "cv2": 0.75,
+        "open_qs": 2
+      }
+    },
+    {
+      "event_id": "evt-20260701-183019-0034",
+      "source": "body_daemon",
+      "type": "startup",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:30:19.178999",
+      "payload": {
+        "version": "V1.9"
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0035",
+      "source": "probe",
+      "type": "anomaly_detected",
+      "severity": "warning",
+      "timestamp": "2026-07-01T18:31:28.594045",
+      "payload": {
+        "triggered": true,
+        "triggers": [
+          {
+            "probe": "agency",
+            "delta": 0.6
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0036",
+      "source": "self_evolve",
+      "type": "suggested",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:31:28.595676",
+      "payload": {
+        "count": 3
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0037",
+      "source": "curiosity",
+      "type": "discovery",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:31:28.597096",
+      "payload": {
+        "cv2": 0.75,
+        "open_qs": 2
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0038",
+      "source": "body_daemon",
+      "type": "startup",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:31:28.598543",
+      "payload": {
+        "version": "V1.9"
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0039",
+      "source": "probe",
+      "type": "anomaly_detected",
+      "severity": "warning",
+      "timestamp": "2026-07-01T18:31:28.601446",
+      "payload": {
+        "triggered": true,
+        "triggers": [
+          {
+            "probe": "agency",
+            "delta": 0.6
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0040",
+      "source": "self_evolve",
+      "type": "suggested",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:31:28.602925",
+      "payload": {
+        "count": 3
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0041",
+      "source": "curiosity",
+      "type": "discovery",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:31:28.604431",
+      "payload": {
+        "cv2": 0.75,
+        "open_qs": 2
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0042",
+      "source": "body_daemon",
+      "type": "startup",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:31:28.605868",
+      "payload": {
+        "version": "V1.9"
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0043",
+      "source": "probe",
+      "type": "anomaly_detected",
+      "severity": "warning",
+      "timestamp": "2026-07-01T18:31:28.609136",
+      "payload": {
+        "triggered": true,
+        "triggers": [
+          {
+            "probe": "agency",
+            "delta": 0.6
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0044",
+      "source": "self_evolve",
+      "type": "suggested",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:31:28.610653",
+      "payload": {
+        "count": 3
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0045",
+      "source": "curiosity",
+      "type": "discovery",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:31:28.612190",
+      "payload": {
+        "cv2": 0.75,
+        "open_qs": 2
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0046",
+      "source": "body_daemon",
+      "type": "startup",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:31:28.613667",
+      "payload": {
+        "version": "V1.9"
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0047",
+      "source": "probe",
+      "type": "anomaly_detected",
+      "severity": "warning",
+      "timestamp": "2026-07-01T18:31:28.616889",
+      "payload": {
+        "triggered": true,
+        "triggers": [
+          {
+            "probe": "agency",
+            "delta": 0.6
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0048",
+      "source": "self_evolve",
+      "type": "suggested",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:31:28.618428",
+      "payload": {
+        "count": 3
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0049",
+      "source": "curiosity",
+      "type": "discovery",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:31:28.620073",
+      "payload": {
+        "cv2": 0.75,
+        "open_qs": 2
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0050",
+      "source": "body_daemon",
+      "type": "startup",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:31:28.621704",
+      "payload": {
+        "version": "V1.9"
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0051",
+      "source": "s0",
+      "type": "e0",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:31:28.623472",
+      "payload": {
+        "msg": "t0"
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0052",
+      "source": "s1",
+      "type": "e1",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:31:28.625093",
+      "payload": {
+        "msg": "t1"
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0053",
+      "source": "s2",
+      "type": "e2",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:31:28.626675",
+      "payload": {
+        "msg": "t2"
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0054",
+      "source": "s3",
+      "type": "e3",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:31:28.628230",
+      "payload": {
+        "msg": "t3"
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0055",
+      "source": "s4",
+      "type": "e4",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:31:28.629841",
+      "payload": {
+        "msg": "t4"
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0056",
+      "source": "s5",
+      "type": "e5",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:31:28.631489",
+      "payload": {
+        "msg": "t5"
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0057",
+      "source": "s6",
+      "type": "e6",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:31:28.633119",
+      "payload": {
+        "msg": "t6"
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0058",
+      "source": "s7",
+      "type": "e7",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:31:28.634802",
+      "payload": {
+        "msg": "t7"
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0059",
+      "source": "probe",
+      "type": "anomaly_detected",
+      "severity": "warning",
+      "timestamp": "2026-07-01T18:31:28.636979",
+      "payload": {
+        "triggered": true,
+        "triggers": [
+          {
+            "probe": "agency",
+            "delta": 0.6
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0060",
+      "source": "self_evolve",
+      "type": "suggested",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:31:28.638653",
+      "payload": {
+        "count": 3
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0061",
+      "source": "curiosity",
+      "type": "discovery",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:31:28.640306",
+      "payload": {
+        "cv2": 0.75,
+        "open_qs": 2
+      }
+    },
+    {
+      "event_id": "evt-20260701-183128-0062",
+      "source": "body_daemon",
+      "type": "startup",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:31:28.642022",
+      "payload": {
+        "version": "V1.9"
+      }
+    },
+    {
+      "event_id": "evt-20260701-185004-0063",
+      "source": "probe",
+      "type": "anomaly_detected",
+      "severity": "warning",
+      "timestamp": "2026-07-01T18:50:04.300709",
+      "payload": {
+        "summary": "agency spike",
+        "triggers": [
+          {
+            "probe": "agency"
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "evt-20260701-185004-0064",
+      "source": "self_evolve",
+      "type": "suggested",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:50:04.302801",
+      "payload": {
+        "count": 2
+      }
+    },
+    {
+      "event_id": "evt-20260701-185201-0065",
+      "source": "probe",
+      "type": "anomaly_detected",
+      "severity": "warning",
+      "timestamp": "2026-07-01T18:52:01.614330",
+      "payload": {
+        "summary": "agency spike",
+        "triggers": [
+          {
+            "probe": "agency"
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "evt-20260701-185201-0066",
+      "source": "self_evolve",
+      "type": "suggested",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:52:01.616936",
+      "payload": {
+        "count": 2
+      }
+    },
+    {
+      "event_id": "evt-20260701-185330-0067",
+      "source": "probe",
+      "type": "anomaly_detected",
+      "severity": "warning",
+      "timestamp": "2026-07-01T18:53:30.193933",
+      "payload": {
+        "summary": "agency spike",
+        "triggers": [
+          {
+            "probe": "agency"
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "evt-20260701-185330-0068",
+      "source": "self_evolve",
+      "type": "suggested",
+      "severity": "info",
+      "timestamp": "2026-07-01T18:53:30.196445",
+      "payload": {
+        "count": 2
+      }
+    },
+    {
+      "event_id": "evt-20260701-190717-0069",
+      "source": "external_gateway",
+      "type": "api_call",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:07:17.035828",
+      "payload": {
+        "module": "model_router",
+        "target": null,
+        "declaration_id": "qy-5d84c96808e2"
+      }
+    },
+    {
+      "event_id": "evt-20260701-190717-0070",
+      "source": "external_gateway",
+      "type": "api_call",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:07:17.038007",
+      "payload": {
+        "module": "model_router",
+        "target": null,
+        "declaration_id": "qy-7e257f337275"
+      }
+    },
+    {
+      "event_id": "evt-20260701-190848-0071",
+      "source": "external_gateway",
+      "type": "api_call",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:08:48.624485",
+      "payload": {
+        "module": "model_router",
+        "target": null,
+        "declaration_id": "qy-6d840faedb2f"
+      }
+    },
+    {
+      "event_id": "evt-20260701-191808-0072",
+      "source": "probe",
+      "type": "anomaly_detected",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:08.091591",
+      "payload": {
+        "triggered": true,
+        "triggers": [
+          {
+            "probe": "agency",
+            "delta": 0.6,
+            "current": 0.9,
+            "previous": 0.3
+          }
+        ],
+        "timestamp": "2026-07-01T00:00:00"
+      }
+    },
+    {
+      "event_id": "evt-20260701-191808-0073",
+      "source": "probe",
+      "type": "anomaly_detected",
+      "severity": "warning",
+      "timestamp": "2026-07-01T19:18:08.170163",
+      "payload": {
+        "triggered": true,
+        "triggers": [
+          {
+            "probe": "agency",
+            "delta": 0.6
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "evt-20260701-191808-0074",
+      "source": "self_evolve",
+      "type": "suggested",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:08.172167",
+      "payload": {
+        "count": 3
+      }
+    },
+    {
+      "event_id": "evt-20260701-191808-0075",
+      "source": "curiosity",
+      "type": "discovery",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:08.173929",
+      "payload": {
+        "cv2": 0.75,
+        "open_qs": 2
+      }
+    },
+    {
+      "event_id": "evt-20260701-191808-0076",
+      "source": "body_daemon",
+      "type": "startup",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:08.175659",
+      "payload": {
+        "version": "V1.9"
+      }
+    },
+    {
+      "event_id": "evt-20260701-191819-0077",
+      "source": "probe",
+      "type": "anomaly_detected",
+      "severity": "warning",
+      "timestamp": "2026-07-01T19:18:19.929295",
+      "payload": {
+        "triggered": true,
+        "triggers": [
+          {
+            "probe": "agency",
+            "delta": 0.6
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "evt-20260701-191819-0078",
+      "source": "self_evolve",
+      "type": "suggested",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:19.931690",
+      "payload": {
+        "count": 3
+      }
+    },
+    {
+      "event_id": "evt-20260701-191819-0079",
+      "source": "curiosity",
+      "type": "discovery",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:19.933837",
+      "payload": {
+        "cv2": 0.75,
+        "open_qs": 2
+      }
+    },
+    {
+      "event_id": "evt-20260701-191819-0080",
+      "source": "body_daemon",
+      "type": "startup",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:19.936317",
+      "payload": {
+        "version": "V1.9"
+      }
+    },
+    {
+      "event_id": "evt-20260701-191821-0081",
+      "source": "probe",
+      "type": "anomaly_detected",
+      "severity": "warning",
+      "timestamp": "2026-07-01T19:18:21.713956",
+      "payload": {
+        "triggered": true,
+        "triggers": [
+          {
+            "probe": "agency",
+            "delta": 0.6
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "evt-20260701-191821-0082",
+      "source": "self_evolve",
+      "type": "suggested",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:21.716591",
+      "payload": {
+        "count": 3
+      }
+    },
+    {
+      "event_id": "evt-20260701-191821-0083",
+      "source": "curiosity",
+      "type": "discovery",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:21.719827",
+      "payload": {
+        "cv2": 0.75,
+        "open_qs": 2
+      }
+    },
+    {
+      "event_id": "evt-20260701-191821-0084",
+      "source": "body_daemon",
+      "type": "startup",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:21.722232",
+      "payload": {
+        "version": "V1.9"
+      }
+    },
+    {
+      "event_id": "evt-20260701-191823-0085",
+      "source": "probe",
+      "type": "anomaly_detected",
+      "severity": "warning",
+      "timestamp": "2026-07-01T19:18:23.673224",
+      "payload": {
+        "triggered": true,
+        "triggers": [
+          {
+            "probe": "agency",
+            "delta": 0.6
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "evt-20260701-191823-0086",
+      "source": "self_evolve",
+      "type": "suggested",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:23.675653",
+      "payload": {
+        "count": 3
+      }
+    },
+    {
+      "event_id": "evt-20260701-191823-0087",
+      "source": "curiosity",
+      "type": "discovery",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:23.677765",
+      "payload": {
+        "cv2": 0.75,
+        "open_qs": 2
+      }
+    },
+    {
+      "event_id": "evt-20260701-191823-0088",
+      "source": "body_daemon",
+      "type": "startup",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:23.680294",
+      "payload": {
+        "version": "V1.9"
+      }
+    },
+    {
+      "event_id": "evt-20260701-191823-0089",
+      "source": "s0",
+      "type": "e0",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:23.682596",
+      "payload": {
+        "msg": "t0"
+      }
+    },
+    {
+      "event_id": "evt-20260701-191823-0090",
+      "source": "s1",
+      "type": "e1",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:23.684761",
+      "payload": {
+        "msg": "t1"
+      }
+    },
+    {
+      "event_id": "evt-20260701-191823-0091",
+      "source": "s2",
+      "type": "e2",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:23.686846",
+      "payload": {
+        "msg": "t2"
+      }
+    },
+    {
+      "event_id": "evt-20260701-191823-0092",
+      "source": "s3",
+      "type": "e3",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:23.689060",
+      "payload": {
+        "msg": "t3"
+      }
+    },
+    {
+      "event_id": "evt-20260701-191823-0093",
+      "source": "s4",
+      "type": "e4",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:23.691217",
+      "payload": {
+        "msg": "t4"
+      }
+    },
+    {
+      "event_id": "evt-20260701-191823-0094",
+      "source": "s5",
+      "type": "e5",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:23.693572",
+      "payload": {
+        "msg": "t5"
+      }
+    },
+    {
+      "event_id": "evt-20260701-191823-0095",
+      "source": "s6",
+      "type": "e6",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:23.695969",
+      "payload": {
+        "msg": "t6"
+      }
+    },
+    {
+      "event_id": "evt-20260701-191823-0096",
+      "source": "s7",
+      "type": "e7",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:23.698933",
+      "payload": {
+        "msg": "t7"
+      }
+    },
+    {
+      "event_id": "evt-20260701-191825-0097",
+      "source": "probe",
+      "type": "anomaly_detected",
+      "severity": "warning",
+      "timestamp": "2026-07-01T19:18:25.443053",
+      "payload": {
+        "triggered": true,
+        "triggers": [
+          {
+            "probe": "agency",
+            "delta": 0.6
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "evt-20260701-191825-0098",
+      "source": "self_evolve",
+      "type": "suggested",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:25.446302",
+      "payload": {
+        "count": 3
+      }
+    },
+    {
+      "event_id": "evt-20260701-191825-0099",
+      "source": "curiosity",
+      "type": "discovery",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:25.449299",
+      "payload": {
+        "cv2": 0.75,
+        "open_qs": 2
+      }
+    },
+    {
+      "event_id": "evt-20260701-191825-0100",
+      "source": "body_daemon",
+      "type": "startup",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:25.451575",
+      "payload": {
+        "version": "V1.9"
+      }
+    },
+    {
+      "event_id": "evt-20260701-191837-0101",
+      "source": "probe",
+      "type": "anomaly_detected",
+      "severity": "warning",
+      "timestamp": "2026-07-01T19:18:37.984717",
+      "payload": {
+        "summary": "agency spike",
+        "triggers": [
+          {
+            "probe": "agency"
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "evt-20260701-191837-0102",
+      "source": "self_evolve",
+      "type": "suggested",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:37.987183",
+      "payload": {
+        "count": 2
+      }
+    },
+    {
+      "event_id": "evt-20260701-191840-0103",
+      "source": "external_gateway",
+      "type": "api_call",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:40.687768",
+      "payload": {
+        "module": "model_router",
+        "target": null,
+        "declaration_id": "qy-b6182b46b5c3"
+      }
+    },
+    {
+      "event_id": "evt-20260701-191840-0104",
+      "source": "external_gateway",
+      "type": "api_call",
+      "severity": "info",
+      "timestamp": "2026-07-01T19:18:40.690412",
+      "payload": {
+        "module": "model_router",
+        "target": null,
+        "declaration_id": "qy-165c5d6f3ebc"
+      }
+    }
+  ],
+  "snapshot": {
+    "probe": {
+      "last_event": "evt-20260701-191837-0101",
+      "last_type": "anomaly_detected",
+      "last_severity": "warning",
+      "last_timestamp": "2026-07-01T19:18:37.984717"
+    },
+    "test": {
+      "last_event": "evt-20260701-175949-0004",
+      "last_type": "test",
+      "last_severity": "info",
+      "last_timestamp": "2026-07-01T17:59:49.904131"
+    },
+    "self_evolve": {
+      "last_event": "evt-20260701-191837-0102",
+      "last_type": "suggested",
+      "last_severity": "info",
+      "last_timestamp": "2026-07-01T19:18:37.987183"
+    },
+    "curiosity": {
+      "last_event": "evt-20260701-191825-0099",
+      "last_type": "discovery",
+      "last_severity": "info",
+      "last_timestamp": "2026-07-01T19:18:25.449299"
+    },
+    "body_daemon": {
+      "last_event": "evt-20260701-191825-0100",
+      "last_type": "startup",
+      "last_severity": "info",
+      "last_timestamp": "2026-07-01T19:18:25.451575"
+    },
+    "s0": {
+      "last_event": "evt-20260701-191823-0089",
+      "last_type": "e0",
+      "last_severity": "info",
+      "last_timestamp": "2026-07-01T19:18:23.682596"
+    },
+    "s1": {
+      "last_event": "evt-20260701-191823-0090",
+      "last_type": "e1",
+      "last_severity": "info",
+      "last_timestamp": "2026-07-01T19:18:23.684761"
+    },
+    "s2": {
+      "last_event": "evt-20260701-191823-0091",
+      "last_type": "e2",
+      "last_severity": "info",
+      "last_timestamp": "2026-07-01T19:18:23.686846"
+    },
+    "s3": {
+      "last_event": "evt-20260701-191823-0092",
+      "last_type": "e3",
+      "last_severity": "info",
+      "last_timestamp": "2026-07-01T19:18:23.689060"
+    },
+    "s4": {
+      "last_event": "evt-20260701-191823-0093",
+      "last_type": "e4",
+      "last_severity": "info",
+      "last_timestamp": "2026-07-01T19:18:23.691217"
+    },
+    "s5": {
+      "last_event": "evt-20260701-191823-0094",
+      "last_type": "e5",
+      "last_severity": "info",
+      "last_timestamp": "2026-07-01T19:18:23.693572"
+    },
+    "s6": {
+      "last_event": "evt-20260701-191823-0095",
+      "last_type": "e6",
+      "last_severity": "info",
+      "last_timestamp": "2026-07-01T19:18:23.695969"
+    },
+    "s7": {
+      "last_event": "evt-20260701-191823-0096",
+      "last_type": "e7",
+      "last_severity": "info",
+      "last_timestamp": "2026-07-01T19:18:23.698933"
+    },
+    "external_gateway": {
+      "last_event": "evt-20260701-191840-0104",
+      "last_type": "api_call",
+      "last_severity": "info",
+      "last_timestamp": "2026-07-01T19:18:40.690412"
+    }
+  },
+  "_checksum": "817c9d1b2faf56ef"
+}

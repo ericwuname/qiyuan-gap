@@ -1,0 +1,13 @@
+id: SOP-004
+name: 复盘自动触发与基因写入
+priority: 40
+triggers:
+- 复盘
+- 交付完成
+- 总结
+- 回顾
+action: 任何交付完成后24h内强制复盘。复盘->根因分析(5Whys+元模式)->基因写入(模式库+公告板+问题追踪+扫描日志)
+level: P1
+owner: system
+status: active
+created: '2026-06-19'

@@ -1,0 +1,12 @@
+id: SOP-007
+name: 多窗口操作日志与异常监控
+priority: 40
+triggers:
+- 多窗口
+- 并行
+- 同时操作
+action: 多窗口操作必须写日志(window-init->pre-scan->操作日志->window-teardown)。不写=裸奔=违规
+level: P0
+owner: system
+status: active
+created: '2026-06-19'

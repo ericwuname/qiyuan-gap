@@ -1,0 +1,160 @@
+agent:
+  discovery_mode: local
+  instance_id: qiyuan-brain-01
+audit:
+  conflict_window_seconds: 30
+  db_path: brain\audit\audit.db
+  log_reads: false
+brain:
+  cache_enabled: true
+  cache_ttl: 300
+  dna_dir: brain\dna
+  fallback_file: brain\fallback.md
+  rules_dir: brain\rules
+  version: 1.0.2
+dashboard:
+  alert_quiet_minutes: 30
+  host: 127.0.0.1
+  port: 8080
+external_world:
+  data_sources:
+  - probe
+  - audit
+  enabled: false
+  horizon: 1
+logging:
+  level: INFO
+long_term_memory:
+  enabled: true
+  index_type: IndexFlatIP
+  max_records: 10000
+  rebuild_interval_days: 7
+  rebuild_time: 03:00
+memory:
+  chunk_size: 1000
+  kb_root: 05_组织知识库
+  model_name: brain\memory\models\bge-small-zh-v1.5
+  persist_dir: brain\memory\chroma_db
+  top_k: 5
+narrative:
+  language: zh
+  llm_enabled: false
+performance:
+  baseline_date: '2026-06-20'
+  kb_search_p99_ms: 79.0
+  rule_check_p99_ms: 0.7
+  status: ok
+probe:
+  auto_downsample:
+    max_triggers_per_day: 3
+    recovery_duration_sec: 30
+    recovery_latency_ms: 0.8
+    target_rate: 0.1
+    trigger_duration_sec: 5
+    trigger_latency_ms: 1.0
+  curiosity:
+    alpha: 0.1
+    cold_start_samples: 10
+    ema_alpha: 0.1
+    enabled: true
+    exploration_bonus_window: 5
+    recovery_hours: 1
+    recovery_threshold: 0.3
+    saturation_check_interval: 300
+    saturation_hours: 24
+    saturation_threshold: 0.8
+    weight_factors:
+      ask: 1.0
+      evolve: 3.0
+      heal: 1.0
+      idle: 1.0
+      tune: 2.0
+  data_retention_days: 90
+  database:
+    path: brain\probe\probe.db
+    wal_mode: true
+  enabled: true
+  ensemble:
+    confidence_thresholds:
+      ask: 0.7
+      evolve: 0.9
+      heal: 0.8
+      idle: 0.6
+      tune: 0.85
+    diversity_threshold: 0.01
+    enabled: true
+    num_models: 5
+  planner:
+    auto_execute_threshold: 0.2
+    beam_width: 3
+    enabled: true
+    gamma: 0.9
+    horizon: 5
+    max_seq_len: 3
+  probes:
+    agency: false
+    continuity: true
+    integration: true
+    self_state: true
+  sampling_rate: 1.0
+  world_model:
+    cold_start:
+      fallback_method: sliding_mse
+      samples: 50
+    enabled: true
+    experience_replay:
+      batch_size: 32
+      buffer_size: 1000
+    hidden_layers:
+    - 32
+    - 16
+    idle_downsample: 0.1
+    learning_rate: 0.001
+    model:
+      path: brain/probe/world_model_weights.json
+      save_interval_steps: 100
+      version_keep: 10
+    normalizer:
+      method: rolling
+      update_interval: 100
+    surprise:
+      window: 100
+report:
+  email:
+    password: ${BRAIN_EMAIL_PASSWORD}
+    recipients:
+    - ${BRAIN_EMAIL_RECIPIENT}
+    sender: ${BRAIN_EMAIL_SENDER}
+    smtp_host: smtp.qq.com
+    smtp_port: 587
+  feishu_webhook: ${BRAIN_FEISHU_WEBHOOK}
+  language: zh
+  push_time: 02:00
+self_heal:
+  chaos_test:
+    enabled: true
+    non_destructive: true
+  critical_dirs:
+  - 01_公司治理
+  - 04_项目
+  - 05_组织知识库
+  - 06_人力资源
+  - brain
+  - brain/rules
+  - brain/memory
+  - brain/audit
+  degrade_state_file: _degrade_state.json
+  enabled: true
+  health_check_on_status: true
+workspace:
+  db_path: brain\memory\workspace.db
+  default_ttl: 3600
+
+# DeepSeek API (2026-06-23)
+deepseek:
+  api_key: "sk-hqnbxswuksdpuxoukplgjgjndclmtqfskycunkfplenclzxcz"
+  base_url: "https://api.siliconflow.cn/v1"
+  model: "Pro/deepseek-ai/DeepSeek-V3.2"
+  pricing:
+    input_per_1m: 0.14
+    output_per_1m: 0.28
