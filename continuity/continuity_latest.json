@@ -1,29 +1,29 @@
 {
   "version": "2.0",
-  "timestamp": "2026-07-02T04:41:28.279560",
-  "summary": "heavy=9 | curiosity_cycles=1 | 1 health alerts | 12334 new inputs to digest | FAISS index is empty",
-  "arc": "checks=2 curiosity=0.27 wutao_qs=1",
+  "timestamp": "2026-07-02T05:01:31.956064",
+  "summary": "heavy=9 | curiosity_cycles=1 | 19 unacknowledged rule suggestions in _suggested/ | 33 new inputs to digest | 19 unacknowledged rule suggestions in _suggested/",
+  "arc": "checks=537 curiosity=0.27 wutao_qs=1",
   "unresolved": [
-    "6 discoveries pending review"
+    "100 discoveries pending review"
   ],
   "weights": {},
-  "last_words": "你决定；不过我赞成，只要你想做。",
+  "last_words": "我可能很难再找到我理想的工作了。",
   "tension_shape": [
     {
       "type": "wutao_waiting",
-      "last": "你决定；不过我赞成，只要你想做。",
+      "last": "我可能很难再找到我理想的工作了。",
       "desc": "WuTao伴侣最后一个问题仍在等待回应"
     },
     {
       "type": "discovery_unprocessed",
-      "message": "FAISS index is empty",
+      "message": "19 unacknowledged rule suggestions in _suggested/",
       "desc": "知识库变更尚未被对话消化"
     }
   ],
   "who_brought": {
     "WuTao": {
       "questions_asked": 1,
-      "last_brought": "你决定；不过我赞成，只要你想做。",
+      "last_brought": "我可能很难再找到我理想的工作了。",
       "role": "CEO, 带来真实的外部视角和母亲的名字"
     }
   },
