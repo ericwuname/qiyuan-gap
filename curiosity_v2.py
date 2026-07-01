@@ -149,6 +149,314 @@ class CuriosityEngineV2:
         return {"cv2":cv2,"oq":len(oq),"top_qs":[q["question"] for q in oq[-5:]],"heavy":s.wt.summary()["top10"],"cf":len(s.ac.cf),"un":len(s.ac.un),"cycles":s.cc}
 
 # ═══ 种子条目 — 从今晚对话中长出来的重量 ═══
+
+# ═══ V2.1 六维扩展 · CEO令 2026-07-02 ═══
+# G追问(50%) + C缺失(15%) + D漂移(15%) + A探索(10%) + E腐化(5%) + F孤立(5%)
+# 原则: 见微知著。小问题里的根因 > 无限知识海洋里的新奇。
+
+class RootCauseDigger:
+    """G型好奇心: 遇到问题→追问→挖根因。见微知著。"""
+    def __init__(s, engine):
+        s.eng = engine; s.roots = []; s.dig_count = 0
+    
+    def dig(s, trigger_name, trigger_desc, max_depth=5):
+        """从一个小问题开始，连续追问why。"""
+        s.dig_count += 1
+        chain = [{"depth": 0, "question": f"发生了什么: {trigger_desc}", "answer": trigger_name}]
+        current = trigger_name
+        for d in range(1, max_depth+1):
+            templates = [
+                f"为什么会出现{current}？",
+                f"{current}的背后是什么？",
+                f"如果{current}没发生，说明什么不同？",
+                f"{current}的根因是什么？不是表面原因。",
+            ]
+            chain.append({"depth": d, "question": templates[d % len(templates)], "answer": "待探索"})
+        
+        root = {
+            "id": f"DIG-{s.dig_count:03d}",
+            "trigger": trigger_name,
+            "trigger_desc": trigger_desc,
+            "chain": chain,
+            "time": datetime.now().isoformat(),
+            "status": "open"
+        }
+        s.roots.append(root)
+        if len(s.roots) > 50:
+            s.roots = s.roots[-50:]
+        
+        # Log to engine
+        s.eng.ac.stash(f"G-DIG[{trigger_name}]: {trigger_desc}", src="root_cause_digger")
+        return root
+    
+    def open_roots(s):
+        return [r for r in s.roots if r["status"] == "open"]
+    
+    def resolve(s, dig_id, root_cause, fix=""):
+        for r in s.roots:
+            if r["id"] == dig_id:
+                r["status"] = "resolved"
+                r["root_cause"] = root_cause
+                r["fix"] = fix
+                r["resolved_at"] = datetime.now().isoformat()
+                return r
+        return None
+    
+    def report(s):
+        oq = s.open_roots()
+        return {"open": len(oq), "total": len(s.roots), "latest": [r["id"] for r in oq[-3:]]}
+
+
+class IntegrityChecker:
+    """C型好奇心: 信息完整性检查。我们该有但没有的？"""
+    def __init__(s, brain_root):
+        s.br = brain_root
+    
+    def check(s):
+        issues = []
+        # 1. ops_log existence
+        ops = os.path.join(s.br, "_ops_log.jsonl")
+        if not os.path.exists(ops):
+            issues.append({"type": "missing_ops_log", "severity": "high", "msg": "_ops_log.jsonl 不存在，操作元信息无法检索"})
+        
+        # 2. git remote
+        import subprocess
+        try:
+            r = subprocess.run(["git", "remote", "get-url", "origin"], capture_output=True, text=True, cwd=s.br, timeout=5)
+            if r.returncode != 0:
+                issues.append({"type": "no_git_remote", "severity": "high", "msg": "Git remote未配置，GitHub推送不可用"})
+        except:
+            issues.append({"type": "git_check_failed", "severity": "medium", "msg": "无法检查git状态"})
+        
+        # 3. config.yaml infra section
+        cfg = os.path.join(s.br, "config.yaml")
+        if os.path.exists(cfg):
+            with io.open(cfg, "r", encoding="utf-8") as f:
+                config_text = f.read()
+            if "infra:" not in config_text:
+                issues.append({"type": "no_infra_config", "severity": "low", "msg": "config.yaml缺少infra段，系统配置元信息未持久化"})
+        
+        # 4. suggested count
+        sugg = os.path.join(s.br, "rules", "_suggested")
+        if os.path.isdir(sugg):
+            yamls = [f for f in os.listdir(sugg) if f.endswith(".yaml")]
+            if len(yamls) > 5:
+                issues.append({"type": "suggested_backlog", "severity": "high", "msg": f"suggested积压{len(yamls)}条超过警戒线5"})
+        
+        # 5. commitment tracker overdue
+        tracker_path = os.path.join(os.path.dirname(s.br), "01_公司治理", "组织承诺追踪.md")
+        if os.path.exists(tracker_path):
+            with io.open(tracker_path, "r", encoding="utf-8") as f:
+                tracker = f.read()
+            pending = tracker.count("| pending |")
+            if pending > 5:
+                issues.append({"type": "tracker_backlog", "severity": "medium", "msg": f"承诺追踪有{pending}条pending"})
+        
+        return {"ok": len(issues) == 0, "issues": issues, "count": len(issues), "time": datetime.now().isoformat()}
+
+
+class ValueDriftDetector:
+    """D型好奇心: 漂移检测。今天的我们和Checkpoint 0一样吗？"""
+    def __init__(s, brain_root):
+        s.br = brain_root; s.checkpoint_dir = os.path.join(s.br, "checkpoints")
+        os.makedirs(s.checkpoint_dir, exist_ok=True)
+    
+    def save_checkpoint(s, label=""):
+        """保存当前状态快照作为Checkpoint。"""
+        cp = {
+            "time": datetime.now().isoformat(),
+            "label": label or f"CP-{datetime.now().strftime('%Y%m%d')}",
+            "git_commit": "",
+        }
+        import subprocess
+        try:
+            r = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True, cwd=s.br, timeout=5)
+            cp["git_commit"] = r.stdout.strip()[:8]
+        except:
+            pass
+        
+        cp_path = os.path.join(s.checkpoint_dir, f"{cp['label']}.json")
+        json.dump(cp, io.open(cp_path, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+        return cp
+    
+    def check_drift(s):
+        """对比最新checkpoint，检测变化。"""
+        cps = sorted([f for f in os.listdir(s.checkpoint_dir) if f.endswith(".json")])
+        if len(cps) < 2:
+            return {"ok": True, "msg": "不足2个checkpoint，无法对比", "drifts": []}
+        
+        latest = json.load(io.open(os.path.join(s.checkpoint_dir, cps[-1]), "r", encoding="utf-8"))
+        baseline = json.load(io.open(os.path.join(s.checkpoint_dir, cps[0]), "r", encoding="utf-8"))
+        
+        drifts = []
+        # Check git divergence
+        if latest.get("git_commit") != baseline.get("git_commit"):
+            drifts.append({"type": "code_changed", "from": baseline.get("git_commit",""), "to": latest.get("git_commit","")})
+        
+        # Check rules count
+        rules_dir = os.path.join(s.br, "rules")
+        if os.path.isdir(rules_dir):
+            current_count = len([f for f in os.listdir(rules_dir) if f.endswith(".yaml")])
+            if "rules_count" in baseline:
+                if current_count != baseline["rules_count"]:
+                    drifts.append({"type": "rules_count", "from": baseline["rules_count"], "to": current_count})
+        
+        return {
+            "ok": len(drifts) == 0 or all(d.get("type") == "code_changed" for d in drifts),
+            "drifts": drifts,
+            "baseline": baseline.get("label", ""),
+            "time": datetime.now().isoformat()
+        }
+
+
+class DecayChecker:
+    """E型好奇心: 腐化检测。旧规则/SOP/知识还在生效吗？"""
+    def __init__(s, brain_root):
+        s.br = brain_root
+    
+    def check(s, max_age_days=90):
+        stale = []
+        now = datetime.now()
+        
+        # Check rules
+        rules_dir = os.path.join(s.br, "rules")
+        if os.path.isdir(rules_dir):
+            for f in os.listdir(rules_dir):
+                if f.endswith(".yaml"):
+                    fp = os.path.join(rules_dir, f)
+                    mtime = datetime.fromtimestamp(os.path.getmtime(fp))
+                    age = (now - mtime).days
+                    if age > max_age_days:
+                        stale.append({"type": "rule", "name": f, "age_days": age})
+        
+        # Check fallback
+        fb = os.path.join(s.br, "fallback.md")
+        if os.path.exists(fb):
+            mtime = datetime.fromtimestamp(os.path.getmtime(fb))
+            age = (now - mtime).days
+            if age > max_age_days:
+                stale.append({"type": "fallback", "name": "fallback.md", "age_days": age})
+        
+        return {
+            "ok": len(stale) == 0,
+            "stale_items": stale,
+            "count": len(stale),
+            "time": datetime.now().isoformat()
+        }
+
+
+class IsolationDetector:
+    """F型好奇心: 孤岛检测。有没有做了但没连上的东西？"""
+    def __init__(s, brain_root):
+        s.br = brain_root
+    
+    def check(s):
+        isolated = []
+        
+        # Check if _ops_log is referenced anywhere
+        ops = os.path.join(s.br, "_ops_log.jsonl")
+        if os.path.exists(ops):
+            # Check if bootstrap.py references it
+            boot = os.path.join(s.br, "bootstrap.py")
+            if os.path.exists(boot):
+                with io.open(boot, "r", encoding="utf-8") as f:
+                    boot_text = f.read()
+                if "_ops_log" not in boot_text:
+                    isolated.append({"type": "unreferenced", "item": "_ops_log.jsonl", "msg": "存在但bootstrap.py未引用"})
+        
+        # Check if check_suggested.py is referenced
+        cs = os.path.join(s.br, "check_suggested.py")
+        if os.path.exists(cs):
+            if os.path.exists(boot):
+                if "check_suggested" not in boot_text:
+                    isolated.append({"type": "unreferenced", "item": "check_suggested.py", "msg": "存在但bootstrap.py未引用"})
+        
+        return {
+            "ok": len(isolated) == 0,
+            "isolated": isolated,
+            "count": len(isolated),
+            "time": datetime.now().isoformat()
+        }
+
+
+class PhaseAwareRouter:
+    """处境感知权重路由。内建期→G/C/D优先，探索期→A优先。"""
+    def __init__(s):
+        s.current_phase = "internal_construction"  # default
+        s.weights = {
+            # phase: {G, C, D, A, E, F}
+            "internal_construction": {"G": 0.50, "C": 0.15, "D": 0.15, "A": 0.10, "E": 0.05, "F": 0.05},
+            "exploration":          {"G": 0.30, "C": 0.10, "D": 0.10, "A": 0.40, "E": 0.05, "F": 0.05},
+            "operations":           {"G": 0.25, "C": 0.15, "D": 0.10, "A": 0.15, "E": 0.20, "F": 0.15},
+        }
+    
+    def set_phase(s, phase):
+        if phase in s.weights:
+            s.current_phase = phase
+    
+    def get_weights(s):
+        return s.weights.get(s.current_phase, s.weights["internal_construction"])
+    
+    def priority_order(s):
+        w = s.get_weights()
+        return sorted(w.keys(), key=lambda k: w[k], reverse=True)
+
+
+# ═══ 打补丁到引擎 ═══
+def _patch_engine(engine):
+    """给CuriosityEngineV2实例附加六维探头。"""
+    br = engine.br
+    
+    engine.phase_router = PhaseAwareRouter()
+    try:
+        from phase_profile import current_phase
+        engine.phase_router.set_phase(current_phase())
+    except:
+        pass
+    
+    engine.digger = RootCauseDigger(engine)
+    engine.integrity = IntegrityChecker(br)
+    engine.drift_detector = ValueDriftDetector(br)
+    engine.decay = DecayChecker(br)
+    engine.isolation = IsolationDetector(br)
+    
+    # Extend cycle() — save a reference to original
+    engine._orig_cycle = engine.cycle
+    
+    def extended_cycle():
+        r = engine._orig_cycle()
+        
+        # G: 如果发现新问题，自动创建追问链
+        # (由外部调用 digger.dig() 触发，cycle中检查待处理)
+        open_roots = engine.digger.open_roots()
+        r["g_dig_open"] = len(open_roots)
+        
+        # C: 每30周期检查一次完整性
+        if engine.cc % 30 == 0:
+            r["c_integrity"] = engine.integrity.check()
+        
+        # D: 每60周期检查漂移
+        if engine.cc % 60 == 0:
+            r["d_drift"] = engine.drift_detector.check_drift()
+        
+        # E: 每90周期检查腐化
+        if engine.cc % 90 == 0:
+            r["e_decay"] = engine.decay.check()
+        
+        # F: 每60周期检查孤岛
+        if engine.cc % 60 == 0:
+            r["f_isolation"] = engine.isolation.check()
+        
+        # Phase context
+        r["phase"] = engine.phase_router.current_phase
+        r["weights"] = engine.phase_router.get_weights()
+        
+        return r
+    
+    engine.cycle = extended_cycle
+    return engine
+
+
 def seed(engine):
     """播种: 今晚对话产生的核心条目。这些不是设计好的。是真实发生过的。"""
     wt=engine.wt
