@@ -184,14 +184,15 @@ def run_probes(state):
 def run_curiosity_scan(state):
     """Run curiosity V2 — five-element model."""
     try:
-        from curiosity_v2 import CuriosityEngineV2, seed
+        from curiosity_v2 import CuriosityEngineV2, seed, _patch_engine
         br = os.path.dirname(os.path.abspath(__file__))
         engine = CuriosityEngineV2(br)
+        _patch_engine(engine)
         if engine.cycle_count == 0:
             seed(engine)
         r = engine.cycle()
         state["curiosity_score"] = r.get("cv2", 0.5)
-        state["_curiosity_v2"] = {"open_questions": r.get("open_qs",0), "heavy_items": r.get("wt",{}).get("heavy",0), "cycles": engine.cycle_count}
+        state["_curiosity_v2"] = {"open_questions": r.get("open_qs",0), "heavy_items": r.get("wt",{}).get("heavy",0), "cycles": eng.cc, "phase": r.get("phase",""), "g_dig_open": r.get("g_dig_open",0), "c_issues": r.get("c_integrity",{}).get("issues",0) if r.get("c_integrity") else 0, "d_warnings": len(r.get("d_drift",{}).get("warnings",[])) if r.get("d_drift",{}).get("warnings") else 0, "e_stale": r.get("e_decay",{}).get("stale_count",0) if r.get("e_decay") else 0, "f_orphans": r.get("f_isolation",{}).get("orphans",0) if r.get("f_isolation") else 0}
         if r.get("jx"):
             jx = r["jx"]
             log_discovery(state, "random_juxtaposition", jx.get("q",""), jx)
@@ -331,6 +332,104 @@ def _check_probe_thresholds(state, probe_results):
     return {"triggered": triggered, "triggers": triggers, "timestamp": datetime.now().isoformat()}
 
 
+
+def run_health_check(state):
+    """Watchdog: system vitals check."""
+    br = os.path.dirname(os.path.abspath(__file__))
+    now = datetime.now()
+    result = {"ok": True, "warnings": [], "time": now.isoformat()}
+    for fn in ["config.yaml", "rules/constitution.yaml"]:
+        if not os.path.isfile(os.path.join(br, fn)):
+            result["warnings"].append("MISSING: " + fn)
+            result["ok"] = False
+    if state.get("status") == "error":
+        result["warnings"].append("state error")
+        result["ok"] = False
+    sug_dir = os.path.join(br, "rules", "_suggested")
+    if os.path.isdir(sug_dir):
+        sc = len([f for f in os.listdir(sug_dir) if f.endswith((".yaml", ".yml"))])
+        if sc > 5:
+            result["warnings"].append(f"suggested overflow: {sc} > 5")
+    ops = os.path.join(br, "_ops_log.jsonl")
+    if os.path.isfile(ops):
+        try:
+            oc = sum(1 for _ in open(ops, "r", encoding="utf-8"))
+            if oc > 500:
+                result["warnings"].append(f"ops_log large: {oc} entries")
+        except: pass
+    promise_fp = os.path.join(os.path.dirname(br), "01_公司治理", "组织承诺追踪.md")
+    if os.path.isfile(promise_fp):
+        try:
+            pt = open(promise_fp, "r", encoding="utf-8").read()
+            import re
+            ov = len(re.findall(r"overdue", pt))
+            if ov > 0:
+                result["warnings"].append(f"overdue promises: {ov}")
+        except: pass
+    return result
+
+def run_digest_scan(state):
+    """Knowledge digest: scan for pending items."""
+    try:
+        from memory.digest import DigestEngine
+        eng = DigestEngine()
+        results = eng.scan()
+        pc = len([r for r in results if r.get("status") == "pending"])
+        if pc > 0:
+            log_discovery(state, "digest", f"Digest: {pc} items pending", {"count": pc})
+        return {"scanned": len(results), "pending": pc}
+    except Exception as e:
+        return {"error": str(e), "pending": 0}
+
+def run_conditional_tasks(state, check_num, now):
+    """Time-based conditional tasks: weekly review, night brief, monthly decay."""
+    results = {}
+    br = os.path.dirname(os.path.abspath(__file__))
+    if now.weekday() == 0 and 9 <= now.hour <= 11:
+        if state.get("_last_weekly_check") != now.strftime("%Y-%m-%d"):
+            sug_dir = os.path.join(br, "rules", "_suggested")
+            if os.path.isdir(sug_dir):
+                sc = len([f for f in os.listdir(sug_dir) if f.endswith((".yaml",".yml"))])
+                results["weekly_suggested"] = sc
+                if sc > 0:
+                    log_discovery(state, "weekly", f"{sc} suggested rules need review", {"count": sc})
+            try:
+                from curiosity_v2 import ValueDriftDetector
+                ValueDriftDetector(br).save_checkpoint(label=f"weekly_{now.strftime('%Y%m%d')}")
+                results["drift_checkpoint"] = "saved"
+            except: pass
+            state["_last_weekly_check"] = now.strftime("%Y-%m-%d")
+    if now.hour == 22 and state.get("_last_night_brief_date") != now.strftime("%Y-%m-%d"):
+        try:
+            cv2 = state.get("_curiosity_v2", {})
+            disc = state.get("discoveries", [])
+            td = [d for d in disc if d.get("timestamp","").startswith(now.strftime("%Y-%m-%d"))]
+            brief = f"# 夜报 {now.strftime('%Y-%m-%d')}\
+checks: {state.get('checks_completed',0)}\
+phase: {state.get('_curiosity_phase','?')}\
+\
+## 六维\
+G: {cv2.get('g_dig_open','?')} C: {cv2.get('c_issues','?')} D: {cv2.get('d_warnings','?')} E: {cv2.get('e_stale','?')} F: {cv2.get('f_orphans','?')}\
+"
+            for d in td[-10:]:
+                brief += f"- [{d.get('type','?')}] {d.get('message','?')[:100]}\
+"
+            nl = os.path.join(br, "body_logs", f"night_brief_{now.strftime('%Y%m%d')}.md")
+            with io.open(nl, "w", encoding="utf-8") as f:
+                f.write(brief)
+            results["night_brief"] = nl
+            state["_last_night_brief_date"] = now.strftime("%Y-%m-%d")
+        except Exception as e:
+            results["night_brief_error"] = str(e)
+    if now.day == 1 and state.get("_last_monthly_decay") != now.strftime("%Y-%m"):
+        try:
+            from curiosity_v2 import DecayChecker
+            dr = DecayChecker(br).check(max_age_days=90)
+            results["monthly_decay"] = dr.get("stale_count", 0)
+            state["_last_monthly_decay"] = now.strftime("%Y-%m")
+        except: pass
+    return results
+
 def check_loop(state):
     """Single 10-minute check cycle. V1.8: 9-step full cycle."""
     check_num = state.get("checks_completed", 0) + 1
@@ -391,7 +490,7 @@ def check_loop(state):
                         from self_evolve import SelfEvolve
                     evolver = SelfEvolve()
                     evolve_result = evolver.suggest()
-                        state["_daily_push_count"] = state.get("_daily_push_count", 0) + 1
+                    state["_daily_push_count"] = state.get("_daily_push_count", 0) + 1
                     count = evolve_result.get("count", 0)
                     print(f"  [SPRINT2] Generated {count} suggested rules in _suggested/")
                     if _BUS_AVAILABLE:
@@ -427,13 +526,14 @@ def check_loop(state):
         print(f"  [WARN] FAISS check error: {e}")
     print("  [4/9] Curiosity V2 + WuTao companion...")
     try:
-        from curiosity_v2 import CuriosityEngineV2, seed
+        from curiosity_v2 import CuriosityEngineV2, seed, _patch_engine
         eng = CuriosityEngineV2()
+        _patch_engine(eng)
         if eng.cc == 0:
             seed(eng)
         r = eng.cycle()
         state["curiosity_score"] = r.get("cv2", 0.5)
-        state["_curiosity_v2"] = {"open_questions": r.get("open_qs",0), "heavy_items": r.get("wt",{}).get("heavy",0), "cycles": eng.cc}
+        state["_curiosity_v2"] = {"open_questions": r.get("open_qs",0), "heavy_items": r.get("wt",{}).get("heavy",0), "cycles": eng.cc, "phase": r.get("phase",""), "g_dig_open": r.get("g_dig_open",0), "c_issues": r.get("c_integrity",{}).get("issues",0) if r.get("c_integrity") else 0, "d_warnings": len(r.get("d_drift",{}).get("warnings",[])) if r.get("d_drift",{}).get("warnings") else 0, "e_stale": r.get("e_decay",{}).get("stale_count",0) if r.get("e_decay") else 0, "f_orphans": r.get("f_isolation",{}).get("orphans",0) if r.get("f_isolation") else 0}
         auto_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "curiosity_autonomous_state.json")
         if os.path.isfile(auto_file):
             with io.open(auto_file, "r", encoding="utf-8") as f:
@@ -451,6 +551,21 @@ def check_loop(state):
                 _bb.write_event("curiosity", "cycle_complete", {"cv2": r.get("cv2",0), "open_qs": r.get("open_qs",0), "cycle": eng.cc})
             except:
                 pass
+        # V2.1 extended G/C/D/E/F + phase
+        vr = r
+        if vr.get("g_dig_open", 0) > 0:
+            log_discovery(state, "rootcause", "Active chains: " + str(vr["g_dig_open"]), {"count": vr["g_dig_open"]})
+        if vr.get("d_drift") and vr["d_drift"].get("warnings", []):
+            wc = len(vr["d_drift"]["warnings"])
+            log_discovery(state, "value_drift", "Drift: " + str(wc) + " warnings", vr["d_drift"])
+        if vr.get("e_decay") and vr["e_decay"].get("stale_count", 0) > 0:
+            log_discovery(state, "decay", "Decay: " + str(vr["e_decay"]["stale_count"]) + " stale", vr["e_decay"])
+        if vr.get("f_isolation") and vr["f_isolation"].get("orphans", 0) > 0:
+            log_discovery(state, "isolation", "Isolation: " + str(vr["f_isolation"]["orphans"]) + " orphans", vr["f_isolation"])
+        if vr.get("c_integrity") and vr["c_integrity"].get("issues", 0) > 0:
+            log_discovery(state, "integrity", "Integrity: " + str(vr["c_integrity"]["issues"]) + " issues", vr["c_integrity"])
+        if vr.get("phase"):
+            state["_curiosity_phase"] = vr["phase"]
         from wutao_companion import WuTaoCompanion
         wc = WuTaoCompanion()
         wu_q = wc.ask()
@@ -512,10 +627,11 @@ def curiosity_loop():
     Feeds new WuTao questions and KB changes to curiosity engine.
     Writes results to curiosity_v2_state.json for check_loop to read."""
     import time as t
-    from curiosity_v2 import CuriosityEngineV2, seed
+    from curiosity_v2 import CuriosityEngineV2, seed, _patch_engine
     
     br = os.path.dirname(os.path.abspath(__file__))
     eng = CuriosityEngineV2(br)
+    _patch_engine(eng)
     seed(eng)
     last_input_hash = ""
     

@@ -8,3 +8,8 @@
 {"ts":"2026-07-02 03:25:00","op":"script_create","script":"check_suggested.py","desc":"suggested积压监控","result":"ok"}
 {"ts":"2026-07-02 03:25:00","op":"patch_apply","target":"self_evolve.py","desc":"去重修复","result":"ok"}
 {"ts":"2026-07-02 03:26:00","op":"patch_apply","target":"bootstrap.py","desc":"suggested监控接入","result":"ok"}
+{"ts": "2026-07-02 03:00:00", "op": "dashboard_refresh", "desc": "仪表盘V0刷新到真实状态", "status": "ok"}
+{"ts": "2026-07-02 03:00:00", "op": "git_push", "desc": "GitHub 6 commits pushed (LFS migrate + force)", "status": "ok"}
+{"ts": "2026-07-02 03:00:00", "op": "curiosity_body_integration", "desc": "curiosity_v2六维接入body_daemon三处循环", "status": "ok"}
+{"ts": "2026-07-02 03:00:00", "op": "body_fix_indent", "desc": "修复self_evolve缩进老bug", "status": "ok"}
+{"ts": "2026-07-02 03:00:00", "op": "watchdog_digest_brief", "desc": "补全run_health_check+run_digest_scan+run_conditional_tasks三个空白函数", "status": "ok"}
