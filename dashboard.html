@@ -393,7 +393,7 @@ function renderWM(wm) {
 
 // Data loading
 function loadFromBrain() {
-  var status = {"brain_ok":true,"version":"1.0.0","components":{"rules":{"ok":true,"files":3},"memory":{"ok":true,"indexed_docs":13196,"model":"TF-IDF fallback"},"workspace":{"ok":true,"keys":0},"audit":{"ok":true,"total_logs":750,"db_size_kb":188},"self_heal":{"ok":true,"degrade_level":0}}};
+    var status = {"brain_ok": true, "version": "V2.1", "checks": 4, "discoveries": 4, "suggested": 0, "phase": "internal_construction", "components": {"rules": {"ok": true, "files": 7}, "memory": {"ok": true, "indexed_docs": 6169, "model": "FAISS+BGE 68273 vectors"}, "workspace": {"ok": true, "keys": 0}, "audit": {"ok": true, "total_logs": 16, "db_size_kb": 456}, "self_heal": {"ok": true, "degrade_level": 0}}};
 
   var stats = {"total_rules":39,"active_rules":0,"inactive_rules":39,"total_calls":0,"total_matches":0,"rules":[
     {"id":"CONST-001","name":"CEO指令接收三问","level":"P0","call_count":0,"miss_rate_pct":0,"last_used":"never"},

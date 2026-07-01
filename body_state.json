@@ -1,13 +1,13 @@
 {
   "version": "1.0.0",
-  "started_at": "2026-07-02T05:54:41.019404",
-  "last_check_at": "2026-07-02T06:00:19.298286",
-  "checks_completed": 2,
+  "started_at": "2026-07-02T06:10:47.662643",
+  "last_check_at": "2026-07-02T06:11:02.750649",
+  "checks_completed": 3,
   "discoveries": [
     {
-      "timestamp": "2026-07-02 05:54:42",
+      "timestamp": "2026-07-02 06:10:48",
       "type": "kb_changes",
-      "message": "Detected 9601 KB changes",
+      "message": "Detected 9602 KB changes",
       "details": {
         "new_files": [
           "D:\\0.个人文档\\个人文档\\启元智能\\05_组织知识库\\CEO行为边界清单_V1.0_20260617.md",
@@ -22,26 +22,6 @@
           "D:\\0.个人文档\\个人文档\\启元智能\\05_组织知识库\\SOP-010_质量审查标准.md"
         ],
         "modified_files": []
-      }
-    },
-    {
-      "timestamp": "2026-07-02 06:00:20",
-      "type": "kb_changes",
-      "message": "Detected 1 KB changes",
-      "details": {
-        "new_files": [
-          "D:\\0.个人文档\\个人文档\\启元智能\\05_组织知识库\\复盘报告\\执行复盘报告_20260702.md"
-        ],
-        "modified_files": []
-      }
-    },
-    {
-      "timestamp": "2026-07-02 06:00:24",
-      "type": "digest",
-      "message": "35 new inputs to digest",
-      "details": {
-        "new": 1,
-        "pending": 34
       }
     }
   ],
@@ -9659,24 +9639,22 @@
     "continuity": {
       "continuity_index": 0.0,
       "window_size": 1
-    }
+    },
+    "_numeric_agency": 0.0,
+    "_numeric_integration": 0.0,
+    "_numeric_continuity": 0.0
   },
-  "curiosity_score": 0.48,
+  "curiosity_score": 0.27,
   "shutdown_requested": false,
   "status": "running",
   "_last_suggested_ack": null,
   "_last_daily_report": null,
   "_last_weekly_backup": null,
-  "_health_alerts": {
-    "count": 0,
-    "latest": []
-  },
+  "_health_alerts": {},
   "_daily_push_count": 0,
   "_daily_push_date": null,
   "_last_changes": {
-    "new": [
-      "D:\\0.个人文档\\个人文档\\启元智能\\05_组织知识库\\复盘报告\\执行复盘报告_20260702.md"
-    ],
+    "new": [],
     "modified": [],
     "deleted": []
   },
@@ -9684,57 +9662,34 @@
   "_probe_thresholds_initialized": true,
   "_curiosity_v2": {
     "open_questions": 0,
-    "heavy_items": 16,
-    "cycles": 1
+    "heavy_items": 9,
+    "cycles": 1,
+    "phase": "internal_construction",
+    "g_dig_open": 0,
+    "c_issues": 0,
+    "d_warnings": 0,
+    "e_stale": 0,
+    "f_orphans": 0
   },
   "_curiosity_autonomous": {
     "cv2": 0.3,
     "open_qs": 0,
     "heavy": 10,
-    "cycles": 336,
-    "last_input": "还有什么没有干？",
-    "last_run": "2026-07-02T05:54:58.365020"
+    "cycles": 318,
+    "last_input": "你期待吗？",
+    "last_run": "2026-07-02T06:10:58.101682"
   },
   "_curiosity_phase": "internal_construction",
-  "_wutao_last_question": "你自己做，自己决定。",
+  "_wutao_last_question": "继续。不要停止。",
   "_wutao_questions_count": 1,
-  "_continuity_vector": "2026-07-02T06:00:21.133608",
+  "_continuity_vector": "2026-07-02T06:11:04.165162",
   "_continuity_v2": {
     "tension_shapes": 2,
     "who_brought": [
       "WuTao"
     ],
-    "real_moments": 0,
+    "real_moments": 1,
     "unasked_questions": 0
   },
-  "last_saved_at": "2026-07-02T06:00:24.186936",
-  "_health_snapshot": {
-    "disk_usage_pct": 0,
-    "memory_usage_pct": 0,
-    "overall_health": "unknown",
-    "degrade_level": 0,
-    "indicators": {
-      "timestamp": "2026-07-02T06:00:22.112061",
-      "indicators": {
-        "disk_usage_pct": 11.2,
-        "memory_usage_pct": 37.3,
-        "cache_hit_rate_pct": 100,
-        "audit_write_success_pct": 100,
-        "rule_check_p99_ms": 0,
-        "kb_search_p99_ms": 0,
-        "overall_health": "ok",
-        "degrade_level": 0
-      },
-      "alerts_triggered": 0,
-      "dedup_suppressed": 0
-    }
-  },
-  "_digest_snapshot": {
-    "new_scanned": 1,
-    "pending": 34,
-    "total": 35
-  },
-  "_const_drift": {
-    "stale_count": 0
-  }
+  "last_saved_at": "2026-07-02T06:11:05.799537"
 }

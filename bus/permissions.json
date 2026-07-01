@@ -6,7 +6,7 @@
         "*"
       ],
       "can_write": [],
-      "registered_at": "2026-07-01T19:18:08.089177"
+      "registered_at": "2026-07-02T06:04:09.857891"
     },
     "self_evolve": {
       "can_read": [
@@ -15,7 +15,7 @@
       "can_write": [
         "_suggested"
       ],
-      "registered_at": "2026-07-01T19:18:08.089980"
+      "registered_at": "2026-07-02T06:04:09.858740"
     },
     "body_daemon": {
       "can_read": [
@@ -24,7 +24,21 @@
       "can_write": [
         "*"
       ],
-      "registered_at": "2026-07-01T19:18:08.090688"
+      "registered_at": "2026-07-02T06:04:09.860520"
+    },
+    "curiosity": {
+      "can_read": [
+        "*"
+      ],
+      "can_write": [],
+      "registered_at": "2026-07-02T06:04:09.859611"
+    },
+    "router": {
+      "can_read": [
+        "*"
+      ],
+      "can_write": [],
+      "registered_at": "2026-07-02T06:04:09.861257"
     }
   },
   "change_log": []

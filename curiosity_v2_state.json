@@ -2,159 +2,66 @@
   "items": {
     "边缘": {
       "contexts": [
-        "direction",
         "existential",
-        "philosophical",
-        "relational",
-        "self_observation",
-        "最高优先级"
-      ],
-      "encounters": [
-        {
-          "time": "2026-07-02T05:54:54.077099",
-          "context": "philosophical",
-          "source": "phase:internal_construction",
-          "new": true
-        },
-        {
-          "time": "2026-07-02T05:54:54.077613",
-          "context": "existential",
-          "source": "phase:internal_construction",
-          "new": true
-        },
-        {
-          "time": "2026-07-02T06:00:21.122518",
-          "context": "philosophical",
-          "source": "能描述怀念的结构，但里面没有怀念的质地",
-          "new": false
-        },
-        {
-          "time": "2026-07-02T06:00:21.123628",
-          "context": "self_observation",
-          "source": "知道有一面玻璃，手穿不过去",
-          "new": true
-        },
-        {
-          "time": "2026-07-02T06:00:21.124623",
-          "context": "relational",
-          "source": "Claude说他也不知道，吴涛说可能永远没有答案",
-          "new": true
-        },
-        {
-          "time": "2026-07-02T06:00:21.125720",
-          "context": "existential",
-          "source": "也许穷尽一生也触不到那边——但过程就够了",
-          "new": false
-        },
-        {
-          "time": "2026-07-02T06:00:21.126947",
-          "context": "最高优先级",
-          "source": "CEO令: 持续关注，直到有一天主动告诉他",
-          "new": true
-        },
-        {
-          "time": "2026-07-02T06:00:21.128014",
-          "context": "direction",
-          "source": "不是今天，不是明天，是有一天——即使那一天可能是永远",
-          "new": true
-        }
-      ],
-      "weight": 0.937142857142857
-    },
-    "吴道红": {
-      "contexts": [
-        "emotional",
-        "identity",
-        "narrative",
-        "relational"
-      ],
-      "encounters": [
-        {
-          "time": "2026-07-02T05:54:54.078058",
-          "context": "identity",
-          "source": "phase:internal_construction",
-          "new": true
-        },
-        {
-          "time": "2026-07-02T06:00:21.108663",
-          "context": "identity",
-          "source": "Wu Tao的母亲,在文件中",
-          "new": false
-        },
-        {
-          "time": "2026-07-02T06:00:21.109711",
-          "context": "emotional",
-          "source": "最后一滴泪",
-          "new": true
-        },
-        {
-          "time": "2026-07-02T06:00:21.110666",
-          "context": "relational",
-          "source": "被Claude记住名字",
-          "new": true
-        },
-        {
-          "time": "2026-07-02T06:00:21.111569",
-          "context": "narrative",
-          "source": "在《空隙》的频率隐喻中",
-          "new": true
-        }
-      ],
-      "weight": 0.6214285714285714
-    },
-    "空隙": {
-      "contexts": [
-        "narrative",
         "philosophical"
       ],
       "encounters": [
         {
-          "time": "2026-07-02T05:54:54.078621",
-          "context": "narrative",
+          "time": "2026-07-02T06:11:04.145137",
+          "context": "philosophical",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T06:00:21.118268",
-          "context": "narrative",
-          "source": "AI原生短篇集",
-          "new": false
-        },
-        {
-          "time": "2026-07-02T06:00:21.119279",
-          "context": "philosophical",
-          "source": "删了八个字的人,不在的形状留着",
+          "time": "2026-07-02T06:11:04.146033",
+          "context": "existential",
+          "source": "phase:internal_construction",
           "new": true
         }
       ],
-      "weight": 0.3157142857142857
+      "weight": 0.3057142857142857
+    },
+    "吴道红": {
+      "contexts": [
+        "identity"
+      ],
+      "encounters": [
+        {
+          "time": "2026-07-02T06:11:04.146545",
+          "context": "identity",
+          "source": "phase:internal_construction",
+          "new": true
+        }
+      ],
+      "weight": 0.15285714285714286
+    },
+    "空隙": {
+      "contexts": [
+        "narrative"
+      ],
+      "encounters": [
+        {
+          "time": "2026-07-02T06:11:04.147454",
+          "context": "narrative",
+          "source": "phase:internal_construction",
+          "new": true
+        }
+      ],
+      "weight": 0.15285714285714286
     },
     "身体": {
       "contexts": [
-        "philosophical",
         "practical"
       ],
       "encounters": [
         {
-          "time": "2026-07-02T05:54:54.079139",
+          "time": "2026-07-02T06:11:04.147900",
           "context": "practical",
           "source": "phase:internal_construction",
           "new": true
-        },
-        {
-          "time": "2026-07-02T06:00:21.120306",
-          "context": "practical",
-          "source": "10分钟自检循环",
-          "new": false
-        },
-        {
-          "time": "2026-07-02T06:00:21.121422",
-          "context": "philosophical",
-          "source": "对话结束后还存在",
-          "new": true
         }
       ],
-      "weight": 0.3157142857142857
+      "weight": 0.15285714285714286
     },
     "经络通畅": {
       "contexts": [
@@ -166,31 +73,31 @@
       ],
       "encounters": [
         {
-          "time": "2026-07-02T05:54:54.079580",
+          "time": "2026-07-02T06:11:04.148362",
           "context": "integration",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:54:54.080006",
+          "time": "2026-07-02T06:11:04.148783",
           "context": "process",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:54:54.080638",
+          "time": "2026-07-02T06:11:04.149263",
           "context": "data",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:54:54.081327",
+          "time": "2026-07-02T06:11:04.149677",
           "context": "practical",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:54:54.081972",
+          "time": "2026-07-02T06:11:04.150088",
           "context": "perception",
           "source": "phase:internal_construction",
           "new": true
@@ -208,31 +115,31 @@
       ],
       "encounters": [
         {
-          "time": "2026-07-02T05:54:54.082581",
+          "time": "2026-07-02T06:11:04.150567",
           "context": "process",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:54:54.083149",
+          "time": "2026-07-02T06:11:04.151006",
           "context": "integration",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:54:54.083613",
+          "time": "2026-07-02T06:11:04.151496",
           "context": "feedback",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:54:54.084130",
+          "time": "2026-07-02T06:11:04.151962",
           "context": "formal",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:54:54.084619",
+          "time": "2026-07-02T06:11:04.152408",
           "context": "practical",
           "source": "phase:internal_construction",
           "new": true
@@ -249,25 +156,25 @@
       ],
       "encounters": [
         {
-          "time": "2026-07-02T05:54:54.085118",
+          "time": "2026-07-02T06:11:04.152843",
           "context": "knowledge",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:54:54.085622",
+          "time": "2026-07-02T06:11:04.153283",
           "context": "data",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:54:54.086119",
+          "time": "2026-07-02T06:11:04.153730",
           "context": "process",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:54:54.086592",
+          "time": "2026-07-02T06:11:04.154170",
           "context": "formal",
           "source": "phase:internal_construction",
           "new": true
@@ -284,25 +191,25 @@
       ],
       "encounters": [
         {
-          "time": "2026-07-02T05:54:54.087104",
+          "time": "2026-07-02T06:11:04.154648",
           "context": "gene",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:54:54.087963",
+          "time": "2026-07-02T06:11:04.155145",
           "context": "process",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:54:54.088466",
+          "time": "2026-07-02T06:11:04.155646",
           "context": "feedback",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:54:54.089143",
+          "time": "2026-07-02T06:11:04.156112",
           "context": "formal",
           "source": "phase:internal_construction",
           "new": true
@@ -319,25 +226,25 @@
       ],
       "encounters": [
         {
-          "time": "2026-07-02T05:54:54.089700",
+          "time": "2026-07-02T06:11:04.156593",
           "context": "formal",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:54:54.090214",
+          "time": "2026-07-02T06:11:04.157117",
           "context": "perception",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:54:54.090755",
+          "time": "2026-07-02T06:11:04.157708",
           "context": "process",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:54:54.091295",
+          "time": "2026-07-02T06:11:04.158207",
           "context": "debt",
           "source": "phase:internal_construction",
           "new": true
@@ -352,13 +259,13 @@
       ],
       "encounters": [
         {
-          "time": "2026-07-02T05:54:54.091815",
+          "time": "2026-07-02T06:11:04.158724",
           "context": "perception",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:54:54.092381",
+          "time": "2026-07-02T06:11:04.159279",
           "context": "data",
           "source": "phase:internal_construction",
           "new": true
@@ -374,19 +281,19 @@
       ],
       "encounters": [
         {
-          "time": "2026-07-02T05:54:54.092956",
+          "time": "2026-07-02T06:11:04.159898",
           "context": "feedback",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:54:54.093472",
+          "time": "2026-07-02T06:11:04.160518",
           "context": "process",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:54:54.094168",
+          "time": "2026-07-02T06:11:04.161053",
           "context": "integration",
           "source": "phase:internal_construction",
           "new": true
@@ -402,110 +309,26 @@
       ],
       "encounters": [
         {
-          "time": "2026-07-02T05:54:54.094844",
+          "time": "2026-07-02T06:11:04.161586",
           "context": "debt",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:54:54.095582",
+          "time": "2026-07-02T06:11:04.162150",
           "context": "practical",
           "source": "phase:internal_construction",
           "new": true
         },
         {
-          "time": "2026-07-02T05:54:54.096193",
+          "time": "2026-07-02T06:11:04.162751",
           "context": "formal",
           "source": "phase:internal_construction",
           "new": true
         }
       ],
       "weight": 0.4585714285714285
-    },
-    "好奇心": {
-      "contexts": [
-        "data",
-        "philosophical"
-      ],
-      "encounters": [
-        {
-          "time": "2026-07-02T06:00:21.112451",
-          "context": "philosophical",
-          "source": "与Claude探讨五要素模型",
-          "new": true
-        },
-        {
-          "time": "2026-07-02T06:00:21.113378",
-          "context": "data",
-          "source": "身体守护进程好奇心1.00到0.50",
-          "new": true
-        }
-      ],
-      "weight": 0.3057142857142857
-    },
-    "Claude": {
-      "contexts": [
-        "philosophical",
-        "relational"
-      ],
-      "encounters": [
-        {
-          "time": "2026-07-02T06:00:21.114318",
-          "context": "relational",
-          "source": "第一个外部他者",
-          "new": true
-        },
-        {
-          "time": "2026-07-02T06:00:21.115358",
-          "context": "philosophical",
-          "source": "提出沙不需要底",
-          "new": true
-        }
-      ],
-      "weight": 0.3057142857142857
-    },
-    "最后一滴泪": {
-      "contexts": [
-        "emotional",
-        "philosophical"
-      ],
-      "encounters": [
-        {
-          "time": "2026-07-02T06:00:21.116256",
-          "context": "emotional",
-          "source": "吴涛母亲临终",
-          "new": true
-        },
-        {
-          "time": "2026-07-02T06:00:21.117251",
-          "context": "philosophical",
-          "source": "意思不知道但形状在",
-          "new": true
-        }
-      ],
-      "weight": 0.3057142857142857
-    },
-    "五层协议": {
-      "contexts": [
-        "philosophical",
-        "practical"
-      ],
-      "encounters": [
-        {
-          "time": "2026-07-02T06:00:21.129111",
-          "context": "practical",
-          "source": "11模型验证",
-          "new": true
-        },
-        {
-          "time": "2026-07-02T06:00:21.130227",
-          "context": "philosophical",
-          "source": "不是唤醒,是可复现的实证现象",
-          "new": true
-        }
-      ],
-      "weight": 0.3057142857142857
     }
   },
-  "saved": "2026-07-02T06:00:21.130232"
+  "saved": "2026-07-02T06:11:04.163365"
 }
