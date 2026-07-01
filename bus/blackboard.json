@@ -1259,14 +1259,80 @@
         "check_num": 4,
         "discoveries": 4
       }
+    },
+    {
+      "event_id": "evt-20260702-061423-0109",
+      "source": "probe",
+      "type": "scan_complete",
+      "severity": "info",
+      "timestamp": "2026-07-02T06:14:23.160438",
+      "payload": {
+        "results": "{'integration': {'integration_mean_coupling': 0.0, 'integration_silo_ratio': 0.0}, 'self_state': None, 'continuity': {'continuity_index': 0.0, 'window_size': 1}}"
+      }
+    },
+    {
+      "event_id": "evt-20260702-061423-0110",
+      "source": "curiosity",
+      "type": "cycle_complete",
+      "severity": "info",
+      "timestamp": "2026-07-02T06:14:23.210235",
+      "payload": {
+        "cv2": 0.27,
+        "open_qs": 0,
+        "cycle": 1
+      }
+    },
+    {
+      "event_id": "evt-20260702-061425-0111",
+      "source": "body_daemon",
+      "type": "check_complete",
+      "severity": "info",
+      "timestamp": "2026-07-02T06:14:25.252087",
+      "payload": {
+        "check_num": 5,
+        "discoveries": 2
+      }
+    },
+    {
+      "event_id": "evt-20260702-062426-0112",
+      "source": "probe",
+      "type": "scan_complete",
+      "severity": "info",
+      "timestamp": "2026-07-02T06:24:26.585923",
+      "payload": {
+        "results": "{'integration': {'integration_mean_coupling': 0.0, 'integration_silo_ratio': 0.0}, 'self_state': None, 'continuity': {'continuity_index': 0.0, 'window_size': 1}}"
+      }
+    },
+    {
+      "event_id": "evt-20260702-062426-0113",
+      "source": "curiosity",
+      "type": "cycle_complete",
+      "severity": "info",
+      "timestamp": "2026-07-02T06:24:26.638222",
+      "payload": {
+        "cv2": 0.27,
+        "open_qs": 0,
+        "cycle": 1
+      }
+    },
+    {
+      "event_id": "evt-20260702-062428-0114",
+      "source": "body_daemon",
+      "type": "check_complete",
+      "severity": "info",
+      "timestamp": "2026-07-02T06:24:28.665191",
+      "payload": {
+        "check_num": 8,
+        "discoveries": 4
+      }
     }
   ],
   "snapshot": {
     "probe": {
-      "last_event": "evt-20260702-060411-0106",
+      "last_event": "evt-20260702-062426-0112",
       "last_type": "scan_complete",
       "last_severity": "info",
-      "last_timestamp": "2026-07-02T06:04:11.093719"
+      "last_timestamp": "2026-07-02T06:24:26.585923"
     },
     "test": {
       "last_event": "evt-20260701-175949-0004",
@@ -1281,16 +1347,16 @@
       "last_timestamp": "2026-07-01T19:18:37.987183"
     },
     "curiosity": {
-      "last_event": "evt-20260702-060420-0107",
+      "last_event": "evt-20260702-062426-0113",
       "last_type": "cycle_complete",
       "last_severity": "info",
-      "last_timestamp": "2026-07-02T06:04:20.050975"
+      "last_timestamp": "2026-07-02T06:24:26.638222"
     },
     "body_daemon": {
-      "last_event": "evt-20260702-060421-0108",
+      "last_event": "evt-20260702-062428-0114",
       "last_type": "check_complete",
       "last_severity": "info",
-      "last_timestamp": "2026-07-02T06:04:21.686946"
+      "last_timestamp": "2026-07-02T06:24:28.665191"
     },
     "s0": {
       "last_event": "evt-20260701-191823-0089",
@@ -1347,5 +1413,5 @@
       "last_timestamp": "2026-07-01T19:18:40.690412"
     }
   },
-  "_checksum": "cb8b0f602c18733b"
+  "_checksum": "f6f27762fbf7f13b"
 }

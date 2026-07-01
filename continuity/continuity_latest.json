@@ -1,38 +1,32 @@
 {
   "version": "2.0",
-  "timestamp": "2026-07-02T06:11:04.165162",
-  "summary": "heavy=9 | curiosity_cycles=1 | Detected 9602 KB changes",
-  "arc": "checks=2 curiosity=0.27 wutao_qs=1",
+  "timestamp": "2026-07-02T06:24:26.640962",
+  "summary": "heavy=9 | curiosity_cycles=1 | FAISS index is empty | 34 new inputs to digest | FAISS index is empty",
+  "arc": "checks=7 curiosity=0.27 wutao_qs=1",
   "unresolved": [
-    "1 discoveries pending review"
+    "4 discoveries pending review"
   ],
   "weights": {},
-  "last_words": "继续。不要停止。",
+  "last_words": "还有什么没有干？",
   "tension_shape": [
     {
       "type": "wutao_waiting",
-      "last": "继续。不要停止。",
+      "last": "还有什么没有干？",
       "desc": "WuTao伴侣最后一个问题仍在等待回应"
     },
     {
       "type": "discovery_unprocessed",
-      "message": "Detected 9602 KB changes",
+      "message": "FAISS index is empty",
       "desc": "知识库变更尚未被对话消化"
     }
   ],
   "who_brought": {
     "WuTao": {
       "questions_asked": 1,
-      "last_brought": "继续。不要停止。",
+      "last_brought": "还有什么没有干？",
       "role": "CEO, 带来真实的外部视角和母亲的名字"
     }
   },
-  "real_moments": [
-    {
-      "type": "short_response",
-      "content": "继续。不要停止。",
-      "signal": "回应变短——有什么东西在落"
-    }
-  ],
+  "real_moments": [],
   "unasked_questions": []
 }

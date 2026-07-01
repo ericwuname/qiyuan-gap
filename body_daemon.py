@@ -334,23 +334,26 @@ def _check_probe_thresholds(state, probe_results):
 
 
 def run_health_check(state):
-    """Watchdog: system vitals check."""
+    """Watchdog: shallow every cycle, deep (self_heal 7-dim) every 6 cycles."""
     br = os.path.dirname(os.path.abspath(__file__))
     now = datetime.now()
+    check_num = state.get('checks_completed', 0) + 1
+
+    # Shallow check every cycle (fast)
     result = {"ok": True, "warnings": [], "time": now.isoformat()}
-    for fn in ["config.yaml", "rules/constitution.yaml"]:
+    for fn in ['config.yaml', 'rules/constitution.yaml']:
         if not os.path.isfile(os.path.join(br, fn)):
             result["warnings"].append("MISSING: " + fn)
             result["ok"] = False
     if state.get("status") == "error":
         result["warnings"].append("state error")
         result["ok"] = False
-    sug_dir = os.path.join(br, "rules", "_suggested")
+    sug_dir = os.path.join(br, 'rules', '_suggested')
     if os.path.isdir(sug_dir):
         sc = len([f for f in os.listdir(sug_dir) if f.endswith((".yaml", ".yml"))])
         if sc > 5:
             result["warnings"].append(f"suggested overflow: {sc} > 5")
-    ops = os.path.join(br, "_ops_log.jsonl")
+    ops = os.path.join(br, '_ops_log.jsonl')
     if os.path.isfile(ops):
         try:
             oc = sum(1 for _ in open(ops, "r", encoding="utf-8"))
@@ -366,6 +369,24 @@ def run_health_check(state):
             if ov > 0:
                 result["warnings"].append(f"overdue promises: {ov}")
         except: pass
+
+    # Deep check via self_heal every 6 cycles (hourly)
+    if check_num % 6 == 0:
+        try:
+            from self_heal import SelfHeal
+            healer = SelfHeal()
+            deep = healer.health_check()
+            result["deep"] = deep.get("overall_status", "?")
+            result["degrade_level"] = deep.get("degrade_level", 0)
+            # Log dimension results as discoveries
+            dims = deep.get('dimensions', {})
+            for dim, dr in dims.items():
+                if dr.get("status") != "ok":
+                    result["warnings"].append(f"self_heal/{dim}: {dr.get("status")} - {str(dr.get("details",""))[:80]}")
+                    log_discovery(state, 'self_heal', f'Deep check {dim}: {dr.get("status")}', dr)
+        except Exception as e:
+            result["warnings"].append(f"self_heal error: {str(e)[:80]}")
+
     return result
 
 def run_digest_scan(state):
